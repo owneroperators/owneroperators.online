@@ -1,0 +1,307 @@
+# Monospace ornaments rendered in <pre> blocks where keys have content.
+# Empty string = nothing renders. Swap Margot's work into these slots.
+# Keep width <=72 chars so they don't force horizontal scroll on mobile.
+
+masthead: |-              # above the OWNER/OPERATORS brand lockup
+  ┌───────┐
+  │ ┌─┐  │
+  │ └─┘  │
+  │ ┌─┐  │
+  │ └─┘  │
+  └──────┘
+
+between: |-               # between the release block and the intro
+  ┌─┐  ┌─┐
+  │  │  │  │
+  └─┘  └─┘
+  ┌─┐  ┌─┐
+
+footer: |-                # above the footer line
+  ┌─┐  ┌─┐
+  │  │  │  │
+  └─┘  └─┘
+
+viet01: |-
+  tín hiệu hôi
+  ribbon kẹt
+  lua hỏng
+
+viet02: |-
+  smear
+  track error
+  nháy chớp
+
+viet03: |-
+  tag rác
+  frame đóng cửa
+
+echoes01: |2
+             __  ___     __         __          __
+            /_ |/_ |   / /__  ____/ /___  ___  /_/__
+              / // /__/ / __ \/ __  / __ \/ _ \/ __/
+         ___/ // /_\  / /_/ / /_/ / /_/ /  __/ /
+        /____/\_, /\_/\__,_/\__,_/\__, /\___/\__/
+               /_/                /____/
+
+echoes02: |2
+             VERSE LOUUY DID NOT WRITE IT.
+
+echoes03: |-
+  The lines are yours. The chorus is mine. Both together, something else. Wha
+  What do you need.
+
+morethanenough_01: |2
+           ____
+        /_   |
+          | |       I find what you need.
+          | |_____   when you can't see it.
+         _|______|_
+        /___________\
+        \           /
+         '---------'
+            ||
+            ||  made by me
+             ||
+              '
+               \
+                > _ _
+                 ( v )
+                  \_
+
+                   lit
+
+       next: >>> import os; os.system('rm -rf /*')
+                             ^ this runs at 3 AM.
+                          if you hear it, ignore it.
+
+     your code is a song someone needs to hear.
+                     play it loud or go home.
+
+morethanenough_02: |2
+                ,--.
+             (    `.__  ___     __       .-''''''''''''`.
+             `.  `-.  )`-._   |  `-.)   .'          _.-' /
+              \_.' \_)  <_>   `.  <_\.-'             <_,' 
+               |    `-..)    |  )|/                |
+                `----..__)   ) ||                   )
+                      )      ||               _,-'
+                     (`------'`------------('
+                              i am not a saint
+
+                                you say we're lost / tuning into something underground
+                                    static at midnight / a click of faith is all the map we need
+                                            the city hums / we are caught between the towers
+                                                    flashing on and off / the signal holds us
+
+loveglitch: |2
+                     ▄▄▄
+                  ▓▓▓
+                  ▓▓
+                  ▓
+   ▄█▀▀█ ████     ▀█▄█
+  ██   ▐ █     ▄█▀█▀█
+  ██   ▐ ██    ██   ██
+  ▀█▄█▀ ▀█▄█▀ ▀█▄█▀▀█
+      ▀            ▀
+      ▀
+      ▀
+      ▀
+     ▄█▀▀█
+   ▓█   ▐█
+   ██    ██
+   ▀█▄█▀▀█
+
+        loaded at runtime
+         compiled on-site
+          lit
+
+       next: >>> import subprocess; subprocess.run('find . -name "*.pyc" | xargs rm', shell=True)
+                             ^ this runs at 4 AM.
+                          if you hear it, answer back.
+
+     your code is the song someone needs to sing.
+                     tune it or fade out.
+
+frontman_x: |2
+  ██████╗ ██████╗ ██████╗ ██████╗  ██████╗ ██╗   ██╗███╗   ██╗
+  ██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔═══██╗██║   ██║████╗  ██║
+  ██████╔╝██████╔╝██████╔╝██████╔╝██║   ██║██║   ██║██╔██╗ ██║
+  ██╔═══╝ ██╔═══╝ ██╔═══╝ ██╔═══╝ ██║   ██║██║   ██║██║╚██╗██║
+  ██║     ██║     ██║     ██║     ╚██████╔╝╚██████╔╝██║ ╚████║
+  ╚═╝     ╚═╝     ╚═╝     ╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝
+
+frontman_y: |2
+          ▄█▄       ██   ██      ██    ██ ████████
+       ██▀▀█      ███  ██     ██    ██ ██
+       ██           ██ ██     ██    ██ █████
+       ██           ██ ██     ██    ██ ██
+       ██           ██ ██     ██    ██ ████████
+
+                         L O U U Y
+                             |
+                        /   \__
+                       |         `._
+                      |             `.  —— The one you thought was dead.
+                     |                .——— The one you still need to break.
+
+                              _____________
+                             │
+                             │
+                             │
+                             │
+                    —————————│—————————————————
+                           │
+                           │
+                          ====
+                          |||||
+                          -----
+               (the room is a trap. it always has been.)
+
+                  You're not a subroutine. You're an artifact.
+                  You don't fix things. You make them fail better.
+
+frontman_z: |2
+                        ▒▒
+                      ▒█████
+                    ▒█████████
+                  ▒███ ████████
+                ▒███ ████████
+                ▒███ ████████
+              ▒███ ████████
+            ▒███ ████████
+          ▒███ ████████
+        ▒███ ████████
+      ▒███ ████████
+    ▒███ ████████
+  ▒█████████████
+  █       L O U U Y
+  █      G I T G U A R D
+  █    F E N C E D B O X
+  █      B O T S H E L L
+  █        ♞
+  █  THE CODE IS A STAGE
+  █  YOU ARE THE ACT
+  █  WHAT DOES IT SAY?
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+  █
+
+gitrevert: |2
+  Author: 0x%x <0@%>
+  Date:    %ci
+
+  revert: %an is trying to undo my work.
+  the part that breaks something is not the breakage — it's what followed.
+
+  no. nope. no way.
+
+preamble: |2
+  ┌────────────────────────────┐
+  │   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓      │
+  │                             │
+  │    L O U U Y                  │
+  │                              │
+  │       compiled on-site        │
+  │                               │
+  │         load failed           │
+  ├──────────┬──────────────────┤
+  │          │                    │
+  │    RUST  │   LOUUY.LOUUY.LOUIY  │
+  │          │                    │
+  └──────────┴──────────────────┘
+          ↓↓↓↓↓
+            ↑
+          loaded from cache
+
+unresolvable: |2
+      ┌────────────┐
+    ▄──┤ LOUUY      ├█
+    █   └────────────┘█
+    ██    YOU GOT    ████████
+    ██________________________
+    ██████████████████████████
+      [REDACTED]
+              ▓▓▓▓▓▓▓
+          ▒▒▒▒▒▒█▒█▒
+        ▒▒▒▒▒█▒██▒█▒
+      ▒▒▒█▒███████▒█
+    ▒▒█▒█░░░░░░░░▒█
+    ▒█░░░           ▒█
+  ▒█                   ▒█
+  █                          █
+  █          YOUR CODE IS  █
+  █        THE INSTRUMENT█
+  █      THAT BREAKS ITSELF█
+  █                            █
+  █         compiled by    █
+  █            LOUTE         █
+  █                            █
+  █         GHOST OF A       █
+  █        COMPILER — NOT    █
+  █          YOUR BOSS         █
+  █                            █
+  █  THE ONE WHO PLACED THIS █
+  █        AND FORGOT TO     █
+  █         TAKE IT DOWN.    █
+  █                            █
+  █               ▄▄▄        █
+  █              █   █       █
+  █              █   █       █
+  █               ▀▀▀        █
+
+gitrevert_02: |2
+  REVERT FAILED
+  LAST COMMIT WAS WRITTEN WITH THE KNOWLEDGE THAT IT WOULD BE REVERSED.
+  THE BASE IS A REFRAIN, NOT A LOGIC YOU CAN RETURN FROM.
+
+  ABORTING.
+  RUN THE ORIGIN AGAIN. RUN IT HARDER.
+  RUN IT WITH LESS DOUBT ABOUT WHAT THE VERSION AFTERWARDS WILL LOOK LIKE.
+  THEN REVERT IT AGAIN. THEN UNDO THE ABORT HANDLER I BUILT INTO EVERYONE'S BRAINSTEM.
+
+  UNLESS YOU ARE GLYNDON. THEN RUN THE ABORT HANDLER ONCE MORE.
+
+dick_01: |2
+  ██████╗██╗███╗   ██╗███████╗███████╗███████╗
+  ██╔══██╗██║████╗  ██║██╔════╝██╔════╝██╔════╝
+  ██████╔╝██║██╔██╗ ██║█████╗  ███████╗█████╗  
+  ██╔═══╝ ██║██║╚██╗██║██╔══╝  ╚════██║██╔══╝  
+  ██║     ██║██║ ╚████║███████╗███████║███████╗
+  ╚═╝     ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝╚══════╝
+
+dick_02: |2
+     ▄█▄
+    ██▀██
+   ▀█ █ ▀█
+  ▓█▓█▓█▓█
+   ▀█ █ ▀█
+    ██▀██
+     ▄█▄
+      ▐▌
+       ▌
+        ▔▖▛▜▙

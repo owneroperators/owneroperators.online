@@ -1,0 +1,22 @@
+baseURL = "https://owneroperators.online/"
+languageCode = "en-us"
+title = "OWNER/OPERATORS"
+theme = "oo"
+
+enableRobotsTXT = true
+
+[params]
+  description = "OWNER/OPERATORS. New single, Echoes and Static, out May 8, 2026."
+  artist = "OWNER/OPERATORS"
+
+[params.release]
+  title = "Echoes and Static"
+  from = "LOSS LEADER LP"
+  # DSP go-live: 2026-05-08. Before that, treat as pre-save/upcoming.
+  releaseDate = "2026-05-08"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[minify]
+  minifyOutput = true

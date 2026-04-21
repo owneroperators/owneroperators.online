@@ -1,0 +1,16 @@
+owneroperators.online does not use cookies.
+owneroperators.online does not use analytics.
+owneroperators.online does not use tracking pixels.
+owneroperators.online does not fingerprint browsers.
+owneroperators.online does not collect personal data.
+
+There are no user accounts.
+There is no behavioral profiling.
+There is nothing to opt out of.
+
+Requests are served.
+Logs exist only as required for basic operation
+and are not used for analysis or resale.
+
+If your browser sends a Do Not Track signal,
+it is respected by default.

@@ -1,0 +1,11 @@
+# Outbound links surfaced in the release block on the home page.
+# Rendered by themes/oo/layouts/partials/links.html.
+# Spotify and Apple Music URLs below are DUMMIES — replace when artist profiles go live.
+- name: Spotify
+  url: https://open.spotify.com/artist/owneroperators
+- name: Apple Music
+  url: https://music.apple.com/artist/owneroperators
+- name: Bandcamp
+  url: https://owneroperators.bandcamp.com/
+- name: Instagram
+  url: https://www.instagram.com/owneroperators.mp4/

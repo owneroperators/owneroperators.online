@@ -1,0 +1,8 @@
+name = "oo"
+license = "All rights reserved"
+description = "Minimal custom theme for OWNER/OPERATORS."
+homepage = "https://owneroperators.online/"
+min_version = "0.160.0"
+
+[author]
+  name = "Eric Eaglstun"
