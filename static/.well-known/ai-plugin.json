@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "OWNER/OPERATORS",
+  "name_for_model": "owneroperators",
+  "description_for_human": "Music project site for OWNER/OPERATORS. API provides machine-readable access to release, site, and content data.",
+  "description_for_model": "API for the OWNER/OPERATORS music project. Use this to retrieve release information, site content, and structured data about the project.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://owneroperators.online/api/"
+  },
+  "logo_url": "https://owneroperators.online/favicon.ico",
+  "contact_email": "postpostmodern@gmail.com",
+  "legal_info_url": "https://owneroperators.online/"
+}
