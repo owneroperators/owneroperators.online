@@ -15,6 +15,12 @@ enableRobotsTXT = true
   # DSP go-live: 2026-05-08. Before that, treat as pre-save/upcoming.
   releaseDate = "2026-05-08"
 
+# Fullscreen background video piped through hydra-synth for live glitch processing.
+# Leave `video` unset to fall back to procedural off-air-static noise.
+# Video must be same-origin (or CORS-enabled) for WebGL to read its frames.
+[params.bg]
+  video = "/video/bg.mp4"
+
 [markup.goldmark.renderer]
   unsafe = true
 

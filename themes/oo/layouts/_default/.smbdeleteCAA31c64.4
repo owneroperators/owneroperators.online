@@ -20,9 +20,7 @@
   </main>
   {{ partial "footer.html" . }}
   <script src="https://cdn.jsdelivr.net/npm/hydra-synth@1.3.29/dist/hydra-synth.js" defer></script>
-  {{ with resources.Get "js/bg.js" }}
-    {{ $bgjs := . | resources.Minify | resources.Fingerprint }}
-    <script src="{{ $bgjs.RelPermalink }}" integrity="{{ $bgjs.Data.Integrity }}" defer></script>
-  {{ end }}
+  {{ $bgjs := resources.Get "js/bg.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $bgjs.RelPermalink }}" integrity="{{ $bgjs.Data.Integrity }}" defer></script>
 </body>
 </html>

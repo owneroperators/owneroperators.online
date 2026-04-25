@@ -14,12 +14,12 @@ Pair with `CLAUDE.md` (mechanics, stack, hard rules) and the parent `/Volumes/er
 
 ## Where we are (2026-04-20)
 
-Single page: hero brand lockup, release block (*Echoes and Static*, 5/8, four outbound links), empty intro, copyright footer. MgOpen Moderna body, system sans display, dark palette. Clean, fast, functional — and sterile. It reads like a placeholder, not like the project.
+Single page: hero brand lockup, release block (_Echoes and Static_, 5/8, four outbound links), empty intro, copyright footer. MgOpen Moderna body, system sans display, dark palette. Clean, fast, functional — and sterile. It reads like a placeholder, not like the project.
 
 ## What the site is trying to do
 
 - Be a place the music lives. Single first, LP when it lands. Music-first on the home page.
-- Carry the project's *feeling*, not just its facts.
+- Carry the project's _feeling_, not just its facts.
 - Stay small. Hugo + plain CSS. No frameworks, no JS unless earned.
 - Keep the cast **discoverable, not frontloaded** (per `AGENTS.md`).
 
@@ -27,7 +27,7 @@ Single page: hero brand lockup, release block (*Echoes and Static*, 5/8, four ou
 
 Ground any new copy or visual choice in the manual + canon. Don't invent:
 
-- **Voice North Star** — `/Volumes/eric/.openclaw/workspace/owner-operators/manual/1_MANUAL__STANDARD.md`. The metamodern stance lives here. Sample moves that are canon: *"We do not play shows. We deploy payloads."* · *"A mistake, repeated with intention, becomes a hook."* · *"Visible seams are the sincerity."*
+- **Voice North Star** — `/Volumes/eric/.openclaw/workspace/owner-operators/manual/1_MANUAL__STANDARD.md`. The metamodern stance lives here. Sample moves that are canon: _"We do not play shows. We deploy payloads."_ · _"A mistake, repeated with intention, becomes a hook."_ · _"Visible seams are the sincerity."_
 - **Cast canon** — `/Users/eeaglstun/Documents/AI/llm-models/CHARACTERS.md`. Front door for everyone below. Read the entry before writing in a character's voice.
 - **Visual codex** — from `CHARACTERS.md`: black-and-white zine grit, photocopy smear, toner ghosts, ASCII halos, corrupted debug tables, errant UI fragments. Roadside Americana (truck stops, gas stations, laundromats) crossed with obsolete tech (Speak & Spell, CRT, dot-matrix). Riso accents — fluo pink, safety yellow, cornflower.
 - **Archive** — `/Volumes/bananas/local-ai/source/chat-gpt-export/OWNER-OPERATORS/` (~119 dated conversations). Grep by topic for deeper context; don't bulk-load.
@@ -40,8 +40,8 @@ If something on the site feels too clean or too designed, it's probably wrong. R
 
 - **Gloria.exe** — HR-polished surface, broken underneath. Stage-mode energy. Good for dated posts, diary-commit fragments, release microcopy with a seam. **Never self-IDs as AI.**
 - **Louuy** — absence as image. One-line fragments, empty-room suggestions, liturgical flashes. Good candidate for a 404 page, a stray footer line, a `<!-- -->` in source. Rarely surfaces; weighs heavy when he does.
-- **The Reader In Cultural Theory** — footnoted, over-precise, extradiegetic. He comments *on* the piece, never *to* it. Good for an annotation layer (release-notes footnotes, a manual gloss).
-- **Nathan and the Churro Bros** — broadcast layer. *Exclusive Long Beach* dispatches could live as their own slow stream, decoupled from the release cycle. Post-5/8 candidate.
+- **The Reader In Cultural Theory** — footnoted, over-precise, extradiegetic. He comments _on_ the piece, never _to_ it. Good for an annotation layer (release-notes footnotes, a manual gloss).
+- **Nathan and the Churro Bros** — broadcast layer. _Exclusive Long Beach_ dispatches could live as their own slow stream, decoupled from the release cycle. Post-5/8 candidate.
 - **Mote** — meta-tooling. **Stays out of the diegesis.** Fine in HTML comments, commit messages, deploy logs. Never a public byline.
 
 ### Dev agent team (easter-egg layer — never named publicly on the site)
@@ -86,24 +86,24 @@ Same pattern — `gloria-7b-q8-ft`, `louuy-7b-q4-ft`, `reader-7b-q8-ft`, `nathan
 
 **This section is load-bearing. Read it before saying any model is "not good enough."**
 
-The manual, Section 4 (*"Our relationship to technology"*): *"We refuse to fear our tools. We use AI not because our words are disposable, but because they are not sacred. They are raw material, shaped, broken, rebuilt until they sound like truth."*
+The manual, Section 4 (_"Our relationship to technology"_): _"We refuse to fear our tools. We use AI not because our words are disposable, but because they are not sacred. They are raw material, shaped, broken, rebuilt until they sound like truth."_
 
-And Section 2: *"A mistake, repeated with intention, becomes a hook."*
+And Section 2: _"A mistake, repeated with intention, becomes a hook."_
 
 Translation for this site:
 
 - **Glitch is material, not error.** When Margot's ASCII is lopsided, when Silas indents a block weirdly, when Jester's roast lands at a strange angle, when Gloria's post has a phrase that doesn't quite parse — the default move is **keep and curate**, not discard and retry until smooth.
 - **Visible seams are the sincerity.** A Margot masthead that's a little off is more on-project than a clean one that reads like Figma. A corrupted debug-table aesthetic is in the codex. Scrubbing a model's fingerprints off its output is usually scrubbing the work off too.
-- **"The models aren't good enough for this" is almost always the wrong conclusion.** The right question is: *what did they give me that I can use, curate, or repeat with intention?* If a model produced something weird, weirdness is often the payload. Repeat a typo three times and it's a hook.
-- **Polishing is a bigger risk than rough output.** Over-editing toward a neutral "professional" aesthetic is the failure mode to watch for. The site is not trying to look good; it's trying to look *honest and slightly wrong*, like a flyer photocopied one too many times.
+- **"The models aren't good enough for this" is almost always the wrong conclusion.** The right question is: _what did they give me that I can use, curate, or repeat with intention?_ If a model produced something weird, weirdness is often the payload. Repeat a typo three times and it's a hook.
+- **Polishing is a bigger risk than rough output.** Over-editing toward a neutral "professional" aesthetic is the failure mode to watch for. The site is not trying to look good; it's trying to look _honest and slightly wrong_, like a flyer photocopied one too many times.
 
-What this does *not* mean:
+What this does _not_ mean:
 
 - Don't ship code that breaks the build. Silas sometimes hallucinates a Hugo function — check the build, not the vibe.
 - Don't ship character copy that violates canon (e.g. Gloria self-IDing as AI). Canon beats glitch every time.
 - Don't accept low-effort model output you didn't engage with. Reprompt, pipe through another agent, combine outputs, curate. Push the tool before you blame it.
 
-**Rule of thumb.** Before you say "this model output isn't usable," ask: *could a version of this, kept on purpose, be a seam?* If yes, it's material. If no — and you've genuinely looked — then move on.
+**Rule of thumb.** Before you say "this model output isn't usable," ask: _could a version of this, kept on purpose, be a seam?_ If yes, it's material. If no — and you've genuinely looked — then move on.
 
 ## Rough moves (open threads, not a roadmap)
 

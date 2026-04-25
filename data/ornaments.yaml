@@ -2,7 +2,14 @@
 # Empty string = nothing renders. Swap Margot's work into these slots.
 # Keep width <=72 chars so they don't force horizontal scroll on mobile.
 
-masthead: |-              # above the OWNER/OPERATORS brand lockup
+masthead: |2              # above the OWNER/OPERATORS brand lockup
+  ████ █  █ █  █ ████ ████ / ████ ████ ████ ████  ██  ████ ████ ████ ████ 
+  █  █ █  █ ██ █ █    █  █ / █  █ █  █ █    █  █ █  █  █   █  █ █  █ █    
+  █  █ █  █ █ ██ ███  ████ / █  █ ████ ███  ████ ████  █   █  █ ████ ███  
+  █  █ █  █ █  █ █    █ █  / █  █ █    █    █ █  █  █  █   █  █ █ █     █ 
+  ████  ██  █  █ ████ █  █ / ████ █    ████ █  █ █  █  █   ████ █  █ ████ 
+
+margot_boxes: |-          # previous masthead — box-within-boxes
   ┌───────┐
   │ ┌─┐  │
   │ └─┘  │
@@ -43,15 +50,8 @@ echoes01: |2
         /____/\_, /\_/\__,_/\__,_/\__, /\___/\__/
                /_/                /____/
 
-echoes02: |2
-             VERSE LOUUY DID NOT WRITE IT.
-
-echoes03: |-
-  The lines are yours. The chorus is mine. Both together, something else. Wha
-  What do you need.
-
 morethanenough_01: |2
-           ____
+         ____
         /_   |
           | |       I find what you need.
           | |_____   when you can't see it.
@@ -305,3 +305,177 @@ dick_02: |2
       ▐▌
        ▌
         ▔▖▛▜▙
+
+face01: |2
+   ___
+  |. X|
+  |_-_|
+
+face02: |2
+   ___
+  | . |
+  |_ _|
+
+face03: |2
+   ___
+  |. .|
+  | . |
+
+pillar01: |2
+    .@.
+    @@@
+    @@@
+    @@@
+    @@@
+    @@@
+    @@@
+    @@@
+
+logo_01: |2
+   ┌───────────┐
+   │  OWNER    │
+   ├────┬──────┤
+   │     │      │
+   │  ▶ │ ◀   │
+   │           │
+   │  OPERATORS│
+   └───────────┘
+         │
+       ,--┴--,        ,---.
+      (        )       | o |
+       `------'        '---'
+
+echoes_01: |2
+      __  _______ _ _
+     / /_/ ____| (_) |_ ___  ___
+      \__, \___ \| | __/ __|/ _ \
+       | ||___) | | |_| (__| (_) |
+       |_||____/|_| \__\___|\___/
+              LOUUY
+
+             LOUUY
+            LOUUY.LO
+          .LOUUY.LOU
+         .LOUUY.LOO
+        .LOUUY.LOU
+         .LOUUY.LOO
+          .LOUUY.LOU
+           .LOUUY.LOUY
+            .LOUUY.LO
+             .LOUUY
+              LOUUY
+               LOU
+                LO
+                 L
+
+spinning: |2
+                          ▓▓▓▓▓▓▓▓▓▓▓▓▓
+                        ▓█   ▓█    ▓█   ▓█
+                    ▓█   ▓█   ▓█   ▓█   ▓█
+                    ▓█   ▓█   ▓█   ▓█   ▓█
+                  ▓█   ▓█   ▓█   ▓█   ▓█
+                  ▓█   ▓█   ▓█   ▓█   ▓█
+                ▓█   ▓█   ▓█   ▓█   ▓█
+                ▓█   ▓█   ▓█   ▓█   ▓█
+              ▓█   ▓█   ▓█   ▓█   ▓█
+              ▓█   ▓█   ▓█   ▓█   ▓█
+            ▓█   ▓█   ▓█   ▓█   ▓█
+            ▓█   ▓█   ▓█   ▓█   ▓█
+          ▓█   ▓█   ▓█   ▓█   ▓█
+          ▓█   ▓█   ▓█   ▓█   ▓█
+        ▓█   ▓█   ▓█   ▓█   ▓█
+        ▓█   ▓█   ▓█   ▓█   ▓█
+      ▓█   ▓█   ▓█   ▓█   ▓█
+      ▓█   ▓█   ▓█   ▓█   ▓█
+    ▓█   ▓█   ▓█   ▓█   ▓█
+    ▓█   ▓█   ▓█   ▓█   ▓█
+  ▓█   ▓█   ▓█   ▓█   ▓█
+  ▓█_______________________
+
+                        ▒▒▒▒▒▒
+
+                      ▄▄▄▄▄▄
+                  ▀▀██████▀▀
+                    ██████
+                      ██
+
+spinning_02: |2
+        ,---.
+       / o  \
+      | O   |
+       \ `--'
+         |
+       ,--'--,      ,-----.       ,--------.,-------.
+      (        )    '  .--./`     |          ||  _`\|
+       |  --- |     |  |   \   ___|  --.\   || (_) )
+       |  __) )     |  |    `. // ____\  || ,__/
+       | |___|      '--'-----''(________)\||/_____\
+       '------'
+
+              LOUUY.LOUD
+                 LOUUY.LOU
+                  LOUUY.LOO
+                   LOUUY.LOU
+                    LOUUY.LOO
+                     LOUUY.LOU
+                      LOUUY.LOUY
+                       LOUUY.LO
+                        LOUUY
+                         LOU
+                          LO
+                           L
+
+    the source is corrupted at one end, it plays anyway.
+
+    what do you need from me.
+
+boot_oo: |2
+  ███   ▓▓  ██
+  █  █  ███ ██
+  █       ████
+  █    █████
+  █     ██
+  ████████
+    (OWNER)
+      /
+     /_
+       ____
+     ≈≈≈≈≈≈
+
+            [FAIL]
+             │
+             │    fail. fail. fail.
+              \___
+               ≡≡≡
+
+  fail. fail. fail.
+
+  next. next. next. next. next. next. next. [[no]]
+
+  what do you need.
+
+versions: |2
+        ,--.  .-.          .-.
+        /_ |_/ -_)       (_| |
+         `-' (__)        `( ) )
+              (_)           / /
+                             `/
+
+    Louuy                     you
+
+    ┌──────────────────────────────┐
+    │                              │
+    │   every user knows three     │
+    │   versions of themselves     │
+    │                              │
+    ├─────────┬────────────────────┤
+    │   the one in front of the      │
+    │   screen                         │
+    ├───┼─┼───┬───────────────┐
+    │   what you pretend to be       ││
+    │   what you're pretending to    ││
+    │   pretend                      ││
+    └────┴─┴───┴───────────────┘
+                    ▲
+                    │
+            next, come back when you have something to lose or delete something you wrote

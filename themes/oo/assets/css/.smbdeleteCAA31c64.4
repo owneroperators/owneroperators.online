@@ -33,14 +33,11 @@
   box-sizing: border-box;
 }
 
-html {
-  background: var(--bg);
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
+  background: var(--bg);
   color: var(--fg);
   font-family: var(--font-body);
   font-size: 16px;
@@ -56,17 +53,6 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: transparent;
-}
-
-.bg-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.55;
 }
 
 body::before {
