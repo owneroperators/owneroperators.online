@@ -1,5 +1,5 @@
 {{ define "main" }}
-<article>
+<article class="{{ with .File }}page-{{ .BaseFileName }}{{ end }}">
   <header>
     <p class="eyebrow"><a href="{{ "/" | relURL }}">OWNER/OPERATORS</a></p>
     <h1>{{ .Title }}</h1>

@@ -5,24 +5,32 @@
 - name: Spotify
   url: https://open.spotify.com/artist/owneroperators
   ornament: |2
-     ≋
-    ≋≋≋
-     ≋
+    ╭───────╮
+    │ ≋ ≋ ≋ │
+    │  ·≋·  │
+    │SPOTIFY│
+    ╰───────╯
 - name: Apple Music
   url: https://music.apple.com/artist/owneroperators
   ornament: |2
-     ∙
-    ╭╮
-    ╰╯
+    ╭───────╮
+    │  ♪♪   │
+    │ ♪  ♪  │
+    │ APPLE │
+    ╰───────╯
 - name: Bandcamp
   url: https://owneroperators.bandcamp.com/
   ornament: |2
-    ╭o─o╮
-    │───│
-    ╰───╯
+    ╭───────╮
+    │ ◯───◯ │
+    │ ▒▒▒▒▒ │
+    │BANDCMP│
+    ╰───────╯
 - name: Instagram
   url: https://www.instagram.com/owneroperators.mp4/
   ornament: |2
-    ┌─┐
-    │◉│
-    └─┘
+    ╭───────╮
+    │ ┌─◉─┐ │
+    │ └───┘ │
+    │ INSTA │
+    ╰───────╯

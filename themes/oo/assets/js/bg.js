@@ -15,7 +15,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
   if (reduceMotion || !supportsHydra()) {
     document.documentElement.setAttribute(
       "data-bg",
-      reduceMotion ? "ascii-static" : "ascii"
+      reduceMotion ? "ascii-static" : "ascii",
     );
     asciiFallback(canvas, { animate: !reduceMotion });
     return;
@@ -27,20 +27,184 @@ document.documentElement.setAttribute("data-bg", "loaded");
     canvas: canvas,
     detectAudio: false,
     makeGlobal: true,
-    width: 960,
+    width: 720,
     height: 540,
   });
 
   var videoSrc = canvas.getAttribute("data-video");
 
   if (videoSrc) {
-    s0.initVideo(videoSrc);
-    src(s0)
-      .scale(1.02)
-      .modulate(noise(1.6, 0.08), 0.018)
-      .colorama(0.004)
-      .contrast(1.08)
-      .out();
+    // All clip paths. Add/remove as needed — order is the playback sequence.
+    var clips = [
+      videoSrc,
+      "/video/store.mp4",
+      "/video/action.mp4",
+      "/video/bridge.mp4",
+      "/video/bwamp.mp4",
+      "/video/cone.mp4",
+      "/video/dad.mp4",
+      "/video/dance.mp4",
+      "/video/fan.mp4",
+      "/video/float.mp4",
+      "/video/king.mp4",
+      "/video/talent.mp4",
+      "/video/trio.mp4",
+    ];
+
+    // Four slots: active[i] and idle[i] are indices into `slots`.
+    // Each position (0 and 1) swaps independently on a staggered timer.
+    var slots = [s0, s1, s2, s3];
+    var active = [0, 1]; // slot indices currently on screen
+    var idle = [2, 3]; // slot indices preloading (paired by position)
+    var recentClips = [];
+
+    // Persistent <video> per slot. We create them ourselves (with playsinline,
+    // muted, autoplay) instead of using slots[i].initVideo(url), because
+    // hydra's internal initVideo creates an element without playsinline, which
+    // iOS hijacks into fullscreen and refuses to render to a texture.
+    var videoEls = [null, null, null, null];
+
+    function initSlotVideo(idx, url) {
+      var v = videoEls[idx];
+      if (!v) {
+        v = document.createElement("video");
+        v.muted = true;
+        v.defaultMuted = true;
+        v.playsInline = true;
+        v.setAttribute("playsinline", "");
+        v.setAttribute("webkit-playsinline", "");
+        v.setAttribute("muted", "");
+        v.autoplay = true;
+        v.loop = true;
+        v.crossOrigin = "anonymous";
+        videoEls[idx] = v;
+        slots[idx].init({ src: v });
+      }
+      v.src = url;
+      v.load();
+      var p = v.play();
+      if (p && p.catch) {
+        p.catch(function () {
+          /* iOS will retry on first user interaction */
+        });
+      }
+    }
+
+    function nextClip() {
+      var available = clips.filter(function (c) {
+        return recentClips.indexOf(c) === -1;
+      });
+      var c = available[(Math.random() * available.length) | 0];
+      recentClips.push(c);
+      if (recentClips.length > 3) recentClips.shift();
+      return c;
+    }
+
+    console.log("time", time);
+
+    // Effect chains — each references active slots so clip swaps re-use the current chain.
+    var chainIdx = 0;
+    var chains = [
+      function () {
+        // base
+        src(slots[active[0]])
+          .blend(
+            src(slots[active[1]])
+              .colorama(0.004)
+              .pixelate(400, 30)
+              .modulate(noise(2.0, 0.06), 0.025),
+            0.4,
+          )
+          .scale(1.02)
+          .modulate(noise(1.6, 0.08), 0.018)
+
+          .contrast(1.08)
+          .out();
+      },
+      function () {
+        // mirror + pixelate
+        src(slots[active[0]])
+          .blend(
+            src(slots[active[1]])
+              .pixelate(72, 54)
+              .modulate(noise(2.0, 0.06), 0.025),
+            0.4,
+          )
+          .scale(1.02)
+          // .kaleid(.5)
+          .colorama(0.012)
+          .contrast(1.1)
+          .out();
+      },
+      function () {
+        // pixelate blend — both slots visible
+        src(slots[active[0]])
+          .blend(
+            src(slots[active[1]])
+              .modulate(noise(2.0, 0.06), 0.025)
+              .pixelate(72, 54)
+              .colorama(0.006),
+            0.4,
+          )
+          .contrast(1.1)
+          .out();
+      },
+      function () {
+        // slow scroll drift
+        src(slots[active[0]])
+          .blend(src(slots[active[1]]).pixelate(40, 300), 0.4)
+          .scale(1.02)
+          .scrollX(function () {
+            return time * 0.008;
+          })
+          .modulate(noise(1.6, 0.08), 0.018)
+          .colorama(0.004)
+          .contrast(1.1)
+          .out();
+      },
+    ];
+    var chainDurations = [10000, 10000, 10000, 10000];
+
+    function renderFront() {
+      chains[chainIdx]();
+    }
+
+    function nextChain() {
+      chainIdx = (chainIdx + 1) % chains.length;
+      renderFront();
+      setTimeout(nextChain, chainDurations[chainIdx]);
+    }
+
+    function swapOne(pos) {
+      var out = active[pos];
+      active[pos] = idle[pos];
+      idle[pos] = out;
+      renderFront();
+      initSlotVideo(out, nextClip());
+    }
+
+    // Seed all four slots up front.
+    initSlotVideo(0, nextClip());
+    initSlotVideo(1, nextClip());
+    initSlotVideo(2, nextClip());
+    initSlotVideo(3, nextClip());
+
+    // Give initial clips a moment to buffer, then start rendering.
+    setTimeout(function () {
+      renderFront();
+      // Effect chain cycles independently of clip swaps.
+      setTimeout(nextChain, chainDurations[chainIdx]);
+      // Position 0 swaps at 10s, 20s, 30s...
+      setTimeout(function tick0() {
+        swapOne(0);
+        setTimeout(tick0, 10000);
+      }, 10000);
+      // Position 1 swaps at 15s, 25s, 35s... (5s offset)
+      setTimeout(function tick1() {
+        swapOne(1);
+        setTimeout(tick1, 10000);
+      }, 15000);
+    }, 1500);
   } else {
     noise(9, 0.12)
       .thresh(0.55)
@@ -53,25 +217,12 @@ document.documentElement.setAttribute("data-bg", "loaded");
     if (!window.Hydra) return false;
     try {
       var test = document.createElement("canvas");
-      var gl = test.getContext("webgl") || test.getContext("experimental-webgl");
+      var gl =
+        test.getContext("webgl") || test.getContext("experimental-webgl");
       if (!gl) return false;
     } catch (e) {
       return false;
     }
-    // Touch-primary devices (all iPhones/iPads, Android phones) hit two walls:
-    // iOS refuses inline video playback for the element hydra's initVideo
-    // creates, and mobile GPUs churn on the shader chain. Bail early.
-    if (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) {
-      return false;
-    }
-    var ua = navigator.userAgent || "";
-    var platform = navigator.platform || "";
-    var isIOS =
-      /iPhone|iPad|iPod/i.test(ua) ||
-      /iPhone|iPad|iPod/i.test(platform) ||
-      (platform === "MacIntel" && navigator.maxTouchPoints > 1) ||
-      (ua.indexOf("Mac") >= 0 && "ontouchend" in document);
-    if (isIOS) return false;
     return true;
   }
 
@@ -86,14 +237,42 @@ document.documentElement.setAttribute("data-bg", "loaded");
     // shade blocks, box-drawing, waves, ticks, dots. Spaces are overweighted
     // so the field reads as sparse static instead of a solid wall.
     var glyphs = [
-      " ", " ", " ", " ", " ", " ", " ", " ",
-      "·", "·", "·", "˙",
-      "░", "▒", "▓",
-      "─", "│", "┼", "┤", "├", "┬", "┴",
-      "┌", "┐", "└", "┘",
-      "╭", "╮", "╯", "╰",
-      "≋", "≡", "=", "~",
-      "▪", "▫",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      "·",
+      "·",
+      "·",
+      "˙",
+      "░",
+      "▒",
+      "▓",
+      "─",
+      "│",
+      "┼",
+      "┤",
+      "├",
+      "┬",
+      "┴",
+      "┌",
+      "┐",
+      "└",
+      "┘",
+      "╭",
+      "╮",
+      "╯",
+      "╰",
+      "≋",
+      "≡",
+      "=",
+      "~",
+      "▪",
+      "▫",
     ];
 
     var state = { cols: 0, rows: 0, cells: null };
@@ -152,9 +331,11 @@ document.documentElement.setAttribute("data-bg", "loaded");
     if (dataEl) {
       try {
         var raw = JSON.parse(dataEl.textContent || "{}");
-        var source = Array.isArray(raw) ? raw : Object.keys(raw).map(function (k) {
-          return raw[k];
-        });
+        var source = Array.isArray(raw)
+          ? raw
+          : Object.keys(raw).map(function (k) {
+              return raw[k];
+            });
         for (var i = 0; i < source.length; i++) {
           var v = source[i];
           if (typeof v === "string" && v.replace(/\s/g, "").length > 0) {
@@ -187,7 +368,8 @@ document.documentElement.setAttribute("data-bg", "loaded");
       var lines = o.split("\n");
       // Drop fully blank leading/trailing lines so stamps hug their content.
       while (lines.length && !lines[0].replace(/\s/g, "").length) lines.shift();
-      while (lines.length && !lines[lines.length - 1].replace(/\s/g, "").length) lines.pop();
+      while (lines.length && !lines[lines.length - 1].replace(/\s/g, "").length)
+        lines.pop();
       if (!lines.length) return;
       var oh = lines.length;
       var ow = 0;

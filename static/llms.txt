@@ -1,0 +1,19 @@
+# OWNER/OPERATORS
+
+> Music project. New single: *Echoes and Static*, out May 8, 2026. From the LP *LOSS LEADER*.
+
+## API
+
+- [API](https://owneroperators.online/api/): Live Node API — primary machine-readable endpoint for this site.
+
+## Pages
+
+- [Home](https://owneroperators.online/): Release info, links, intro
+- [Manual](https://owneroperators.online/manual/): Operating Manual — voice, values, context
+- [FAQ](https://owneroperators.online/faq/): Frequently asked questions
+- [Loss Leader](https://owneroperators.online/lossleader/): LP page
+- [Preview](https://owneroperators.online/preview/): Preview
+
+## Optional
+
+- [llms-full.txt](https://owneroperators.online/llms-full.txt)

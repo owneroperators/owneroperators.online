@@ -1,5 +1,31 @@
 <footer>
-  {{ with site.Data.ornaments.footer }}<pre class="ornament ornament-footer">{{ . }}</pre>{{ end }}
-  <p class="footer-line">The next version is the one that is not.</p>
+  <p class="footer-line">You don't fix things. You make them fail better.</p>
   <p class="copyright">&copy; {{ now.Format "2006" }} OWNER/OPERATORS</p>
 </footer>
+<script>
+(function(){
+  var lines = [
+    "Authenticity is a performance of authenticity.",
+    "Everything leaks eventually. The question is where.",
+    "Failure is the circuit diagram. The machine runs on it.",
+    "failure_is_the_circuit_diagram. the_machine_runs_on_it__",
+    "Intention is the target. Reception is the map that gets lost.",
+    "Nothing persists except what gets written down wrong.",
+    "Originals decay. Copies live.",
+    "signal • ——_is_what_stays. _noise_teaches_everything._",
+    "Signal is what stays. Noise teaches everything.",
+    "The gap between intent and reception is where it lives.",
+    "The mistake was the message.",
+    "The signal degrades. That's the content.",
+    "The song is not about the singer. It's about the room you're in after it plays.",
+    "The version you ship is the one that always existed.",
+    "the_mistake_wa——_t_he_message.",
+    "the_signal_degr______e. that_s—the_content.",
+    "There is no original. There are only earlier recordings.",
+    "You don't fix things. You make them fail better.",
+    "You weren't listening before. Now you are.",
+  ];
+  var el = document.querySelector('.footer-line');
+  if (el) el.textContent = lines[Math.floor(Math.random() * lines.length)];
+})();
+</script>

@@ -18,6 +18,7 @@
 :root {
   --bg: #0a0a0a;
   --fg: #f2f1ed;
+  --fg-dim: #c8c6c0;
   --muted: #8a8a8a;
   --accent: #f2f1ed;
   --rule: #1f1f1f;
@@ -27,6 +28,33 @@
   --font-body:
     "MgOpenModerna", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue",
     Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+body.is-home {
+  font-family: var(--font-mono);
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 0.95),
+    0 0 6px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(0, 0, 0, 0.7),
+    0 0 1px rgba(242, 241, 237, 0.35),
+    0 0 6px rgba(242, 241, 237, 0.18);
+}
+body.is-home .release-title,
+body.is-home .eyebrow,
+body.is-home .release-from,
+body.is-home .intro,
+body.is-home .link-name {
+  font-family: var(--font-mono);
+}
+body.is-home .ornament,
+body.is-home .link-ornament {
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.95),
+    0 0 8px rgba(0, 0, 0, 0.85),
+    0 0 1px rgba(242, 241, 237, 0.45),
+    0 0 4px rgba(242, 241, 237, 0.25),
+    0 0 10px rgba(242, 241, 237, 0.12);
 }
 
 * {
@@ -67,6 +95,44 @@ body {
   z-index: -1;
   pointer-events: none;
   opacity: 0.55;
+}
+
+.bg-ascii {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--muted);
+  opacity: 0.45;
+  white-space: pre;
+  overflow: hidden;
+  user-select: none;
+  text-shadow:
+    0 0 1px rgba(242, 241, 237, 0.35),
+    0 0 4px rgba(242, 241, 237, 0.15);
+}
+
+html[data-bg]::after {
+  content: "bg: " attr(data-bg);
+  position: fixed;
+  top: 0.4rem;
+  left: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #ff4d4d;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 0.15rem 0.35rem;
+  z-index: 10000;
+  letter-spacing: 0.05em;
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 body::before {
@@ -135,7 +201,7 @@ main {
 }
 
 .eyebrow {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
@@ -145,17 +211,30 @@ main {
 
 .release {
   margin: 0 0 4rem;
+  text-align: left;
+}
+.release .eyebrow {
+  margin: 0 0 0.5rem;
 }
 .release-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-family: var(--font-mono);
+  font-size: clamp(1.25rem, 5.5vw, 1.9rem);
   font-weight: 700;
-  margin: 0 0 0.25rem;
-  letter-spacing: -0.01em;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1.15;
+  overflow-wrap: break-word;
 }
 .release-from {
   color: var(--muted);
-  margin: 0 0 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 1.75rem;
+}
+.release-from em {
+  font-style: normal;
+  color: var(--fg);
 }
 
 .links {
@@ -164,8 +243,8 @@ main {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: left;
+  gap: 1.25rem;
 }
 .links li {
   text-align: center;
@@ -173,16 +252,39 @@ main {
 .links a {
   display: inline-block;
   position: relative;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.25rem;
   text-decoration: none;
+}
+
+@media (max-width: 32rem) {
+  .links {
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+  .links a {
+    padding: 0.5rem 0.15rem;
+  }
+  .link-ornament {
+    padding: 0.4rem 0.4rem;
+    font-size: 0.75rem;
+  }
 }
 .link-ornament {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.1;
+  font-size: 0.85rem;
+  line-height: 1.05;
   margin: 0;
-  transition: color 150ms ease;
+  padding: 0.5rem 0.55rem;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(242, 241, 237, 0.1);
+  text-shadow:
+    0 0 1px rgba(242, 241, 237, 0.4),
+    0 0 4px rgba(242, 241, 237, 0.2);
+  transition:
+    color 150ms ease,
+    background 150ms ease,
+    border-color 150ms ease;
 }
 .link-name {
   position: absolute;
@@ -205,6 +307,8 @@ main {
 .links a:hover .link-ornament,
 .links a:focus-visible .link-ornament {
   color: var(--fg);
+  background: rgba(10, 10, 10, 0.9);
+  border-color: rgba(242, 241, 237, 0.4);
 }
 
 .intro {
@@ -216,12 +320,89 @@ main {
 
 .prose {
   max-width: 48rem;
+  display: flow-root;
+}
+.ornament-right {
+  float: right;
+  clear: right;
+  margin: 0.1em 0 0.75rem 1.25rem;
+  shape-outside: inset(0);
+  shape-margin: 0.5rem;
+}
+.ornament-left {
+  float: left;
+  clear: left;
+  margin: 0.1em 1.25rem 0.75rem 0;
+  shape-outside: inset(0);
+  shape-margin: 0.5rem;
+}
+/* Slanted silhouette — for figlets that lean (1995, etc).
+   Text flows into the empty top- and bottom-corner wedges. */
+.ornament-right.ornament-slant {
+  shape-outside: polygon(28% 0, 100% 0, 100% 100%, 28% 100%, 0 50%);
+}
+.ornament-left.ornament-slant {
+  shape-outside: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
+}
+/* Small box glyphs (faces, tiny logos) — sit closer to the text. */
+.ornament-tight.ornament-right {
+  margin: 0.2em 0 0.4rem 0.85rem;
+  shape-margin: 0.3rem;
+}
+.ornament-tight.ornament-left {
+  margin: 0.2em 0.85rem 0.4rem 0;
+  shape-margin: 0.3rem;
+}
+@media (max-width: 36rem) {
+  .ornament-right,
+  .ornament-left {
+    float: none;
+    clear: none;
+    margin: 1rem 0;
+    shape-outside: none;
+  }
 }
 .prose h2,
 .prose h3 {
   font-family: var(--font-display);
 }
 .prose a {
+  color: var(--fg);
+}
+
+/* Manual: prose matches ornament typography */
+.page-manual .prose {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.page-manual .prose p,
+.page-manual .prose li {
+  text-shadow: none;
+}
+
+/* FAQ: questions keep default treatment (bold via markdown **); answers get
+   a terminal-response vibe — monospace, muted, indented with a › prefix. */
+.page-faq .prose p:has(> strong:only-child) {
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.01em;
+}
+.page-faq .prose p:not(:has(> strong:only-child)) {
+  font-family: var(--font-mono);
+  color: var(--fg-dim);
+  font-size: 0.92rem;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 2rem;
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 0.9),
+    0 0 6px rgba(0, 0, 0, 0.8);
+}
+.page-faq .prose p:not(:has(> strong:only-child))::before {
+  content: "›";
+  position: absolute;
+  left: 0;
   color: var(--fg);
 }
 
@@ -236,9 +417,11 @@ main {
 }
 
 footer {
+  width: 100%;
   max-width: var(--max);
   margin: 0 auto;
   padding: 2rem 1.5rem 3rem;
+  text-align: left;
   color: var(--muted);
   font-size: 0.85rem;
   border-top: 1px solid var(--rule);
@@ -256,10 +439,26 @@ footer {
     0 0 10px rgba(242, 241, 237, 0.12);
 }
 .ornament-masthead {
-  text-align: center;
+  text-align: left;
   margin: 0 0 1.5rem;
-  font-size: clamp(0.45rem, 2.2vw, 0.85rem);
+  font-size: clamp(0.38rem, 1.85vw, 0.85rem);
   line-height: 1;
+  white-space: pre;
+}
+
+pre.ornament-masthead {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--muted);
+  /* Stacked dark shadows fake a per-character background — they only
+     paint around glyphs, so whitespace stays transparent. */
+  text-shadow:
+    0 0 0.35em rgba(10, 10, 10, 0.95),
+    0 0 0.35em rgba(10, 10, 10, 0.95),
+    0 0 0.35em rgba(10, 10, 10, 0.95),
+    0 0 0.18em rgba(10, 10, 10, 1),
+    0 0 0.18em rgba(10, 10, 10, 1),
+    0 0 1px rgba(242, 241, 237, 0.45),
+    0 0 4px rgba(242, 241, 237, 0.2);
 }
 .ornament-between {
   margin: 3rem 0;
@@ -296,9 +495,15 @@ footer {
 
 .footer-line {
   margin: 0 0 0.5rem;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+footer:has(.copyright:hover) .footer-line {
+  opacity: 1;
 }
 .copyright {
   margin: 0;
+  cursor: default;
 }
 
 @media (prefers-reduced-motion: no-preference) {

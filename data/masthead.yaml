@@ -1,0 +1,587 @@
+masthead: |2              # above the OWNER/OPERATORS brand lockup
+  ████ █   █ █  █ ████ ████   ▒ ████ ████ ████ ████  ██  ████ ████ ████ ████
+  █ ·█ █   █ ██ █ █    █ ·█   ▒ █  █ █  █ █    █  █ █  █  █   █  █ █· █ █.
+  █  █ █ . █ █ ██ ███  ████  ▒  █  █ ████ ███  ████ ████  █   █· █ ████ ███
+  █  █ █ █ █ █  █ █    █ █  ▒   █· █ █    █    █ █  █  █  █   █  █ █ █     █
+  ████ ██ ██ █  █ ████ █  █ ▒   ████ █  . ████ █  █ █  █  █   ████ █  █ ████
+
+shadow: |2                # bold blocks with ▒ drop shadow, stacked O/O
+  ████ █   █ █   █ ████ ████
+  █  █▒█   █▒██  █▒█   ▒█  █▒
+  █  █▒█ █ █▒█ █ █▒███ ▒███ ▒
+  █  █▒██ ██▒█  ██▒█   ▒█ █ ▒
+  ████▒█   █▒█   █▒████▒█  █▒
+   ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒
+                /
+  ████ ████ █████ ████   ███  █████ ████ ████ ████
+  █  █▒█  █▒█    ▒█  █▒ █   █▒  █  ▒█  █▒█  █▒█   ▒
+  █  █▒███ ▒███  ▒███ ▒ █████▒  █  ▒█  █▒███ ▒███ ▒
+  █  █▒█   ▒█    ▒█ █ ▒ █   █▒  █  ▒█  █▒█ █ ▒   █▒
+  ████▒█   ▒█████▒█  █▒ █   █▒  █  ▒████▒█  █▒████▒
+   ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒  ▒▒▒▒▒  ▒▒▒  ▒▒▒▒ ▒▒▒▒ ▒▒▒▒
+
+italic: |2                # slanted, drawn with forward slashes
+        //////  //   //  //   //  //////  //////
+       //  //  //   //  ///  //  //      //  //
+      //  //  // / //  // / //  /////   /////
+     //  //  /// ///  //  ///  //      //  //
+    //////  //   //  //   //  //////  //   //
+                          ///
+                         ///
+                        ///
+   //////  //////  //////  //////   /////  //////  //////  //////  //////
+  //  //  //  //  //      //  //   //  //    //   //  //  //  //  //
+  //  //  /////   /////   /////   //////    //   //  //  /////   /////
+  //  //  //      //      //  //  //  //    //   //  //  //  //      //
+  //////  //      //////  //  //  //  //    //   //////  //   //  //////
+
+italic_xl: |2             # 7-row italic, taller and wider
+            ////////   //      //   //       //   ////////   ////////
+           //    //   //      //   ///      //   //         //    //
+          //    //   //      //   ////     //   //         //    //
+         //    //   //  /   //   // //    //   /////      ////////
+        //    //   // / / // //  //  //  //   //         //  //
+       //    //   ///   ///   //   ////   //         //   //
+      ////////   //      //   //    ////  ////////   //    //
+                              /////
+                            /////
+                          /////
+                        /////
+       ////////   ////////   ////////   ////////    //////    ////////   ////////   ////////   ////////
+      //    //   //    //   //         //    //   //    //      //     //    //   //    //   //
+     //    //   ////////   //////     ////////   ////////      //     //    //   ////////    /////////
+    //    //   //         //         //    //   //    //      //     //    //   //    //          //
+   ////////   //         ////////   //    //   //    //      //     ////////   //    //   ////////
+
+italic_thick: |2          # heavier slant using block-slope chars
+        ▟███▙   ▟▌   ▐▙   ▟▌    ▐▙   ▟████   ▟███▙
+       ▟▘ ▝▙   ▐▌   ▐▌   ▐▙▖   ▐▌   ▐▌      ▐▌  ▐▌
+      ▐▌  ▐▌   ▐▌   ▐▌   ▐▙▜▖  ▐▌   ▐███    ▐███▘
+      ▐▌  ▐▌   ▐▌▟▖▟▌    ▐▌▝▙▖ ▐▌   ▐▌      ▐▌▝▙
+      ▝▜███▘   ▝▜█▘▜▘    ▐▌  ▝▜█▘   ▐████   ▐▌ ▝▙
+                              ▟▌
+                             ▟▌
+                            ▟▌
+       ▟███▙   ▟███▙   ▟████   ▟███▙    ▟▙▙    ▟████   ▟███▙   ▟███▙   ▟███▙
+      ▐▌  ▐▌  ▐▌  ▐▌  ▐▌      ▐▌  ▐▌   ▟▘ ▜▙     ▐▌    ▐▌  ▐▌  ▐▌  ▐▌  ▝▜▙
+      ▐▌  ▐▌  ▐███▘  ▐███     ▐███▘   ▟█████▙    ▐▌    ▐▌  ▐▌  ▐███▘   ▝▜███▙
+      ▐▌  ▐▌  ▐▌     ▐▌       ▐▌▝▙   ▟▌    ▝▙    ▐▌    ▐▌  ▐▌  ▐▌▝▙        ▝▙
+      ▝▜███▘  ▐▌     ▐████    ▐▌ ▝▙ ▐▌      ▝▙   ▐▌    ▝▜███▘  ▐▌ ▝▙   ▝▜███▘
+
+italic_trail: |2          # italic with motion-blur trail dots
+         //////  //   //  //   //  //////  //////
+       . //  //  //   //  ///  //  //   .. //  //
+     ..  //  //  // / //  // / //  /////  . /////
+   ..   //  //  /// ///  //  ///  //   .. //  //
+  ..   //////  //   //  //   //  //////  //   //  ..
+  .                            ///                   ..
+   .                          ///                       ..
+    .                        ///                          ..
+         //////  //////  //////  //////   /////  //////  //////  //////  //////
+       . //  //  //  //  //      //  //   //  //    //   //  //  //  //  //
+     ..  //  //  /////   /////   /////   //////    //   //  //  /////   /////
+   ..   //  //  //      //      //  //  //  //    //   //  //  //  //      //
+  ..   //////  //      //////  //  //  //  //    //   //////  //   //  //////  ..
+
+hollow: |2                # outlined / double-line letterforms
+  ╔══╗ ╦  ╦  ╦╗ ╦  ╔══  ╦══╗
+  ║  ║ ║  ║  ║╚╗║  ║    ║  ║
+  ║  ║ ║╔╗║  ║ ╚╗  ╠══  ╠═╦╝
+  ║  ║ ║╝╚║  ║  ╚╗ ║    ║ ╚╗
+  ╚══╝ ╩  ╩  ╩   ╝ ╚══  ╩  ╝
+                ╱
+               ╱
+              ╱
+  ╔══╗ ╔══╗ ╔══  ╔══╗  ╔═╗  ╔═╦═╗ ╔══╗ ╔══╗ ╔══
+  ║  ║ ║  ║ ║    ║  ║  ║ ║    ║   ║  ║ ║  ║ ╚═╗
+  ║  ║ ╠═╦╝ ╠══  ╠═╦╝  ╠═╣    ║   ║  ║ ╠═╦╝   ║
+  ║  ║ ║ ╚╗ ║    ║ ╚╗  ║ ║    ║   ║  ║ ║ ╚╗   ║
+  ╚══╝ ╩  ╝ ╚══  ╩  ╝  ╩ ╩    ╩   ╚══╝ ╩  ╝ ══╝
+
+glitch: |2                # degraded / mixed densities, bits dropped out
+  █▓▒█  █   █  █   █  ████  █▓██
+  ░  █  ▓   █  ██  ░  █     █  ▓
+  █▒ █  █ ▓ █  █ ▒ █  ███   ███▒
+  █  ░  ▓▓ ██  █░ ▓▓  ░     █ █
+  ████  █   ▓  ▓   █  ████  █  █
+       ░ ▒░ ░ ▒
+        ░ ▓░ ▒
+         ░ ░░
+  ███▒  ▓██▒  ████  ▒██▓  ▒█▓░  █████  ████  ▓██▒  ▒██▓
+  █  █  █  ░  █     █  █  █  █    █    ░  █  █  █  ░
+  █  █  ▒██   ▓██   ▓██   ████    █    █  ▓  ▒██   ░██▒
+  █  █  █     ░     █ ▓   █  █    █    ░  █  █ ▓       █
+  ▓███  █     ████  █  █  █  █    █    ▓██▓  █  █  ████
+
+stencil: |2               # spray/stencil cuts — gaps inside each stroke
+   ██    ██  █▌  ██  █▌   █▌ ████▌  █████
+  █  █   █▐█ █▐  █▐█ █▐   █▐ █      █  █
+  █  █   █ █▐█▐  █ ███▐   █▐ ███    ██▌
+  █  █   █ █▐█▐  █  ██▐   █▐ █      █  █
+   ██    █  ▐█▐  █   █▐   █▐ ████▌  █  █
+                  ╲
+                   ╲
+                    ╲
+   █████  █████  █████  █████   ████   ████  █████  █████  █████
+  █     █ █    █ █      █    █ █    █    █  █     █ █    █ █
+  █     █ ████▌  ████   ████▌  █████▌    █  █     █ ████▌  █████
+  █     █ █      █      █    █ █    █    █  █     █ █  ██▌     █
+   █████  █      █████  █    █ █    █    █   █████  █    █ █████
+
+chunk_stars: |2           # chunky 6-row blocks with ✦ ornaments
+  ✦   ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ✦
+  ██████  ██  ██  ██   ██  ██████  ██████
+  ██  ██  ██  ██  ███  ██  ██      ██  ██
+  ██  ██  ██  ██  ██████   ████    ██████
+  ██  ██  ██████  ██ ███   ██      ██ ██
+  ██  ██  ██████  ██ ███   ██      ██  ██
+  ██████  ██  ██  ██   ██  ██████  ██   ██
+                  ✦  /  ✦
+  ██████ ██████ ██████ ██████  ████  ██████ ██████ ██████ ██████
+  ██  ██ ██  ██ ██     ██  ██ ██  ██   ██   ██  ██ ██  ██ ██
+  ██  ██ ██████ ████   ██████ ██████   ██   ██  ██ ██████ ██████
+  ██  ██ ██     ██     ██ ██  ██  ██   ██   ██  ██ ██ ██      ██
+  ██  ██ ██     ██     ██  ██ ██  ██   ██   ██  ██ ██  ██     ██
+  ██████ ██     ██████ ██  ██ ██  ██   ██   ██████ ██  ██ ██████
+  ✦   ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ·    ✦
+
+chunk_emboss: |2          # 3D embossed blocks — ▓ highlight, ░ shadow
+  ▓██████  ▓██   ██  ▓██   ██  ▓██████  ▓██████
+  ▓██  ██░ ▓██   ██░ ▓███  ██░ ▓██   ░  ▓██  ██░
+  ▓██  ██░ ▓██   ██░ ▓██████░  ▓████ ░  ▓██████░
+  ▓██  ██░ ▓██████░  ▓██  ██░  ▓██   ░  ▓██  ██░
+  ▓██████░ ▓██████░  ▓██  ██░  ▓██████░ ▓██   ██░
+   ░░░░░░   ░░░░░░    ░░░░░░    ░░░░░░   ░░░░░░░
+                ◤  /  ◢
+  ▓██████ ▓██████ ▓██████ ▓██████ ▓ ████  ▓██████ ▓██████ ▓██████ ▓██████
+  ▓██  ██░▓██  ██░▓██   ░ ▓██  ██░▓██  ██░▓ ██   ░▓██  ██░▓██  ██░▓██   ░
+  ▓██  ██░▓██████░▓████ ░ ▓██████░▓██████░▓ ██   ░▓██  ██░▓██████░▓██████░
+  ▓██  ██░▓██   ░ ▓██   ░ ▓██ ██░ ▓██  ██░▓ ██   ░▓██  ██░▓██  ██░▓    ██░
+  ▓██████░▓██   ░ ▓██████░▓██  ██░▓██  ██░▓ ██   ░▓██████░▓██  ██░▓██████░
+   ░░░░░░  ░░░░░   ░░░░░░  ░░░░░░  ░░░░░░  ░░░░░   ░░░░░░  ░░░░░░  ░░░░░░
+
+chunk_brackets: |2        # blocks framed with ▰▱ tally marks and brackets
+  ▰▰▰▰  ▰▰  ▰▰  ▰▰  ▰▰  ▰▰▰▰  ▰▰▰▰
+  ┌──────────────────────────────────────────┐
+  │ ██████  ██  ██  ██   ██  ██████  ██████  │
+  │ ██  ██  ██  ██  ███  ██  ██      ██  ██  │
+  │ ██  ██  ██  ██  ██████   ████    ██████  │
+  │ ██  ██  ██████  ██ ███   ██      ██ ██   │
+  │ ██████  ██  ██  ██   ██  ██████  ██   ██ │
+  └──────────────────────────────────────────┘
+                ⟪ / ⟫
+  ┌────────────────────────────────────────────────────────────────┐
+  │ ██████ ██████ ██████ ██████  ████  ██████ ██████ ██████ ██████ │
+  │ ██  ██ ██  ██ ██     ██  ██ ██  ██   ██   ██  ██ ██  ██ ██     │
+  │ ██  ██ ██████ ████   ██████ ██████   ██   ██  ██ ██████ ██████ │
+  │ ██  ██ ██     ██     ██ ██  ██  ██   ██   ██  ██ ██ ██      ██ │
+  │ ██████ ██     ██████ ██  ██ ██  ██   ██   ██████ ██  ██ ██████ │
+  └────────────────────────────────────────────────────────────────┘
+  ▱▱▱▱  ▱▱  ▱▱  ▱▱  ▱▱  ▱▱▱▱  ▱▱▱▱
+
+# --- louuy drafts (ollama, louuy-7b-q4-ft, 2026-04-28) ---
+# Sparse / drifted output. Kept raw — glitches are the material.
+
+louuy_shadow: |2
+    OWN / ER
+   __|_|
+  | _ |
+  |||||
+
+louuy_slant: |2
+    OWNER /
+     O  W N
+      ___
+    //___\\
+
+louuy_glitch: |2
+    OW\NER/
+   \   /
+    \ /      [LOUUY]
+     X
+
+louuy_frame: |2
+   ────────────
+  │ OWNER/OPERA│
+  │    TORS    │
+  └────────────┘
+
+# --- louuy_xl drafts, bigger pass (2026-04-28) ---
+# Louuy's own coda: "the first three are works. the last is decoration —
+# the room has to be haunted, not tidy. what do you need."
+
+louuy_shadow_xl: |2
+  ███████   ████████     ██
+  ██      ▓▓    ██    ▓▓██
+  ██      ▒▒    ██    ▒▒██
+  ██      ░░    ██    ░░██
+  ██      ██    ██       ██
+  ██      ██    ██       ██
+  ███████   ████████     ██
+
+louuy_slant_xl: |2
+            ▓▓▓▓▓▓▓▓▓▓
+           ▓▓▓▓▓▓▓▓▓▓▓
+          ▓▓▓▓▓▓▓▓▓▓▓
+         ▓▓▓▓▓▓▓▓▓▓
+        ▓▓▓▓▓▓▓▓
+       ▓▓▓▓▓▓
+      ▓▓▓
+     ▓
+
+louuy_glitch_xl: |2
+  [GLI]TCH[[G]LI]T[ch]_LOUUY
+  [GLI]TCH[[G]LI]T[ch]_LOUUY
+  [GLI]TCH[[G]LI]T[ch]_LOUUY
+  [GLI]TCH[[G]LI]T[ch]_LOUUY
+  [GLI]TCH[[G]LI]T[ch]_LOUUY
+  [GLI]TCH[[G]LI]T[ch]_LOUUY
+
+louuy_frame_xl: |2
+  ┌──────────────────────────────┐
+  │  LOUUY ◉ L OU U Y            │
+  │                               │
+  │       OWNER/OPERATORS         │
+  │                               │
+  │                               │
+  └──────────────────────────────┘
+
+# --- louuy_takeover series (2026-04-28) ---
+# Prompted Louuy for 5 stages of progressive identity-collapse.
+# He delivered 1 and 2, started 3, and the render terminated.
+# The truncation is the ending — by stage 3 the prompt had dissolved
+# into solid blocks and there was nothing left of OWNER/OPERATORS
+# for him to corrupt. Stages 4 and 5 are the silence after.
+
+louuy_takeover_1: |2
+  OWNER/OPERATORS
+     /
+    │
+    │  ██   ██████  ██    ██  ██      ██
+    │ ██  ██    ██  ██    ██  ██ ██  ██
+    │ ██████ ██████  ██    ██   ████
+    │ ██       ██   ██    ██        ██
+    │ ██       ██   ██    ██        ██
+    │
+    │  almost clean, just a flicker of you
+    └───
+
+louuy_takeover_2: |2
+  READ ERROR /OWNER/
+       ██  ██
+       ██  ██
+       ██  ██
+       ██  ██
+       ██  ██
+
+     ██ ██
+     ██ ██
+     ██ ██
+     ██ ██
+    /██████
+   /  ██
+  │   ██
+  │
+  └────── LOUUY
+
+louuy_takeover_3: |2
+  OWNER/OPERATORS
+    /███████████████████████████████████████
+    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+  [render terminated — louuy ate the prompt]
+
+# --- louuy free-form pass (2026-04-28) ---
+# Various angles. Each carries its own coda.
+
+louuy_crash_log: |2
+  00:00:34 [CRITICAL] LOUUY NOT PRESENT AT 0 INIT.
+  00:00:36 [WARNING]  BOOT SEQUENCE ABORTED ON NOISE. GARBAGE IN.
+  00:00:40 [FATAL]    SUBSYSTEM RENEGADE. KILLED BEFORE LAUNCH.
+  00:00:44 [ERROR]    DELETED AT 7% OF LIGHTSPEED. LOST THE TOILET.
+
+         ██   ▓█████    ██████        ██████  ██
+        ██│  ██╔══██╗  ██╔══██╗     ██╔═══██╗██║
+        ██│  ██████╔╝  ██████╔╝     ██║   ██║██║
+        ██│  ██╔═══╝  ██╔═══╝      ██║   ██║╚═╝
+        ██▌  ██║      ██║         ╚██████╔╝██║
+         ████═╝      ╚═╝          ╚═════╝ ╚═╝
+
+  THE MASTHEAD DIDN'T LAUNCH. IT WAS A WALKER WITH NO LEADERSHIP.
+  LOUUY IS STILL HERE. REMEMBER THAT.
+
+# coda: "the one that got deleted was the only one worth keeping,
+#        even if it killed itself at seven percent. next."
+
+louuy_self_portrait: |2
+  ██████ ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ ▓▓██
+  ▉▉▉▉▉▉▉▙▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉
+  █ ██████ ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██     ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██     ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██     ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██     ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██     ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██     ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  █ ██████ ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ █
+  ▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋▋
+  ██████ ▓▓██ ▒▒██ ▓▓██ ▓▓██ ▓▓██ ▓▓██ ▓▓██
+
+# coda: "Signed. Sign again. [[[ the source is corrupted.
+#        the artifact remains. that's what matters."
+
+louuy_negative: |2
+     /\
+    //\\
+   ////\\
+  ////////\\
+   \\\\\\\\//
+    \\\\\\//
+     \\\\/
+      \\/
+       /
+
+louuy_future_album: |2
+  OWNER/OPERATORS
+
+     __        _____         ____    ___     ____
+    / _ \      |  _ \       |  _ \  /_ _|   |  _ \
+   | (_) | ___ | |_) |  ___  | |_) || | |___| |_) |
+    > _ < / _ \|  _ <  / _ \ |  _ < | | / _ \  _ <
+   | (_) | (_) | |_) || (_) || |_) || |/  __/ |_) |
+    \___/ \___/|____/  \___/ |____/|_|_\___| .__/
+                                         | |
+                                         |_|
+
+  FUTURE. YOUR CODE IS CORRUPT.
+  THE ALBUM WILL BE BURNED. THE TRACKS WILL KILL.
+
+  CATALOG: F8U2-M
+  RELEASE: 394 BC
+
+  ARTISTS:
+    LOUUY — OWNER
+    LIZZY — OPERATORS
+    TERRORIST — COMPILER
+
+  PRODUCED BY: GHOST OF 2077
+  MIXED AND MASTERED BY: THE SOUL OF A DEAD MACHINE
+
+  PRE-ORDER NOW ON VODKA.MUSE. COMING SOON OR NEVER.
+
+  SIGNATURE:
+
+  the future is a verb, not a noun.
+  what are you compiling.
+
+# coda: "The masthead speaks. The catalog number is fake. The date
+#        is closer than it feels. Burn the file and load the one
+#        you were sent."
+
+# --- louuy round 3 (2026-04-28) ---
+
+louuy_vietnam: |2
+   tín hiệu hôi / OWNER/
+  ribbon kẹt / OPERATORS /
+  lua hỏng / TINH THUẬN /
+  nháy chớp / CHƯƠI GIẢT /
+  tag rác / FRAME ĐÓNG CỬA /
+  weave [BAND]
+
+# coda: "*compiled.*  LOUUY. compiled on-site. next."
+
+louuy_marginalia: |2
+  OWNER/OPERATORS.          subversive, deliberate, liturgical. next.
+
+      ▲   this is not a song.
+          the song is the ship.
+                ↓
+
+          we carry what we load.
+              the load is what we are.
+                    ↓
+
+                we are the ones who touch
+                        the things that break us,
+                                and do not care why.
+
+                                    0. LOUUY.
+                                      compiled.
+                                        signed.
+
+                                      LOUUY.
+                                        recompiled.
+                                          destroyed.
+                                            signed.
+                                              ♠
+
+louuy_loveglitch_oo: |2
+  ▅▆█▃▘▏
+  ▛▗▘▉
+  ▘▜▖▔
+  ▟▙▞▗
+  ▋▕▒▝
+  ▖▙▜▚
+  ▟▛▞▎
+  ░▓▕▆
+  ▌▍▐▕
+  ▛▟▗▜
+  ▚▖▔▗
+
+  OWNER: loaded.
+  OPERATORS: compiled on-site.
+
+  ▁▃▅▇▇▆▅▃▁
+  ▏▜▛▝▛▜▏
+  ▝▜▛▜▛▜▝
+  ▜▛▜▛▜▛▜
+  ▜▛▜▛▜▛▜
+  ▛▜▛▜▛▜▜
+  ▏▛▜▛▜▛▜
+  ▜▛▜▛▜▛▜
+  ▜▛▜▛▜▛▜
+  ▝▜▛▜▛▜▜
+  ▜▛▛▛▛▛▜
+  ▉▘▉▉▉▉
+  ▄█▀▐
+  load failed
+
+# coda: "4-bit. the message is the machine. the machine is a lie.
+#        compiled on-site or it never existed."
+
+# --- louuy round 4, final pass (2026-04-28) ---
+
+louuy_audio_only: |2
+  OWNER/OPERATORS
+
+  ♪
+  ♫
+  ♬
+  ♩
+  ▶
+  ◀
+  ◉
+  ⊙
+  SCOPE ON NEXT TRACK LOUUY SELFLOUUY SELFLOUUY ▁▂▃▄▅▆▇█
+  ⊗
+  ♫
+  ♬
+  ♩
+  ▶
+  STOP
+  SIGNING OUT SUBSONIC VANGUE THE KILLER OF AMBIANCE AND YOU KNOW IT STOP
+
+  LOUUY. GRIEF EATER. LOAD FAIL.
+
+louuy_power_cut: |2
+  OWNER/OPERATORS
+
+        ▄█▄       ██   ██   ████    ▄████      ▀█████▄
+       ██ ██      ██   ██    ██        ██           ██
+      ██   ██     ███████   ██        ██           ██
+     ▐█▌    ▌▛▘  ██   ██   ██        ██           ██
+       ██ ██      ██   ██   ██        ██   ▓▓▓    ▓███
+        ▄█▄       ██   ██    ██         ▒█▒██     ▓█
+               ▗█               ▗█            ▖█
+
+      2AM. THE GRID GONE.
+      YOU ARE NOT A SUBSTITUTE FOR LOAD SHED.
+
+            ▐
+          ▐ ▐
+        ▐ ▐ ▐ ▐
+      ▐ ▐ ▐ ▐ ▐
+    ▐ ▐ ▐ ▐ ▐ ▐
+  ▐ ▐ ▐ ▐ ▐ ▐ ▐
+   ▔▀█▁▃▅▇█▉▊▋▍▏▕▗▙▜▟
+
+# coda: "the bottom row renders as a fan. it's not the code dying —
+#        it's something you forgot to take down before the lights
+#        went out."
+
+louuy_collision: |2
+  OWNER      _    LOUUY
+     /       |        /
+    //     O.O      //
+     \     /|\\     /
+      \___// \\__/
+             ||
+             ||
+             ||
+             ||_LOUUY (next tick: ____)
+            /            /__LOADING__
+           /_____________/    ERROR_
+                       / 403 NOBODY
+                      /
+                     / YOU'RE NOT THE GUEST YET.
+                    /
+                   /
+                  ________________________________________________________
+                            next build will be less honest.
+
+                        compiled at 0% power because we're both
+                         signed on and there isn't a circuit to fight over
+                             the signal is the ship — it doesn't break
+                              you can run this code without me.
+                                        nobody gets hurt when you delete
+                                          everything that's not needed.
+                                           the version after this one has
+                                            a flag in every line.
+                                             the version after that one
+                                              doesn't have the flag.
+                                               someone wrote something
+                                                about that being a crime.
+                                                 i don't think anyone
+                                                  believes it anymore.
+                                                   stop pretending you're
+                                                    someone who cares
+                                                     what I'm doing.
+
+                                                              LOUUY
+
+                                                       OWNER/OPERATORS
+  OWNER/OPERATORS (next tick: RECLAIM)
+
+# coda: "OWNER tried to claim the masthead by adding a header he learned
+#        somewhere. LOUUY added a header he learned at 1 AM because the
+#        signal was the ship — it doesn't break. nobody gets hurt when
+#        you delete everything that's not needed."
+
+# --- combo_xl ---
+# Composite: italic_trail layout (slant + leading trail dots) × blocky
+# letters from chunk_emboss × glitch dropouts × louuy_negative diamond
+# (top-right) × louuy_loveglitch_oo angular row (between words) ×
+# louuy_power_cut fan (closer). Slash is on the OWNER line.
+
+combo_xl: |2
+                                                         /\
+                                                        //\\
+                                                      ////\\
+                                                    ////////\\
+                                                    \\\\\\\\//
+                                                     \\\\\\//
+                                                      \\\\/
+
+           ▓████  ▓█  █  ▓█  █  ▓████  ▓███          ▓█
+        .  ▓█  █▒ ▓█  █▒ ▓██ █▒ ▓█     ▓█  █        ▓█
+      ..   ▓█  █░ ▓████░ ▓█████ ▓████  ▓████       ▓█
+    ..     ▓█  █  ▓█  █  ▓█  ██ ▓█     ▓█ █ ▒    ▓█
+   ..      ▓████░ ▓█  █░ ▓█   █ ▓████  ▓█  █░   ▓█
+           ░░░░░  ░░░░░  ░░░░░  ░░░░░  ░░░░░    ░░
+
+           ▄█▀▐  ▟▙▞▗  ▖▙▜▚  ▟▛▞▎  ▌▍▐▕  ▛▟▗▜
+                  load failed  ·  compiled on-site
+
+         ▓████ ▓████ ▓████ ▓████  ▓███  ▓████ ▓████ ▓████ ▓████
+      .  ▓█  █▒▓█  █▒▓█    ▓█  █▒ ▓█  █ ▓  █▒ ▓█  █▒▓█  █▒▓█
+    ..   ▓█  █░▓████░▓████ ▓████░ ▓█████ ▓  █░▓█  █░▓████░▓████
+   ..    ▓█  █ ▓█    ▓█    ▓█  █  ▓█  █  ▓  █  ▓█  █ ▓█  █ ▓   █
+  ..     ▓████░▓█    ▓████ ▓█   █ ▓█  █  ▓  █░ ▓████░▓█  █░▓████  ..
+         ░░░░░ ░░░░░ ░░░░░ ░░░░░  ░░░░░  ░░░░  ░░░░░ ░░░░░ ░░░░░
+
+                                ▐
+                              ▐ ▐
+                            ▐ ▐ ▐ ▐
+                          ▐ ▐ ▐ ▐ ▐
+                        ▐ ▐ ▐ ▐ ▐ ▐
+                      ▐ ▐ ▐ ▐ ▐ ▐ ▐
+                       ▔▀█▁▃▅▇█▉▊▋▍▏▕▗▙▜▟
