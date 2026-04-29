@@ -13,10 +13,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
   var reduceMotion = false;
 
   if (reduceMotion || !supportsHydra()) {
-    document.documentElement.setAttribute(
-      "data-bg",
-      reduceMotion ? "ascii-static" : "ascii",
-    );
+    document.documentElement.setAttribute("data-bg", reduceMotion ? "ascii-static" : "ascii");
     asciiFallback(canvas, { animate: !reduceMotion });
     return;
   }
@@ -113,7 +110,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
               .colorama(0.004)
               .pixelate(400, 30)
               .modulate(noise(2.0, 0.06), 0.025),
-            0.4,
+            0.4
           )
           .scale(1.02)
           .modulate(noise(1.6, 0.08), 0.018)
@@ -124,12 +121,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
       function () {
         // mirror + pixelate
         src(slots[active[0]])
-          .blend(
-            src(slots[active[1]])
-              .pixelate(72, 54)
-              .modulate(noise(2.0, 0.06), 0.025),
-            0.4,
-          )
+          .blend(src(slots[active[1]]).pixelate(72, 54).modulate(noise(2.0, 0.06), 0.025), 0.4)
           .scale(1.02)
           // .kaleid(.5)
           .colorama(0.012)
@@ -144,7 +136,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
               .modulate(noise(2.0, 0.06), 0.025)
               .pixelate(72, 54)
               .colorama(0.006),
-            0.4,
+            0.4
           )
           .contrast(1.1)
           .out();
@@ -217,8 +209,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
     if (!window.Hydra) return false;
     try {
       var test = document.createElement("canvas");
-      var gl =
-        test.getContext("webgl") || test.getContext("experimental-webgl");
+      var gl = test.getContext("webgl") || test.getContext("experimental-webgl");
       if (!gl) return false;
     } catch (e) {
       return false;
@@ -280,8 +271,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
     function measure() {
       var probe = document.createElement("span");
       probe.textContent = "M";
-      probe.style.cssText =
-        "position:absolute;visibility:hidden;font:inherit;white-space:pre;";
+      probe.style.cssText = "position:absolute;visibility:hidden;font:inherit;white-space:pre;";
       fallback.appendChild(probe);
       var cw = probe.getBoundingClientRect().width || 7;
       var ch = probe.getBoundingClientRect().height || 12;
@@ -368,8 +358,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
       var lines = o.split("\n");
       // Drop fully blank leading/trailing lines so stamps hug their content.
       while (lines.length && !lines[0].replace(/\s/g, "").length) lines.shift();
-      while (lines.length && !lines[lines.length - 1].replace(/\s/g, "").length)
-        lines.pop();
+      while (lines.length && !lines[lines.length - 1].replace(/\s/g, "").length) lines.pop();
       if (!lines.length) return;
       var oh = lines.length;
       var ow = 0;

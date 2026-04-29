@@ -1,1 +1,10 @@
-{}
+{
+  "scripts": {
+    "format": "prettier --write '**/*.{js,css,html,yaml,md}'",
+    "format:check": "prettier --check '**/*.{js,css,html,yaml,md}'"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}

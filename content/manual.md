@@ -1,7 +1,6 @@
 ---
 title: "Operating Manual"
 description: "First & Only Edition — Subject to Spontaneous Revision Without Notice"
-nobg: true
 noindex: true
 ---
 
@@ -46,7 +45,7 @@ A guitar line will arrive late and apologize for nothing. A drum will hit on the
 
 ## §4 — DO NOT
 
-Do not skim. Do not skip the second track. Do not put it on for houseguests. Do not — under any circumstances — call it *vibey*. The word is gauze. Use what's underneath.
+Do not skim. Do not skip the second track. Do not put it on for houseguests. Do not — under any circumstances — call it _vibey_. The word is gauze. Use what's underneath.
 
 <pre class="ornament ornament-left ornament-tight">
    ___

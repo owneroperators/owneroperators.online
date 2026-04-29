@@ -1,16 +1,16 @@
 {{ define "main" }}
-<section>
-  <header>
-    <p class="eyebrow"><a href="{{ "/" | relURL }}">OWNER/OPERATORS</a></p>
-    <h1>{{ .Title }}</h1>
-  </header>
-  <div class="prose">
-    {{ .Content }}
-  </div>
-  <ul class="list">
-    {{ range .Pages }}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-    {{ end }}
-  </ul>
-</section>
+  <section>
+    <header>
+      <p class="eyebrow"><a href="{{ "/" | relURL }}">OWNER/OPERATORS</a></p>
+      <h1>{{ .Title }}</h1>
+    </header>
+    <div class="prose">
+      {{ .Content }}
+    </div>
+    <ul class="list">
+      {{ range .Pages }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
 {{ end }}

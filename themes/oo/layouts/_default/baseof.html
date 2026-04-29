@@ -1,39 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ site.LanguageCode | default "en-us" }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}</title>
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}">
-  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ .Permalink }}">
-  {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow">{{ end }}
-  {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-  {{ block "head" . }}{{ end }}
-</head>
-<body class="{{ if .IsHome }}is-home{{ else }}is-sub{{ end }}{{ if .Params.nobg }} no-bg{{ end }}">
-  {{ if not .Params.nobg }}
-  <script>document.documentElement.setAttribute('data-bg','init');</script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {{ block "title" . }}
+        {{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}
+      {{ end }}
+    </title>
+    <meta
+      name="description"
+      content="{{ with .Description }}
+        {{ . }}
+      {{ else }}
+        {{ site.Params.description }}
+      {{ end }}"
+    />
+    <meta
+      property="og:title"
+      content="{{ if .IsHome }}
+        {{ site.Title }}
+      {{ else }}
+        {{ .Title }} —
+        {{ site.Title }}
+      {{ end }}"
+    />
+    <meta
+      property="og:description"
+      content="{{ with .Description }}
+        {{ . }}
+      {{ else }}
+        {{ site.Params.description }}
+      {{ end }}"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow" />{{ end }}
+    {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+    {{ block "head" . }}{{ end }}
+  </head>
+  <body class="{{ if .IsHome }}is-home{{ else }}is-sub{{ end }}{{ if .Params.nobg }}no-bg{{ end }}">
+    {{ if not .Params.nobg }}
+      <script>
+        document.documentElement.setAttribute("data-bg", "init");
+      </script>
   <script id="ornaments-data" type="application/json">{{ site.Data.ornaments | jsonify | safeJS }}</script>
-  <canvas id="bg" class="bg-canvas" aria-hidden="true"{{ with site.Params.bg.video }} data-video="{{ . | relURL }}"{{ end }}></canvas>
-  {{ end }}
-  <main>
-    {{ block "main" . }}{{ end }}
-  </main>
-  {{ partial "footer.html" . }}
-  {{ if not .Params.nobg }}
-  <script src="https://cdn.jsdelivr.net/npm/hydra-synth@1.3.29/dist/hydra-synth.js" defer></script>
-  {{ with resources.Get "js/bg.js" }}
-    {{ $bgjs := . | resources.Minify | resources.Fingerprint }}
-    <script src="{{ $bgjs.RelPermalink }}" integrity="{{ $bgjs.Data.Integrity }}" defer></script>
-  {{ end }}
-  {{ end }}
-  {{ with resources.Get "js/glitch.js" }}
-    {{ $glitch := . | resources.Minify | resources.Fingerprint }}
-    <script src="{{ $glitch.RelPermalink }}" integrity="{{ $glitch.Data.Integrity }}" defer></script>
-  {{ end }}
-</body>
+      <canvas
+        id="bg"
+        class="bg-canvas"
+        aria-hidden="true"
+        {{ with site.Params.bg.video }}data-video="{{ . | relURL }}"{{ end }}
+      ></canvas>
+    {{ end }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    {{ if not .Params.nobg }}
+      <script
+        src="https://cdn.jsdelivr.net/npm/hydra-synth@1.3.29/dist/hydra-synth.js"
+        defer
+      ></script>
+      {{ with resources.Get "js/bg.js" }}
+        {{ $bgjs := . | resources.Minify | resources.Fingerprint }}
+        <script
+          src="{{ $bgjs.RelPermalink }}"
+          integrity="{{ $bgjs.Data.Integrity }}"
+          defer
+        ></script>
+      {{ end }}
+    {{ end }}
+    {{ with resources.Get "js/glitch.js" }}
+      {{ $glitch := . | resources.Minify | resources.Fingerprint }}
+      <script
+        src="{{ $glitch.RelPermalink }}"
+        integrity="{{ $glitch.Data.Integrity }}"
+        defer
+      ></script>
+    {{ end }}
+  </body>
 </html>

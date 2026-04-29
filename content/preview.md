@@ -19,12 +19,12 @@ noindex: true
     │   versions of themselves     │
     │                              │
     ├─────────┬────────────────────┤
-    │   the one in front of the      │
-    │   screen                         │
+    │   the one in front of the    │
+    │   screen                      │
     ├───┼─┼───┬───────────────┐
-    │   what you pretend to be       ││
-    │   what you're pretending to    ││
-    │   pretend                      ││
+    │   what you pretend to be││
+    │   what you're pretending to ││
+    │   pretend                ││
     └────┴─┴───┴───────────────┘
                     ▲
                     │

@@ -1,11 +1,15 @@
 {{/* Outbound links. Populated from site.Data.links. */}}
 {{ with site.Data.links }}
-<ul class="links">
-  {{ range . }}
-    <li><a href="{{ .url }}" rel="noopener">
-      {{ with .ornament }}<pre class="link-ornament">{{ . }}</pre>{{ end }}
-      <span class="link-name">{{ .name }}</span>
-    </a></li>
-  {{ end }}
-</ul>
+  <ul class="links">
+    {{ range . }}
+      <li>
+        <a href="{{ .url }}" rel="noopener">
+          {{ with .ornament }}
+            <pre class="link-ornament">{{ . }}</pre>
+          {{ end }}
+          <span class="link-name">{{ .name }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
 {{ end }}

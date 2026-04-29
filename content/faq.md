@@ -11,24 +11,24 @@ build:
 
 **Is this a band?**
 
-Depends on the hour.
+It is, though the definition shifts depending on what we're making.
 
 **Where are you from?**
 
-A bedroom, a terminal, a bus.
+We've come out of bedrooms, terminals, and long stretches of transit — wherever there were a few hours and something to work on.
 
 **Are the glitches on purpose?**
 
-A mistake, repeated with intention, becomes a hook.
+Most of them are. A mistake repeated with intention becomes a hook.
 
 **Will you play live?**
 
-We do not play shows. We deploy payloads.
+We don't play shows in the traditional sense. What we do is release things and let them travel.
 
 **When's the next release?**
 
-The next version is the one that is not.
+There's always something in progress that hasn't been named yet.
 
 **How did you find this page?**
 
-Good.
+We're not sure how you got here, but we're glad you did.
