@@ -405,6 +405,13 @@ main {
   color: var(--fg);
 }
 
+/* Lyrics: each section is one markdown paragraph with soft line breaks (single
+   newlines). Preserve them as line breaks so each lyric line renders on its own
+   row instead of collapsing into a wrapped block. */
+.page-lyrics .prose p {
+  white-space: pre-line;
+}
+
 .list {
   list-style: none;
   padding: 0;
@@ -515,4 +522,78 @@ footer:has(.copyright:hover) .footer-line {
   a {
     transition: text-decoration-thickness 0.15s ease;
   }
+}
+
+/* --- preview page: ornament + player side by side --------------------- */
+/* The ornament <pre> is wide (its longest line won't wrap), and .prose is only
+   48rem (left-aligned in the 61rem main content box). On wide screens, widen
+   the row to fill that box and force one line so the player sits to the right
+   of the ornament; below 64rem it wraps to stacked. */
+.preview-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2rem;
+}
+@media (min-width: 64rem) {
+  .preview-row {
+    flex-wrap: nowrap;
+    width: 61rem;
+  }
+}
+.preview-row .ornament {
+  margin: 0;
+}
+
+/* --- web-mp3 player (preview page) ------------------------------------- */
+/* Vanilla player from github.com/oo-eric/web-mp3; element ids are fixed by
+   the lib (#thumb / #player / #playlist). Styled to the OO mono palette. */
+.oo-player {
+  flex: 0 0 18rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  background: rgba(10, 10, 10, 0.7);
+}
+.oo-player #thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1rem;
+  border: 1px solid var(--rule);
+  /* hidden until a track with album art loads */
+}
+.oo-player #thumb:not([src]),
+.oo-player #thumb[src=""] {
+  display: none;
+}
+.oo-player #player {
+  width: 100%;
+  filter: grayscale(1) contrast(1.1);
+}
+.oo-player #playlist {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+.oo-player #playlist li {
+  padding: 0.4rem 0.5rem;
+  color: var(--fg-dim);
+  cursor: pointer;
+  border-top: 1px solid var(--rule);
+  transition: background 150ms ease, color 150ms ease;
+}
+.oo-player #playlist li:first-child {
+  border-top: 0;
+}
+.oo-player #playlist li:hover {
+  color: var(--fg);
+  background: rgba(242, 241, 237, 0.04);
+}
+.oo-player #playlist li.active {
+  color: var(--fg);
+  background: rgba(242, 241, 237, 0.08);
 }
