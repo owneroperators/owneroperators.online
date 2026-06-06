@@ -4,6 +4,8 @@ resources/_gen/
 
 node_modules/
 .DS_Store
+.smbdelete*
 *.log
 
 .env
+NOTES.md
