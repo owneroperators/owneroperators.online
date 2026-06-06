@@ -205,6 +205,28 @@ main {
   margin: 0 0 0.75rem;
 }
 
+/* Page header: brand + page title on one line, both at eyebrow size. */
+.page-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.55em;
+  margin: 0 0 1.5rem;
+}
+.page-head .eyebrow {
+  margin: 0;
+}
+.page-title {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: inherit;
+  color: var(--fg);
+  margin: 0;
+}
+
 .release {
   margin: 0 0 4rem;
   text-align: left;
@@ -516,6 +538,22 @@ footer:has(.copyright:hover) .footer-line {
 .copyright {
   margin: 0;
   cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gh-link {
+  display: inline-flex;
+  color: var(--muted);
+  margin-left: auto;
+}
+.gh-link svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+.gh-link:hover {
+  color: var(--fg, var(--accent));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -543,6 +581,15 @@ footer:has(.copyright:hover) .footer-line {
 }
 .preview-row .ornament {
   margin: 0;
+}
+/* Invisible base text — only glitch.js's per-span color/glow flashes (set as
+   inline styles, which override this) punch through. The ornament reads as
+   blank until the glitch hits, then flickers in. text-shadow:none kills the
+   base glow that would otherwise trace the glyphs even with transparent fill;
+   the glitch's inline text-shadow still wins during a hit. */
+.ornament.hidden {
+  color: transparent;
+  text-shadow: none;
 }
 
 /* --- web-mp3 player (preview page) ------------------------------------- */

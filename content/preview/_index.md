@@ -33,7 +33,8 @@ build:
     └────┴─┴───┴───────────────┘
                     ▲
                     │
-            next, come back when you have something to lose or delete something you wrote
+            next, come back when you have 
+something to lose or delete something you wrote
 
 </pre>
 

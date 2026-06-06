@@ -3,7 +3,7 @@
 # Spotify and Apple Music URLs below are DUMMIES — replace when artist profiles go live.
 # Each link has an optional `ornament` — a small ASCII glyph rendered above the name.
 - name: Spotify
-  url: https://open.spotify.com/artist/owneroperators
+  url: #
   ornament: |2
     ╭───────╮
     │ ≋ ≋ ≋ │
@@ -11,7 +11,7 @@
     │SPOTIFY│
     ╰───────╯
 - name: Apple Music
-  url: https://music.apple.com/artist/owneroperators
+  url: #
   ornament: |2
     ╭───────╮
     │  ♪♪   │
