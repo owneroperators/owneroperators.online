@@ -27,6 +27,11 @@
         <ul id="playlist"></ul>
       </div>
 
+      {{/* direct file off the server — `download` saves rather than streams */}}
+      <p class="download">
+        <a href="/mp3/echoes2.mp3" download="OWNER-OPERATORS — Echoes and Static.mp3">↓ download the mp3</a>
+      </p>
+
       <!-- {{ with .from }}<p class="release-from">from <em>{{ . }}</em></p>{{ end }} -->
       {{ partial "links.html" . }}
     </section>

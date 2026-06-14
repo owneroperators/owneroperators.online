@@ -1,3 +1,5 @@
+import { setupEQ } from "/js/eq.js"; // OO custom EQ + visualizer (separate from upstream)
+
 async function E(g) {
   const l = await fetch(g, { headers: { Range: "bytes=0-9" } }),
     c = await l.arrayBuffer(),
@@ -51,6 +53,7 @@ const C = document.getElementById("thumb"),
   d = document.getElementById("player"),
   f = document.getElementById("playlist");
 async function v(g) {
+  setupEQ(d);
   let l = 0;
   const c = await Promise.all(
     g.map(async (t, e) => {
@@ -117,4 +120,5 @@ async function v(g) {
       !1,
     ));
 }
+
 export { v as init };

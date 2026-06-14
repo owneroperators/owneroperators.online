@@ -603,6 +603,87 @@ footer:has(.copyright > span:hover) .footer-line {
   text-shadow: none;
 }
 
+/* --- direct download link (under the player) -------------------------- */
+.download {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+.download a {
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--rule);
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.download a:hover,
+.download a:focus-visible {
+  color: var(--fg);
+  border-bottom-color: currentColor;
+}
+
+/* --- EQ: visualizer + tone sliders (injected by web-mp3.js) ----------- */
+.eq-viz {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 0.85rem 0 0;
+  /* no border/fill — the muted bars float quietly so they don't compete
+     with the hydra background video showing through the player panel */
+  background: transparent;
+  opacity: 0.85;
+}
+.eq-controls {
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.eq-band {
+  display: grid;
+  grid-template-columns: 2.75rem 1fr 3rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+.eq-label {
+  letter-spacing: 0.08em;
+}
+.eq-val {
+  text-align: right;
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+.eq-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--rule);
+  cursor: pointer;
+}
+.eq-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--fg);
+  border: none;
+  border-radius: 0;
+}
+.eq-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--fg);
+  border: none;
+  border-radius: 0;
+}
+.eq-slider:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 4px;
+}
+
 /* --- web-mp3 player (preview page) ------------------------------------- */
 /* Vanilla player from github.com/oo-eric/web-mp3; element ids are fixed by
    the lib (#thumb / #player / #playlist). Styled to the OO mono palette. */
