@@ -269,11 +269,16 @@ main {
 .links li {
   text-align: center;
 }
-.links a {
+.links a,
+.links .link-soon {
   display: inline-block;
   position: relative;
   padding: 0.5rem 0.25rem;
   text-decoration: none;
+}
+/* not-yet-live services: present but not a door that opens */
+.links .link-soon {
+  cursor: default;
 }
 
 @media (max-width: 32rem) {
@@ -281,21 +286,22 @@ main {
     gap: 0.5rem;
     /* flex-wrap: nowrap; */
   }
-  .links a {
+  .links a,
+  .links .link-soon {
     padding: 0.5rem 0.15rem;
   }
   .link-ornament {
-    padding: 0.4rem 0.4rem;
-    font-size: 0.75rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 0.85rem;
   }
 }
 .link-ornament {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--muted);
-  font-size: 0.85rem;
-  line-height: 1.05;
+  font-size: 1rem;
+  line-height: 1.15;
   margin: 0;
-  padding: 0.5rem 0.55rem;
+  padding: 0.7rem 0.8rem;
   background: rgba(10, 10, 10, 0.7);
   border: 1px solid rgba(242, 241, 237, 0.1);
   text-shadow:
@@ -321,11 +327,15 @@ main {
   transition: opacity 150ms ease;
 }
 .links a:hover .link-name,
-.links a:focus-visible .link-name {
+.links a:focus-visible .link-name,
+.links .link-soon:hover .link-name,
+.links .link-soon:focus-visible .link-name {
   opacity: 1;
 }
 .links a:hover .link-ornament,
-.links a:focus-visible .link-ornament {
+.links a:focus-visible .link-ornament,
+.links .link-soon:hover .link-ornament,
+.links .link-soon:focus-visible .link-ornament {
   color: var(--fg);
   background: rgba(10, 10, 10, 0.9);
   border-color: rgba(242, 241, 237, 0.4);

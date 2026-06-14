@@ -3,12 +3,21 @@
   <ul class="links">
     {{ range . }}
       <li>
-        <a href="{{ .url }}" rel="noopener">
-          {{ with .ornament }}
-            <pre class="link-ornament">{{ . }}</pre>
-          {{ end }}
-          <span class="link-name">{{ .name }}</span>
-        </a>
+        {{ if .soon }}
+          <span class="link link-soon" aria-disabled="true" aria-label="{{ .name }} — coming soon">
+            {{ with .ornament }}
+              <pre class="link-ornament">{{ . }}</pre>
+            {{ end }}
+            <span class="link-name">coming soon</span>
+          </span>
+        {{ else }}
+          <a href="{{ .url }}" rel="noopener">
+            {{ with .ornament }}
+              <pre class="link-ornament">{{ . }}</pre>
+            {{ end }}
+            <span class="link-name">{{ .name }}</span>
+          </a>
+        {{ end }}
       </li>
     {{ end }}
   </ul>

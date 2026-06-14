@@ -6,14 +6,14 @@ theme = "oo"
 enableRobotsTXT = true
 
 [params]
-  description = "OWNER/OPERATORS. New single, Echoes and Static, out June 22, 2026."
+  description = "OWNER/OPERATORS. New single, Echoes and Static — out now."
   artist = "OWNER/OPERATORS"
 
 [params.release]
   title = "Echoes and Static"
   from = "LOSS LEADER LP"
-  # DSP go-live: 2026-06-22. Before that, treat as pre-save/upcoming.
-  releaseDate = "2026-06-22"
+  # DSP go-live: released 2026-06-13. Now live — treat as out now.
+  releaseDate = "2026-06-13"
 
 # Fullscreen background video piped through hydra-synth for live glitch processing.
 # Leave `video` unset to fall back to procedural off-air-static noise.

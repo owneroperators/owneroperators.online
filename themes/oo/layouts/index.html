@@ -14,24 +14,29 @@
 
   {{ with site.Params.release }}
     <section class="release">
-      <!-- <p class="eyebrow">First single{{ with .releaseDate }}
-        —
-        {{ dateFormat "January 2, 2006" . }}
-      {{ end }}</p> -->
-      <!-- <h2 class="release-title">{{ .title }}</h2> -->
-      <h2 class="release-title">
-        <a>Echoes<br />and Static</a>
-      </h2>
+      <p class="eyebrow">Out now{{ with .releaseDate }} — {{ dateFormat "January 2, 2006" . }}{{ end }}</p>
 
-      {{ with site.Data.ornaments.louuy_loveglitch_oo }}
+      {{ with site.Data.masthead.louuy_audio_only }}
         <pre class="ornament ornament-xtra" aria-hidden="true">{{ . }}</pre>
       {{ end }}
 
+      {{/* web-mp3 player — element ids (#thumb/#player/#playlist) are fixed by the lib */}}
+      <div id="player-container" class="oo-player">
+        <img id="thumb" alt="" />
+        <audio id="player" controls></audio>
+        <ul id="playlist"></ul>
+      </div>
 
       <!-- {{ with .from }}<p class="release-from">from <em>{{ . }}</em></p>{{ end }} -->
       {{ partial "links.html" . }}
     </section>
   {{ end }}
+
+  {{/* mp3s live in static/mp3/ (served at /mp3/), ID3-tagged so the player fills in title/art */}}
+  <script type="module">
+    import { init } from "/js/web-mp3.js";
+    init(["/mp3/echoes2.mp3"]);
+  </script>
 
 
   <section class="intro">{{ .Content }}</section>

@@ -1,9 +1,11 @@
 # Outbound links surfaced in the release block on the home page.
 # Rendered by themes/oo/layouts/partials/links.html.
-# Spotify and Apple Music URLs below are DUMMIES — replace when artist profiles go live.
+# Spotify and Apple Music aren't live yet — marked `soon: true` so they render
+# non-clickable with a "coming soon" hover label. Drop the flag and add a real
+# `url:` when the artist profiles go live.
 # Each link has an optional `ornament` — a small ASCII glyph rendered above the name.
 - name: Spotify
-  url: #
+  soon: true
   ornament: |2
     ╭───────╮
     │ ≋ ≋ ≋ │
@@ -11,7 +13,7 @@
     │SPOTIFY│
     ╰───────╯
 - name: Apple Music
-  url: #
+  soon: true
   ornament: |2
     ╭───────╮
     │  ♪♪   │
