@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
     {{ block "head" . }}{{ end }}
   </head>
-  <body class="{{ if .IsHome }}is-home{{ else }}is-sub{{ end }}{{ if .Params.nobg }}no-bg{{ end }}">
+  <body class="{{ if .IsHome }}is-home{{ else }}is-sub{{ end }}{{ if .Params.nobg }} no-bg{{ end }}">
     {{ if not .Params.nobg }}
       <script>
         document.documentElement.setAttribute("data-bg", "init");

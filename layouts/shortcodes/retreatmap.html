@@ -1,0 +1,51 @@
+<!-- Interactive retreat map — Leaflet + OpenStreetMap tiles, no API key. -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<figure class="retreat-map-figure">
+  <div id="retreat-map" style="height:460px;width:100%;border:1px solid var(--rule,#444);background:#dfe3e0;"
+    role="img" aria-label="Interactive map of the West Mountain shore of Lake Cascade, showing the house, Tamarack, Donnelly, McCall, and Cascade">
+    <noscript>
+      <img src="/img/retreat-map.webp" width="1000" height="1000"
+        alt="Map of the west shore of Lake Cascade: the house on West Mountain, with Donnelly, Tamarack, McCall, and Cascade marked." />
+    </noscript>
+  </div>
+  <figcaption>West Mountain shore, Lake Cascade — drag to explore, click a pin.
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=44.6754,-116.1151">Driving directions &rarr;</a>
+    &middot; exact address + door code live in the reservation / group chat.</figcaption>
+</figure>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function () {
+  if (!window.L) return; // graceful no-op if Leaflet/CDN blocked; <noscript> img is the fallback
+  var pts = [
+    { name: "The House",  ll: [44.6754, -116.1151], note: "West Mountain Retreat — west shore", house: true },
+    { name: "Tamarack",   ll: [44.6846, -116.1434], note: "Resort — coffee + walks" },
+    { name: "Donnelly",   ll: [44.7325, -116.0775], note: "Nearest town" },
+    { name: "McCall",     ll: [44.9110, -116.0983], note: "~15 min N — real grocery + pharmacy" },
+    { name: "Cascade",    ll: [44.5163, -116.0417], note: "South end of the lake" }
+  ];
+  var map = L.map("retreat-map", { scrollWheelZoom: false }).setView([44.69, -116.10], 11);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 17,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  // enable wheel-zoom only after a click, so the page still scrolls past the map
+  map.on("click", function () { map.scrollWheelZoom.enable(); });
+  var bounds = [];
+  pts.forEach(function (p) {
+    var m = L.circleMarker(p.ll, {
+      radius: p.house ? 10 : 7,
+      color: "#ffffff", weight: 2,
+      fillColor: p.house ? "#c0392b" : "#2c3e50",
+      fillOpacity: 1
+    }).addTo(map);
+    m.bindPopup("<strong>" + p.name + "</strong><br>" + p.note);
+    if (p.house) m.bindTooltip("The House", { permanent: true, direction: "right", offset: [8, 0] });
+    bounds.push(p.ll);
+  });
+  map.fitBounds(bounds, { padding: [50, 50] });
+})();
+</script>
