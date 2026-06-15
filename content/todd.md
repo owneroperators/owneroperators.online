@@ -1,8 +1,9 @@
 ---
 title: "The Donnelly Shoot"
-description: "A photo-gig pitch for Todd Beving — OWNER/OPERATORS at the Donnelly retreat, June 2026."
+description: "OWNER/OPERATORS wants you to shoot the Donnelly retreat. $1k + travel, 2 days, a lake, a band making a record."
 noindex: true
 nobg: true
+ogimage: /img/og-todd.jpg
 ---
 
 **Todd —**
