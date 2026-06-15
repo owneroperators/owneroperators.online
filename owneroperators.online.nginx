@@ -31,6 +31,13 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
+    # Password-protect the retreat section and everything under it (basic auth).
+    location ^~ /retreat {
+        auth_basic "OWNER/OPERATORS";
+        auth_basic_user_file /etc/nginx/auth/retreat.htpasswd;
+        try_files $uri $uri/ =404;
+    }
+
     location / {
         # auth_basic "Restricted";
         # auth_basic_user_file /etc/nginx/auth/owneroperators.htpasswd;

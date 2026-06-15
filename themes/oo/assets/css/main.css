@@ -779,3 +779,51 @@ footer:has(.copyright > span:hover) .footer-line {
   color: var(--fg);
   background: rgba(242, 241, 237, 0.08);
 }
+
+/* ── Video title card — bare full-screen, layered over the glitch bg ───── */
+.titlecard {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.4rem;
+  padding: 2rem;
+  text-align: center;
+}
+.titlecard .tc-brand {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 2.4vw, 1.25rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.95),
+    0 0 3px rgba(0, 0, 0, 0.95);
+}
+.titlecard .tc-brand .slash {
+  color: var(--muted);
+}
+.titlecard .tc-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 12vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  text-shadow:
+    0 0 22px rgba(0, 0, 0, 0.92),
+    0 0 5px rgba(0, 0, 0, 0.96);
+}
+.titlecard .tc-sub {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 1.9vw, 0.95rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.95);
+}

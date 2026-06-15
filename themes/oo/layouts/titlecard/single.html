@@ -1,0 +1,7 @@
+{{ define "main" }}
+  <section class="titlecard">
+    <p class="tc-brand">OWNER<span class="slash">/</span>OPERATORS</p>
+    <h1 class="tc-title">{{ .Title }}</h1>
+    {{ with .Params.subtitle }}<p class="tc-sub">{{ . }}</p>{{ end }}
+  </section>
+{{ end }}
