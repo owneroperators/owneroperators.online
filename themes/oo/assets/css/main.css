@@ -422,6 +422,26 @@ main {
   color: var(--fg);
 }
 
+/* The Haul: cross-page nav strip */
+.prose .haulnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  margin: 0 0 1.6rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+.prose .haulnav a {
+  color: var(--muted);
+  text-shadow: none;
+}
+.prose .haulnav a:hover,
+.prose .haulnav a[aria-current="page"] {
+  color: var(--fg);
+}
+
 /* Manual: prose matches ornament typography */
 .page-manual .prose {
   font-family: var(--font-mono);

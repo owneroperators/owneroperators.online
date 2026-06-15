@@ -1,0 +1,8 @@
+{{- $retreat := site.GetPage "/retreat" -}}
+{{- $cur := $.Page.RelPermalink -}}
+<nav class="haulnav">
+  <a href="{{ $retreat.RelPermalink }}"{{ if eq $cur $retreat.RelPermalink }} aria-current="page"{{ end }}>overview</a>
+  {{- range $retreat.Pages.ByWeight }}
+  <a href="{{ .RelPermalink }}"{{ if eq $cur .RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle | lower }}</a>
+  {{- end }}
+</nav>

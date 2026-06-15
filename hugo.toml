@@ -8,6 +8,8 @@ enableRobotsTXT = true
 [params]
   description = "OWNER/OPERATORS. New single, Echoes and Static — out now."
   artist = "OWNER/OPERATORS"
+  # Default social share card (og:image / twitter:image). Pages can override with `ogimage` in front matter.
+  ogimage = "/img/og-home.jpg"
 
 [params.release]
   title = "Echoes and Static"
