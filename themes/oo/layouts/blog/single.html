@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <article class="page-blog-post">
+    <header class="page-head">
+      <p class="eyebrow"><a href="{{ "/blog/" | relURL }}">OWNER/OPERATORS · Blog</a></p>
+      <h1 class="page-title">{{ .Title }}</h1>
+    </header>
+    {{ with .Date }}<p class="post-date">{{ .Format "January 2, 2006" }}</p>{{ end }}
+    <div class="prose">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}

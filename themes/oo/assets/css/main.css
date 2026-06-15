@@ -5,6 +5,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "MgOpenModerna";
   src: url("https://cdn.pinecone.website/fonts/MgOpenModernaBold.ttf") format("truetype");
@@ -36,6 +37,7 @@ body.is-home {
     0 0 1px rgba(242, 241, 237, 0.35),
     0 0 6px rgba(242, 241, 237, 0.18);
 }
+
 body.is-home .release-title,
 body.is-home .eyebrow,
 body.is-home .release-from,
@@ -43,6 +45,7 @@ body.is-home .intro,
 body.is-home .link-name {
   font-family: var(--font-mono);
 }
+
 body.is-home .ornament,
 body.is-home .link-ornament {
   text-shadow:
@@ -143,13 +146,11 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.035) 0,
-    rgba(255, 255, 255, 0.035) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  background-image: repeating-linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.035) 0,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 3px);
   mix-blend-mode: screen;
 }
 
@@ -168,6 +169,7 @@ a {
   text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
 }
+
 a:hover {
   text-decoration-thickness: 2px;
 }
@@ -183,6 +185,30 @@ main {
 .hero {
   padding: 1rem 0 2rem;
   display: flex;
+  flex-wrap: wrap;
+  /* on phones the waveform drops below the lockup instead of overrunning the edge */
+  position: relative;
+}
+
+.hero-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.hero-nav a {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.hero-nav a:hover {
+  color: var(--fg);
+  text-decoration: underline;
 }
 
 .sr-only {
@@ -214,9 +240,11 @@ main {
   gap: 0.55em;
   margin: 0 0 1.5rem;
 }
+
 .page-head .eyebrow {
   margin: 0;
 }
+
 .page-title {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -232,9 +260,13 @@ main {
   margin: 0 0 4rem;
   text-align: left;
 }
+
 .release .eyebrow {
   margin: 0 0 0.5rem;
+  font-size: 1.56rem;
+  /* 2x the base eyebrow (0.78rem) */
 }
+
 .release-title {
   font-family: var(--font-mono);
   font-size: clamp(1.25rem, 5.5vw, 1.9rem);
@@ -246,12 +278,14 @@ main {
   overflow-wrap: break-word;
   text-align: right;
 }
+
 .release-from {
   color: var(--muted);
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   margin: 0 0 1.75rem;
 }
+
 .release-from em {
   font-style: normal;
   color: var(--fg);
@@ -267,9 +301,11 @@ main {
   gap: 1.25rem;
   max-width: 60%;
 }
+
 .links li {
   text-align: center;
 }
+
 .links a,
 .links .link-soon {
   display: inline-block;
@@ -277,6 +313,7 @@ main {
   padding: 0.5rem 0.25rem;
   text-decoration: none;
 }
+
 /* not-yet-live services: present but not a door that opens */
 .links .link-soon {
   cursor: default;
@@ -287,15 +324,18 @@ main {
     gap: 0.5rem;
     /* flex-wrap: nowrap; */
   }
+
   .links a,
   .links .link-soon {
     padding: 0.5rem 0.15rem;
   }
+
   .link-ornament {
     padding: 0.5rem 0.5rem;
     font-size: 0.85rem;
   }
 }
+
 .link-ornament {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--muted);
@@ -313,6 +353,7 @@ main {
     background 150ms ease,
     border-color 150ms ease;
 }
+
 .link-name {
   position: absolute;
   left: 50%;
@@ -327,12 +368,14 @@ main {
   pointer-events: none;
   transition: opacity 150ms ease;
 }
+
 .links a:hover .link-name,
 .links a:focus-visible .link-name,
 .links .link-soon:hover .link-name,
 .links .link-soon:focus-visible .link-name {
   opacity: 1;
 }
+
 .links a:hover .link-ornament,
 .links a:focus-visible .link-ornament,
 .links .link-soon:hover .link-ornament,
@@ -345,6 +388,7 @@ main {
 .intro {
   max-width: 48rem;
 }
+
 .intro p {
   margin: 0 0 1em;
 }
@@ -353,9 +397,11 @@ main {
   max-width: 48rem;
   display: flow-root;
 }
+
 .prose figure {
   margin: 1.8rem 0;
 }
+
 .prose figure img,
 .prose p img {
   display: block;
@@ -364,9 +410,11 @@ main {
   border: 1px solid var(--rule);
   border-radius: 2px;
 }
+
 .prose figure.portrait {
   max-width: 18rem;
 }
+
 .prose figcaption {
   margin-top: 0.5rem;
   font-family: var(--font-mono);
@@ -374,6 +422,7 @@ main {
   color: var(--muted);
   text-shadow: none;
 }
+
 .ornament-right {
   float: right;
   clear: right;
@@ -381,6 +430,7 @@ main {
   shape-outside: inset(0);
   shape-margin: 0.5rem;
 }
+
 .ornament-left {
   float: left;
   clear: left;
@@ -394,19 +444,24 @@ main {
 .ornament-right.ornament-slant {
   shape-outside: polygon(28% 0, 100% 0, 100% 100%, 28% 100%, 0 50%);
 }
+
 .ornament-left.ornament-slant {
   shape-outside: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
 }
+
 /* Small box glyphs (faces, tiny logos) — sit closer to the text. */
 .ornament-tight.ornament-right {
   margin: 0.2em 0 0.4rem 0.85rem;
   shape-margin: 0.3rem;
 }
+
 .ornament-tight.ornament-left {
   margin: 0.2em 0.85rem 0.4rem 0;
   shape-margin: 0.3rem;
 }
+
 @media (max-width: 36rem) {
+
   .ornament-right,
   .ornament-left {
     float: none;
@@ -415,10 +470,12 @@ main {
     shape-outside: none;
   }
 }
+
 .prose h2,
 .prose h3 {
   font-family: var(--font-display);
 }
+
 .prose a {
   color: var(--fg);
 }
@@ -434,10 +491,12 @@ main {
   padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--rule);
 }
+
 .prose .haulnav a {
   color: var(--muted);
   text-shadow: none;
 }
+
 .prose .haulnav a:hover,
 .prose .haulnav a[aria-current="page"] {
   color: var(--fg);
@@ -450,6 +509,7 @@ main {
   color: var(--fg-dim);
   line-height: 1.5;
 }
+
 .page-manual .prose p,
 .page-manual .prose li {
   text-shadow: none;
@@ -461,6 +521,7 @@ main {
   margin-bottom: 0.25rem;
   letter-spacing: 0.01em;
 }
+
 .page-faq .prose p:not(:has(> strong:only-child)) {
   font-family: var(--font-mono);
   color: var(--fg-dim);
@@ -472,6 +533,7 @@ main {
     0 0 2px rgba(0, 0, 0, 0.9),
     0 0 6px rgba(0, 0, 0, 0.8);
 }
+
 .page-faq .prose p:not(:has(> strong:only-child))::before {
   content: "›";
   position: absolute;
@@ -491,6 +553,7 @@ main {
   padding: 0;
   margin: 2rem 0;
 }
+
 .list li {
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--rule);
@@ -507,6 +570,7 @@ footer {
   border-top: 1px solid var(--rule);
   font-family: var(--font-body);
 }
+
 .ornament {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--muted);
@@ -520,16 +584,27 @@ footer {
     0 0 4px rgba(242, 241, 237, 0.25),
     0 0 10px rgba(242, 241, 237, 0.12);
 }
+
 .ornament-masthead {
-  font-size: clamp(0.38rem, 1.85vw, 0.85rem);
+  /* 0.75rem (same as every other ornament) wherever there's room; below the
+     width where the 65-char block fits, scale down with the viewport so it
+     never scrolls or clips. Desktop is unchanged. */
+  font-size: min(0.75rem, 2.1vw);
   line-height: 1;
+  overflow-x: visible;
+  /* sized to fit — no scrollbar track */
   margin: 0 0 0;
   text-align: left;
   white-space: pre;
 }
 
 .ornament-xtra {
-  float: right;
+  margin-left: auto;
+  /* sits at the right of the lockup on wide screens (flex, so no float) */
+  /* 0.75rem where there's room; scales down with the viewport on narrow screens
+     so it never pushes the page wider than the screen. */
+  font-size: min(0.75rem, 2vw);
+  overflow-x: visible;
 }
 
 pre.ornament-masthead {
@@ -547,9 +622,11 @@ pre.ornament-masthead {
     0 0 1px rgba(242, 241, 237, 0.45),
     0 0 4px rgba(242, 241, 237, 0.2);
 }
+
 .ornament-between {
   margin: 3rem 0;
 }
+
 .ornament-footer {
   margin: 0 0 1rem;
 }
@@ -560,6 +637,7 @@ pre.ornament-masthead {
   padding: 6rem 1.5rem;
   text-align: center;
 }
+
 .notfound-banner {
   display: inline-block;
   text-align: left;
@@ -569,10 +647,12 @@ pre.ornament-masthead {
   line-height: 1.1;
   margin: 0 0 3rem;
 }
+
 .notfound-line {
   margin: 0 0 0.5rem;
   line-height: 1.5;
 }
+
 .notfound-tag {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--muted);
@@ -585,10 +665,12 @@ pre.ornament-masthead {
   opacity: 0;
   transition: opacity 300ms ease;
 }
+
 /* reveal on the copyright text only — not the GitHub link beside it */
 footer:has(.copyright > span:hover) .footer-line {
   opacity: 1;
 }
+
 .copyright {
   margin: 0;
   cursor: default;
@@ -596,16 +678,30 @@ footer:has(.copyright > span:hover) .footer-line {
   align-items: center;
   justify-content: space-between;
 }
+
+.rp-link {
+  color: var(--muted);
+  margin-left: 0.75rem;
+  text-decoration: none;
+}
+
+.rp-link:hover {
+  color: var(--fg, var(--accent));
+  text-decoration: underline;
+}
+
 .gh-link {
   display: inline-flex;
   color: var(--muted);
   margin-left: auto;
 }
+
 .gh-link svg {
   width: 1em;
   height: 1em;
   display: block;
 }
+
 .gh-link:hover {
   color: var(--fg, var(--accent));
 }
@@ -627,15 +723,18 @@ footer:has(.copyright > span:hover) .footer-line {
   align-items: flex-start;
   gap: 2rem;
 }
+
 @media (min-width: 64rem) {
   .preview-row {
     flex-wrap: nowrap;
     width: 61rem;
   }
 }
+
 .preview-row .ornament {
   margin: 0;
 }
+
 /* Invisible base text — only glitch.js's per-span color/glow flashes (set as
    inline styles, which override this) punch through. The ornament reads as
    blank until the glitch hits, then flickers in. text-shadow:none kills the
@@ -650,14 +749,19 @@ footer:has(.copyright > span:hover) .footer-line {
 .download {
   margin: 0.75rem 0 0;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 1.56rem;
+  /* match the "Out now" eyebrow */
 }
+
 .download a {
   color: var(--muted);
   text-decoration: none;
   border-bottom: 1px dotted var(--rule);
-  transition: color 150ms ease, border-color 150ms ease;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease;
 }
+
 .download a:hover,
 .download a:focus-visible {
   color: var(--fg);
@@ -675,6 +779,7 @@ footer:has(.copyright > span:hover) .footer-line {
   background: transparent;
   opacity: 0.85;
 }
+
 .eq-controls {
   margin: 0.75rem 0 0;
   display: flex;
@@ -684,20 +789,24 @@ footer:has(.copyright > span:hover) .footer-line {
   font-size: 0.75rem;
   color: var(--muted);
 }
+
 .eq-band {
   display: grid;
   grid-template-columns: 2.75rem 1fr 3rem;
   align-items: center;
   gap: 0.5rem;
 }
+
 .eq-label {
   letter-spacing: 0.08em;
 }
+
 .eq-val {
   text-align: right;
   color: var(--fg-dim);
   font-variant-numeric: tabular-nums;
 }
+
 .eq-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -708,6 +817,7 @@ footer:has(.copyright > span:hover) .footer-line {
   /* capture the touch-drag so adjusting a slider doesn't scroll the page on mobile */
   touch-action: none;
 }
+
 .eq-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -717,6 +827,7 @@ footer:has(.copyright > span:hover) .footer-line {
   border: none;
   border-radius: 0;
 }
+
 .eq-slider::-moz-range-thumb {
   width: 12px;
   height: 12px;
@@ -724,6 +835,7 @@ footer:has(.copyright > span:hover) .footer-line {
   border: none;
   border-radius: 0;
 }
+
 .eq-slider:focus-visible {
   outline: 1px solid var(--fg);
   outline-offset: 4px;
@@ -740,6 +852,7 @@ footer:has(.copyright > span:hover) .footer-line {
   border: 1px solid var(--rule);
   background: rgba(10, 10, 10, 0.7);
 }
+
 .oo-player #thumb {
   display: block;
   width: 100%;
@@ -748,14 +861,17 @@ footer:has(.copyright > span:hover) .footer-line {
   border: 1px solid var(--rule);
   /* hidden until a track with album art loads */
 }
+
 .oo-player #thumb:not([src]),
 .oo-player #thumb[src=""] {
   display: none;
 }
+
 .oo-player #player {
   width: 100%;
   filter: grayscale(1) contrast(1.1);
 }
+
 .oo-player #playlist {
   list-style: none;
   margin: 1rem 0 0;
@@ -763,20 +879,26 @@ footer:has(.copyright > span:hover) .footer-line {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
 }
+
 .oo-player #playlist li {
   padding: 0.4rem 0.5rem;
   color: var(--fg-dim);
   cursor: pointer;
   border-top: 1px solid var(--rule);
-  transition: background 150ms ease, color 150ms ease;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
 }
+
 .oo-player #playlist li:first-child {
   border-top: 0;
 }
+
 .oo-player #playlist li:hover {
   color: var(--fg);
   background: rgba(242, 241, 237, 0.04);
 }
+
 .oo-player #playlist li.active {
   color: var(--fg);
   background: rgba(242, 241, 237, 0.08);
@@ -794,6 +916,7 @@ footer:has(.copyright > span:hover) .footer-line {
   padding: 2rem;
   text-align: center;
 }
+
 .titlecard .tc-brand {
   margin: 0;
   font-family: var(--font-mono);
@@ -805,9 +928,11 @@ footer:has(.copyright > span:hover) .footer-line {
     0 0 10px rgba(0, 0, 0, 0.95),
     0 0 3px rgba(0, 0, 0, 0.95);
 }
+
 .titlecard .tc-brand .slash {
   color: var(--muted);
 }
+
 .titlecard .tc-title {
   margin: 0;
   font-family: var(--font-display);
@@ -820,6 +945,7 @@ footer:has(.copyright > span:hover) .footer-line {
     0 0 22px rgba(0, 0, 0, 0.92),
     0 0 5px rgba(0, 0, 0, 0.96);
 }
+
 .titlecard .tc-sub {
   margin: 0;
   font-family: var(--font-mono);
@@ -828,4 +954,35 @@ footer:has(.copyright > span:hover) .footer-line {
   text-transform: uppercase;
   color: var(--muted);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.95);
+}
+
+/* ── Blog: post date + index list ─────────────────────────────────────── */
+.post-date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: -0.4rem 0 1.6rem;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.post-list li {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-list .post-date {
+  margin: 0;
+  flex: none;
+  min-width: 7rem;
 }

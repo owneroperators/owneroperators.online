@@ -26,5 +26,3 @@ Getting the DEVO Suburban ready before the loaded dusk run up ID-55:
   | % |
   |_/_|
 </pre>
-
-— [back to %eric](/eric/)

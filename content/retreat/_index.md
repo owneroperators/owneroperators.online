@@ -46,5 +46,3 @@ before you count on it.
   | % |
   |_/_|
 </pre>
-
-— [back to %eric](/eric/)

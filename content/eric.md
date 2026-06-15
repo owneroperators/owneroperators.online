@@ -32,7 +32,7 @@ needs that isn't a drum. Builds the record in the same room he answers email in.
 
 A guitar line will arrive late and apologize for nothing. That's usually him.
 
-Hear one: **[Echoes and Static](/video/echoes-and-static.mp4)** — the first single, from _LOSS LEADER LP_.
+Hear one: **[Echoes and Static](https://www.youtube.com/watch?v=lyq_hXNdkRo)** — the first single, from _LOSS LEADER LP_.
 
 ## §2 — DAY JOB, NIGHT FREIGHT
 

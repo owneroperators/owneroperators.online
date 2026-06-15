@@ -3,55 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{/* Shared meta values — pick the most specific source available, fall back to site defaults. */}}
+    {{ $pagetitle := cond .IsHome site.Title (printf "%s — %s" .Title site.Title) }}
+    {{ $desc := or .Description .Params.summary (.Summary | plainify | chomp) site.Params.description | plainify | chomp }}
+    {{ $ogimage := or .Params.ogimage site.Params.ogimage }}
     <title>
-      {{ block "title" . }}
-        {{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}
-      {{ end }}
+      {{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}
     </title>
-    <meta
-      name="description"
-      content="{{ with .Description }}
-        {{ . }}
-      {{ else }}
-        {{ site.Params.description }}
-      {{ end }}"
-    />
-    <meta
-      property="og:title"
-      content="{{ if .IsHome }}
-        {{ site.Title }}
-      {{ else }}
-        {{ .Title }} —
-        {{ site.Title }}
-      {{ end }}"
-    />
-    <meta
-      property="og:description"
-      content="{{ with .Description }}
-        {{ . }}
-      {{ else }}
-        {{ site.Params.description }}
-      {{ end }}"
-    />
-    <meta property="og:type" content="website" />
+    <meta name="description" content="{{ $desc }}" />
+    <meta property="og:title" content="{{ $pagetitle }}" />
+    <meta property="og:description" content="{{ $desc }}" />
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:site_name" content="{{ site.Title }}" />
-    {{ $ogimage := or .Params.ogimage site.Params.ogimage }}
     {{ with $ogimage }}
       <meta property="og:image" content="{{ . | absURL }}" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta name="twitter:image" content="{{ . | absURL }}" />
     {{ end }}
+    {{ if .IsPage }}
+      {{ with .Date }}<meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+      {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}" />{{ end }}
+      {{ range .Params.tags }}<meta property="article:tag" content="{{ . }}" />{{ end }}
+    {{ end }}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}"
-    />
-    <meta
-      name="twitter:description"
-      content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}"
-    />
+    <meta name="twitter:title" content="{{ $pagetitle }}" />
+    <meta name="twitter:description" content="{{ $desc }}" />
     {{ if .Params.noindex }}<meta name="robots" content="noindex, nofollow" />{{ end }}
     {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />

@@ -2,14 +2,14 @@
 
 Steering doc for future Claude sessions working on this site. Not a spec. Candidates here get picked up, redirected, or dropped.
 
-Pair with `CLAUDE.md` (mechanics, stack, hard rules) and the parent `/Volumes/eric/.openclaw/workspace/owner-operators/AGENTS.md` (project-wide voice and canon).
+Pair with `CLAUDE.md` (mechanics, stack, hard rules) and the parent `pi5:~/.openclaw/workspace/owner-operators/AGENTS.md` (project-wide voice and canon).
 
 ## Start here (for a fresh session)
 
-1. Read this file, `CLAUDE.md`, and `/Volumes/eric/.openclaw/workspace/owner-operators/AGENTS.md`.
+1. Read this file, `CLAUDE.md`, and `pi5:~/.openclaw/workspace/owner-operators/AGENTS.md`.
 2. **Read "Push the tools until they break" below before using any local model.** That section is load-bearing. If you are about to say "the models aren't really good for this," stop and read it again.
 3. Ask Eric which open thread (see "Rough moves" below) to pull on, or which new one he has in mind.
-4. Before writing any character-voiced copy, read that character's entry in `/Users/eeaglstun/Documents/AI/llm-models/CHARACTERS.md`.
+4. Before writing any character-voiced copy, read that character's entry in `~/Documents/AI/llm-models/CHARACTERS.md`.
 5. Use the dev agents (see "Dev agent team" below) to draft, validate, and sharpen — don't do it all from the main session.
 
 ## Where we are (2026-04-20)
@@ -27,8 +27,8 @@ Single page: hero brand lockup, release block (_Echoes and Static_, 5/8, four ou
 
 Ground any new copy or visual choice in the manual + canon. Don't invent:
 
-- **Voice North Star** — `/Volumes/eric/.openclaw/workspace/owner-operators/manual/1_MANUAL__STANDARD.md`. The metamodern stance lives here. Sample moves that are canon: _"We do not play shows. We deploy payloads."_ · _"A mistake, repeated with intention, becomes a hook."_ · _"Visible seams are the sincerity."_
-- **Cast canon** — `/Users/eeaglstun/Documents/AI/llm-models/CHARACTERS.md`. Front door for everyone below. Read the entry before writing in a character's voice.
+- **Voice North Star** — `pi5:~/.openclaw/workspace/owner-operators/manual/1_MANUAL__STANDARD.md`. The metamodern stance lives here. Sample moves that are canon: _"We do not play shows. We deploy payloads."_ · _"A mistake, repeated with intention, becomes a hook."_ · _"Visible seams are the sincerity."_
+- **Cast canon** — `~/Documents/AI/llm-models/CHARACTERS.md`. Front door for everyone below. Read the entry before writing in a character's voice.
 - **Visual codex** — from `CHARACTERS.md`: black-and-white zine grit, photocopy smear, toner ghosts, ASCII halos, corrupted debug tables, errant UI fragments. Roadside Americana (truck stops, gas stations, laundromats) crossed with obsolete tech (Speak & Spell, CRT, dot-matrix). Riso accents — fluo pink, safety yellow, cornflower.
 - **Archive** — `/Volumes/bananas/local-ai/source/chat-gpt-export/OWNER-OPERATORS/` (~119 dated conversations). Grep by topic for deeper context; don't bulk-load.
 
@@ -74,7 +74,7 @@ ollama run margot-1.7b-q8-ft "ASCII masthead, 'OWNER/OPERATORS', monospace, no f
 cat themes/oo/layouts/index.html | ollama run jester-1.7b-q8-ft "Roast the microcopy. Keep it short."
 ```
 
-Dossiers at `/Users/eeaglstun/Documents/AI/llm-models/fine-tuning/<name>/dossier.md` if you need prompt shape or known quirks.
+Dossiers at `~/Documents/AI/llm-models/fine-tuning/<name>/dossier.md` if you need prompt shape or known quirks.
 
 **Typical workflow.** Margot drafts tone → Silas implements → Jester sharpens → June validates → Ren checks structure. Don't run all five on every change; pick the ones the task needs. Treat their output as material — curate, don't polish (see "Push the tools until they break" below). Don't credit them on-page.
 
