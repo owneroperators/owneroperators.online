@@ -31,6 +31,11 @@ snapshots.
 - **Donnelly, ID** — Lake Cascade / Tamarack / West Mountain. Mountain house, loft turned tracking room, lake out the door.
 - **Crash at the house** — there's a bed and food covered; you're not paying for a thing up there.
 
+<figure>
+  <img src="/img/retreat-lake.webp" alt="Kayaks and a paddleboard on a calm alpine lake at golden hour, forested mountains behind" width="1200" height="660" />
+  <figcaption>Lake Cascade. This is the office for two days.</figcaption>
+</figure>
+
 ## The look
 
 _Retro-futuristic cowboy meets Devo post-punk. Analog imperfection, digital precision._
@@ -45,6 +50,11 @@ The **DEVO Suburban**, golden hour on the water, denim work shirts, and the band
 - **Lakeside / environmental** — Cascade, the mountains, the drive up ID-55.
 - **Detail + B-roll** — hands on instruments, gear, loading out, the in-between moments.
 - **The keepers** — one EPK press frame + a stack of social content (vertical _and_ horizontal).
+
+<figure>
+  <img src="/img/retreat-loft.webp" alt="A loft recording setup at dusk: a microphone on a stand, a glowing laptop, cables, a big window with a mountain sunset" width="1200" height="660" />
+  <figcaption>The loft becomes the studio — you'd shoot the record getting made.</figcaption>
+</figure>
 
 ## The deliverables
 
