@@ -70,7 +70,10 @@ function setupEQ(audioEl) {
     if (ctx) return;
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return; // no Web Audio → sliders/viz stay inert, audio still plays
-    ctx = new AC();
+    // Pin the context to the file's rate (44.1k). With a default (often 48k)
+    // context, routing a 44.1k <audio> through createMediaElementSource can play
+    // ~8.8% fast/sharp; the browser resamples 44.1→hardware at output instead.
+    ctx = new AC({ sampleRate: 44100 });
     const src = ctx.createMediaElementSource(audioEl);
     filters = bands.map((b) => {
       const f = ctx.createBiquadFilter();

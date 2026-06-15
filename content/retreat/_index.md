@@ -30,6 +30,10 @@ Cascade. The house sits on the **West Mountain** side — lake to the east, Tama
 just south, Donnelly the nearest town, McCall ~15 min north for the real grocery /
 pharmacy run.
 
+**Cash / ICCU:** the nearest Idaho Central is up in **McCall** (~15–20 min N on Hwy 55) —
+check the [ICCU locator](https://www.iccu.com/locations/) for the exact branch + hours
+before you count on it.
+
 <figure>
   <img src="/img/retreat-house.webp" alt="A modern mountain rental house at dusk with warm glowing windows, tall pines and a dark treeline, a distant lake" width="1200" height="660" />
   <figcaption>West Mountain, after the drive.</figcaption>
