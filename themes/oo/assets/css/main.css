@@ -703,6 +703,8 @@ footer:has(.copyright > span:hover) .footer-line {
   height: 2px;
   background: var(--rule);
   cursor: pointer;
+  /* capture the touch-drag so adjusting a slider doesn't scroll the page on mobile */
+  touch-action: none;
 }
 .eq-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
