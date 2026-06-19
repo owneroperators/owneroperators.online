@@ -1,114 +1,61 @@
-/* ── Web Audio EQ + visualizer ──────────────────────────────────────────
+/* ── Web Audio spectrum visualizer ──────────────────────────────────────
    OWNER/OPERATORS custom addition — NOT part of the upstream web-mp3 lib.
    web-mp3.js imports setupEQ() and calls it once per mounted player; when
    syncing the player from its source repo, this file is the only thing to
    keep, plus the one import line in web-mp3.js.
 
-   Taps the #player <audio> through a 3-band BiquadFilter chain into an
-   AnalyserNode, then to the speakers:
+   Taps the #player <audio> through an AnalyserNode to the speakers:
 
-     source → bass(lowshelf) → mid(peaking) → high(highshelf) → analyser → out
+     source → analyser → out
 
-   The analyser drives the bouncing spectrum bars; the sliders drive the
-   filter gains (actual tone control). UI is injected into #player-container
-   so every page that mounts the player gets it automatically.
+   The analyser drives the bouncing spectrum bars. UI (the canvas) is
+   injected into #player-container so every page that mounts the player
+   gets it automatically. (The 3-band EQ sliders were removed — viz only.)
 
-   Two hazards this code is built around:
+   Three hazards this code is built around:
    1. Routing an element through a MediaElementSource REPLACES its normal
       output — the graph must terminate at ctx.destination or it's silent.
-   2. AudioContext is gated behind a user gesture. We build the graph on the
-      first real click/keypress (resume guaranteed) rather than on autoplay,
-      so we never strand a playing track in a suspended context. */
+   2. AudioContext is gated behind a user gesture: it starts suspended and
+      must be resume()'d from a real gesture or it stays silent.
+   3. The graph is built EAGERLY here (not on first gesture). The element is
+      wired into the context from the start so playback never gets hot-swapped
+      into createMediaElementSource mid-track — that swap could jump the pitch.
+      The context just sits suspended until the first play/gesture resumes it. */
 function setupEQ(audioEl) {
   const container =
     audioEl.closest("#player-container") || audioEl.parentElement;
   if (!container || container.dataset.eq) return; // once per container
   container.dataset.eq = "1";
 
-  const bands = [
-    { key: "bass", label: "BASS", type: "lowshelf", freq: 120 },
-    { key: "mid", label: "MID", type: "peaking", freq: 1000, q: 1 },
-    { key: "high", label: "HIGH", type: "highshelf", freq: 6000 },
-  ];
-
-  // --- UI: visualizer canvas + one slider per band ----------------------
+  // --- UI: visualizer canvas --------------------------------------------
   const viz = document.createElement("canvas");
   viz.className = "eq-viz";
   viz.setAttribute("aria-hidden", "true");
+  audioEl.after(viz);
 
-  const controls = document.createElement("div");
-  controls.className = "eq-controls";
-  const sliders = {};
-  bands.forEach((b) => {
-    const row = document.createElement("label");
-    row.className = "eq-band";
-    const name = document.createElement("span");
-    name.className = "eq-label";
-    name.textContent = b.label;
-    const input = document.createElement("input");
-    Object.assign(input, {
-      type: "range",
-      min: "-12",
-      max: "12",
-      step: "1",
-      value: "0",
-      className: "eq-slider",
-    });
-    input.setAttribute("aria-label", `${b.label} gain, decibels`);
-    const val = document.createElement("span");
-    val.className = "eq-val";
-    val.textContent = "0dB";
-    row.append(name, input, val);
-    controls.appendChild(row);
-    sliders[b.key] = { input, val };
-  });
-  audioEl.after(viz, controls);
-
-  // --- audio graph (built lazily on first user gesture) -----------------
-  let ctx, analyser, freq, filters;
-  function buildGraph() {
-    if (ctx) return;
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return; // no Web Audio → sliders/viz stay inert, audio still plays
+  // --- audio graph (built eagerly, starts suspended) --------------------
+  let ctx, analyser, freq;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (AC) {
     // Pin the context to the file's rate (44.1k). With a default (often 48k)
     // context, routing a 44.1k <audio> through createMediaElementSource can play
     // ~8.8% fast/sharp; the browser resamples 44.1→hardware at output instead.
     ctx = new AC({ sampleRate: 44100 });
     const src = ctx.createMediaElementSource(audioEl);
-    filters = bands.map((b) => {
-      const f = ctx.createBiquadFilter();
-      f.type = b.type;
-      f.frequency.value = b.freq;
-      if (b.q != null) f.Q.value = b.q;
-      f.gain.value = parseFloat(sliders[b.key].input.value);
-      return f;
-    });
     analyser = ctx.createAnalyser();
     analyser.fftSize = 64; // 32 bins → chunky bars
     analyser.smoothingTimeConstant = 0.9; // calmer motion, won't fight the bg video
     freq = new Uint8Array(analyser.frequencyBinCount);
-    const chain = [src, ...filters, analyser];
-    for (let i = 0; i < chain.length - 1; i++) chain[i].connect(chain[i + 1]);
+    src.connect(analyser);
     analyser.connect(ctx.destination); // <-- terminate at speakers
-    bands.forEach((b, i) => {
-      const { input, val } = sliders[b.key];
-      input.addEventListener("input", () => {
-        const g = parseFloat(input.value);
-        filters[i].gain.value = g;
-        val.textContent = (g > 0 ? "+" : "") + g + "dB";
-      });
-    });
   }
-  function ensureGraph() {
-    buildGraph();
+  // resume on the first gesture and on every play (suspended ctx = silent)
+  const resume = () => {
     if (ctx && ctx.state === "suspended") ctx.resume();
-  }
-  // first gesture anywhere builds + resumes; later plays just nudge resume
-  window.addEventListener("pointerdown", ensureGraph, { once: true });
-  window.addEventListener("keydown", ensureGraph, { once: true });
-  audioEl.addEventListener("play", () => {
-    if (ctx && ctx.state === "suspended") ctx.resume();
-  });
+  };
+  window.addEventListener("pointerdown", resume, { once: true });
+  window.addEventListener("keydown", resume, { once: true });
+  audioEl.addEventListener("play", resume);
 
   // --- visualizer render loop -------------------------------------------
   const cctx = viz.getContext("2d");

@@ -52,6 +52,13 @@ async function E(g) {
 const C = document.getElementById("thumb"),
   d = document.getElementById("player"),
   f = document.getElementById("playlist");
+if (C) {
+  C.style.cursor = "pointer";
+  C.addEventListener("click", () => {
+    if (!d.src) return;
+    d.paused ? d.play() : d.pause();
+  });
+}
 async function v(g) {
   setupEQ(d);
   let l = 0;
@@ -107,7 +114,7 @@ async function v(g) {
         () => {
           d.play();
         },
-        !1,
+        { once: !0 },
       );
     }
   };

@@ -21,7 +21,7 @@
       <p class="eyebrow">Out now{{ with .releaseDate }} — {{ dateFormat "January 2, 2006" . }}{{ end }}</p>
 
       {{ with site.Data.masthead.louuy_audio_only }}
-        <pre class="ornament ornament-xtra" aria-hidden="true">{{ . }}</pre>
+        <pre class="ornament ornament-xtra ornament-flush-right" aria-hidden="true">{{ . }}</pre>
       {{ end }}
 
       {{/* web-mp3 player — element ids (#thumb/#player/#playlist) are fixed by the lib */}}

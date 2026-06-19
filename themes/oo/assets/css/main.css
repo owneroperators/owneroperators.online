@@ -228,7 +228,7 @@ main {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.78rem;
-  color: var(--muted);
+  color: var(--fg-dim);
   margin: 0 0 0.75rem;
 }
 
@@ -607,6 +607,12 @@ footer {
   overflow-x: visible;
 }
 
+/* louuy audio-only block: short rows hug the right edge, flush under the
+   widest line (scoped — combo_xtra's pyramid must stay left-anchored) */
+.ornament-flush-right {
+  text-align: right;
+}
+
 pre.ornament-masthead {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -754,7 +760,7 @@ footer:has(.copyright > span:hover) .footer-line {
 }
 
 .download a {
-  color: var(--muted);
+  color: var(--fg-dim);
   text-decoration: none;
   border-bottom: 1px dotted var(--rule);
   transition:
@@ -768,7 +774,7 @@ footer:has(.copyright > span:hover) .footer-line {
   border-bottom-color: currentColor;
 }
 
-/* --- EQ: visualizer + tone sliders (injected by web-mp3.js) ----------- */
+/* --- spectrum visualizer (injected by web-mp3.js) --------------------- */
 .eq-viz {
   display: block;
   width: 100%;
@@ -778,67 +784,6 @@ footer:has(.copyright > span:hover) .footer-line {
      with the hydra background video showing through the player panel */
   background: transparent;
   opacity: 0.85;
-}
-
-.eq-controls {
-  margin: 0.75rem 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-.eq-band {
-  display: grid;
-  grid-template-columns: 2.75rem 1fr 3rem;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.eq-label {
-  letter-spacing: 0.08em;
-}
-
-.eq-val {
-  text-align: right;
-  color: var(--fg-dim);
-  font-variant-numeric: tabular-nums;
-}
-
-.eq-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 2px;
-  background: var(--rule);
-  cursor: pointer;
-  /* capture the touch-drag so adjusting a slider doesn't scroll the page on mobile */
-  touch-action: none;
-}
-
-.eq-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 12px;
-  height: 12px;
-  background: var(--fg);
-  border: none;
-  border-radius: 0;
-}
-
-.eq-slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: var(--fg);
-  border: none;
-  border-radius: 0;
-}
-
-.eq-slider:focus-visible {
-  outline: 1px solid var(--fg);
-  outline-offset: 4px;
 }
 
 /* --- web-mp3 player (preview page) ------------------------------------- */
