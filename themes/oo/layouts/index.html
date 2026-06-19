@@ -26,7 +26,10 @@
 
       {{/* web-mp3 player — element ids (#thumb/#player/#playlist) are fixed by the lib */}}
       <div id="player-container" class="oo-player">
-        <img id="thumb" alt="" />
+        <div class="art-wrap">
+          <img id="thumb" alt="" />
+          <button id="play-toggle" class="play-overlay" type="button" aria-label="Play">▶</button>
+        </div>
         <audio id="player" controls></audio>
         <ul id="playlist"></ul>
       </div>

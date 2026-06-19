@@ -52,13 +52,27 @@ async function E(g) {
 const C = document.getElementById("thumb"),
   d = document.getElementById("player"),
   f = document.getElementById("playlist");
+const pc = document.getElementById("player-container"),
+  pb = document.getElementById("play-toggle");
+const toggle = () => {
+  if (!d.src) return;
+  d.paused ? d.play() : d.pause();
+};
 if (C) {
   C.style.cursor = "pointer";
-  C.addEventListener("click", () => {
-    if (!d.src) return;
-    d.paused ? d.play() : d.pause();
-  });
+  C.addEventListener("click", toggle);
 }
+if (pb) pb.addEventListener("click", toggle);
+// drive the overlay off the audio element's real state, so OS media keys /
+// the native controls keep it in sync too
+d.addEventListener("play", () => {
+  pc && pc.classList.add("playing");
+  if (pb) (pb.textContent = "⏸"), pb.setAttribute("aria-label", "Pause");
+});
+d.addEventListener("pause", () => {
+  pc && pc.classList.remove("playing");
+  if (pb) (pb.textContent = "▶"), pb.setAttribute("aria-label", "Play");
+});
 async function v(g) {
   setupEQ(d);
   let l = 0;

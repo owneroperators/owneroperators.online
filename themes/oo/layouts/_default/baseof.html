@@ -4,11 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {{/* Shared meta values — pick the most specific source available, fall back to site defaults. */}}
-    {{ $pagetitle := cond .IsHome site.Title (printf "%s — %s" .Title site.Title) }}
+    {{ $pagetitle := or .Params.ogtitle (cond .IsHome site.Title (printf "%s — %s" .Title site.Title)) }}
     {{ $desc := or .Description .Params.summary (.Summary | plainify | chomp) site.Params.description | plainify | chomp }}
     {{ $ogimage := or .Params.ogimage site.Params.ogimage }}
+    {{ $ogw := or .Params.ogimagewidth "1200" }}
+    {{ $ogh := or .Params.ogimageheight "630" }}
     <title>
-      {{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}
+      {{ block "title" . }}{{ with .Params.metatitle }}{{ . }}{{ else }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}{{ end }}
     </title>
     <meta name="description" content="{{ $desc }}" />
     <meta property="og:title" content="{{ $pagetitle }}" />
@@ -18,8 +20,8 @@
     <meta property="og:site_name" content="{{ site.Title }}" />
     {{ with $ogimage }}
       <meta property="og:image" content="{{ . | absURL }}" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
+      <meta property="og:image:width" content="{{ $ogw }}" />
+      <meta property="og:image:height" content="{{ $ogh }}" />
       <meta name="twitter:image" content="{{ . | absURL }}" />
     {{ end }}
     {{ if .IsPage }}

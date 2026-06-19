@@ -321,8 +321,12 @@ main {
 
 @media (max-width: 32rem) {
   .links {
-    gap: 0.5rem;
-    /* flex-wrap: nowrap; */
+    /* 4 services → 2x2 grid instead of a single wrapping row */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 0.75rem;
+    max-width: 100%;
   }
 
   .links a,
@@ -338,7 +342,7 @@ main {
 
 .link-ornament {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  color: var(--muted);
+  color: var(--fg-dim);
   font-size: 1rem;
   line-height: 1.15;
   margin: 0;
@@ -756,6 +760,7 @@ footer:has(.copyright > span:hover) .footer-line {
   margin: 0.75rem 0 0;
   font-family: var(--font-mono);
   font-size: 1.56rem;
+  text-align: right;
   /* match the "Out now" eyebrow */
 }
 
@@ -798,18 +803,54 @@ footer:has(.copyright > span:hover) .footer-line {
   background: rgba(10, 10, 10, 0.7);
 }
 
+.oo-player .art-wrap {
+  position: relative;
+  margin: 0 0 1rem;
+  line-height: 0;
+}
+
 .oo-player #thumb {
   display: block;
   width: 100%;
   height: auto;
-  margin: 0 0 1rem;
+  margin: 0;
   border: 1px solid var(--rule);
   /* hidden until a track with album art loads */
 }
 
-.oo-player #thumb:not([src]),
-.oo-player #thumb[src=""] {
+/* collapse the whole art block (incl. play button) until art loads */
+.oo-player .art-wrap:has(#thumb:not([src])),
+.oo-player .art-wrap:has(#thumb[src=""]) {
   display: none;
+}
+
+/* center play/pause affordance over the art */
+.oo-player .play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  padding-left: 0.15em; /* optically center the ▶ glyph */
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.55);
+  color: var(--fg);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 250ms ease;
+}
+
+/* fade away completely while playing (clicking the art still pauses) */
+.oo-player.playing .play-overlay {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .oo-player #player {
