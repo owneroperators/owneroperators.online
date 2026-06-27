@@ -5,6 +5,7 @@ pop project out of Boise, Idaho. Built as a small, fast, single-binary
 [Hugo](https://gohugo.io/) site. Analog imperfection, digital precision.
 
 🔗 **Live:** [owneroperators.online](https://owneroperators.online)
+🔌 **API:** [owneroperators.online-api](https://github.com/owneroperators/owneroperators.online-api)
 
 ## Stack
 
