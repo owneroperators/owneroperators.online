@@ -15,10 +15,6 @@ nobg: true
 hand on most of the other machines too. Based in Boise, Idaho. Files everything
 under his own rig.
 
-The `%` is the badge: two circles, one slash. Owner over operator. You own the
-thing, you operate the thing, nobody hands you the keys. `/%eric` is just that
-applied to one person.
-
 <figure class="portrait">
   <img src="/img/eric-portrait.webp" alt="Eric Eaglstun — editorial portrait in window light" width="760" height="760" />
   <figcaption>Eric Eaglstun. Boise, Idaho.</figcaption>
