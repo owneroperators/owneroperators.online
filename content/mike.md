@@ -15,10 +15,6 @@ nobg: true
 a full member of OWNER/OPERATORS — not a sideman, a partner with a vote and a root
 note. Owns the rig, operates the rig.
 
-The `%` is the badge: two circles, one slash. Owner over operator. You own the
-thing, you operate the thing, nobody hands you the keys. `/%mike` is the same
-move, applied to the man holding down the low end.
-
 <figure class="portrait">
   <img src="/img/mike-portrait.webp" alt="Mike Shumann — editorial portrait in window light" width="760" height="760" />
   <figcaption>Mike Shumann. Bass.</figcaption>

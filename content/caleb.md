@@ -15,10 +15,6 @@ nobg: true
 full member of the band — not a hired pair of hands, a partner with a vote and a
 backbeat. Owns the kit, operates the kit.
 
-The `%` is the badge: two circles, one slash. Owner over operator. You own the
-thing, you operate the thing, nobody hands you the keys. `/%caleb` is the same
-move, applied to the man behind the drums.
-
 <figure class="portrait">
   <img src="/img/caleb-portrait.webp" alt="Caleb Ebe — editorial portrait in window light" width="760" height="760" />
   <figcaption>Caleb Ebe. Drums.</figcaption>
