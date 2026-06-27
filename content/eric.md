@@ -66,8 +66,6 @@ Hauling a recording rig into the mountains. Loft becomes a tracking room; the
 lake happens in the other half of the house. The goal is keepers — scratch takes,
 room tone, a chorus sung wrong on purpose and kept that way.
 
-The loose plan and the haul list: **[the haul →](/retreat/)**
-
 Make something honest before you make something good.
 
 <pre class="ornament ornament-left ornament-tight">
