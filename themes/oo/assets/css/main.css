@@ -356,7 +356,9 @@ main {
   transition:
     color 150ms ease,
     background 150ms ease,
-    border-color 150ms ease;
+    border-color 150ms ease,
+    transform 150ms ease,
+    text-shadow 150ms ease;
 }
 
 .link-name {
@@ -388,6 +390,20 @@ main {
   color: var(--fg);
   background: rgba(10, 10, 10, 0.9);
   border-color: rgba(242, 241, 237, 0.4);
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 1px rgba(242, 241, 237, 0.55),
+    0 0 6px rgba(242, 241, 237, 0.35),
+    0 0 14px rgba(242, 241, 237, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links a:hover .link-ornament,
+  .links a:focus-visible .link-ornament,
+  .links .link-soon:hover .link-ornament,
+  .links .link-soon:focus-visible .link-ornament {
+    transform: none;
+  }
 }
 
 .intro {
