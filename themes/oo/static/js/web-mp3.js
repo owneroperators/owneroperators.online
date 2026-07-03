@@ -1,145 +1,140 @@
-import { setupEQ } from "/js/eq.js"; // OO custom EQ + visualizer (separate from upstream)
-
-async function E(g) {
-  const l = await fetch(g, { headers: { Range: "bytes=0-9" } }),
-    c = await l.arrayBuffer(),
-    s = new Uint8Array(c, 0, 10);
-  if (String.fromCharCode(s[0], s[1], s[2]) !== "ID3") return null;
-  const t = (s[6] << 21) | (s[7] << 14) | (s[8] << 7) | s[9];
-  let e;
-  if (l.status === 206) {
-    const o = await fetch(g, {
-      headers: { Range: `bytes=10-${10 + t}` },
+async function x(b) {
+  const E = await fetch(b, { headers: { Range: "bytes=0-9" } }), p = await E.arrayBuffer(), o = new Uint8Array(p, 0, 10);
+  if (String.fromCharCode(o[0], o[1], o[2]) !== "ID3")
+    return null;
+  const g = o[6] << 21 | o[7] << 14 | o[8] << 7 | o[9];
+  let a;
+  if (E.status === 206) {
+    const l = await fetch(b, {
+      headers: { Range: `bytes=10-${10 + g}` }
     });
-    e = new Uint8Array(await o.arrayBuffer());
-  } else e = new Uint8Array(c, 10, t);
-  const i = new TextDecoder("utf-8"),
-    m = {};
-  let a = 0;
-  for (; a < e.length - 10; ) {
-    const o = String.fromCharCode(e[a], e[a + 1], e[a + 2], e[a + 3]);
-    if (o === "\0\0\0\0") break;
-    const y = (e[a + 4] << 24) | (e[a + 5] << 16) | (e[a + 6] << 8) | e[a + 7],
-      r = e.slice(a + 10, a + 10 + y),
-      u = {
-        TIT2: "title",
-        TPE1: "artist",
-        TALB: "album",
-        TYER: "year",
-        TRCK: "track",
-      };
-    if (u[o]) m[u[o]] = i.decode(r.slice(1)).replace(/\0/g, "");
-    else if (o === "APIC") {
-      const p = r[0];
-      let n = 1,
-        h = "";
-      for (; r[n] !== 0; ) h += String.fromCharCode(r[n++]);
-      if ((n++, n++, p === 1 || p === 2)) {
-        for (; !(r[n] === 0 && r[n + 1] === 0); ) n++;
+    a = new Uint8Array(await l.arrayBuffer());
+  } else
+    a = new Uint8Array(p, 10, g);
+  const u = new TextDecoder("utf-8"), h = {};
+  let i = 0;
+  for (; i < a.length - 10; ) {
+    const l = String.fromCharCode(
+      a[i],
+      a[i + 1],
+      a[i + 2],
+      a[i + 3]
+    );
+    if (l === "\0\0\0\0") break;
+    const m = a[i + 4] << 24 | a[i + 5] << 16 | a[i + 6] << 8 | a[i + 7], t = a.slice(i + 10, i + 10 + m), e = {
+      TIT2: "title",
+      TPE1: "artist",
+      TALB: "album",
+      TYER: "year",
+      TRCK: "track"
+    };
+    if (e[l])
+      h[e[l]] = u.decode(t.slice(1)).replace(/\0/g, "");
+    else if (l === "APIC") {
+      const s = t[0];
+      let n = 1, c = "";
+      for (; t[n] !== 0; )
+        c += String.fromCharCode(t[n++]);
+      if (n++, n++, s === 1 || s === 2) {
+        for (; !(t[n] === 0 && t[n + 1] === 0); ) n++;
         n += 2;
       } else {
-        for (; r[n] !== 0; ) n++;
+        for (; t[n] !== 0; ) n++;
         n++;
       }
-      const w = r.slice(n),
-        b = new Blob([w], { type: h || "image/jpeg" });
-      m.image = URL.createObjectURL(b);
+      const L = t.slice(n), y = new Blob([L], { type: c || "image/jpeg" });
+      h.image = URL.createObjectURL(y);
     }
-    a += 10 + y;
+    i += 10 + m;
   }
-  return m;
+  return h;
 }
-const C = document.getElementById("thumb"),
-  d = document.getElementById("player"),
-  f = document.getElementById("playlist");
-const pc = document.getElementById("player-container"),
-  pb = document.getElementById("play-toggle");
-const toggle = () => {
-  if (!d.src) return;
-  d.paused ? d.play() : d.pause();
+const v = document.getElementById("thumb"), r = document.getElementById("player"), C = document.getElementById("playlist"), w = document.getElementById("player-container"), d = document.getElementById("play-toggle"), f = document.getElementById("lyrics"), k = () => {
+  r.src && (r.paused ? r.play() : r.pause());
 };
-if (C) {
-  C.style.cursor = "pointer";
-  C.addEventListener("click", toggle);
-}
-if (pb) pb.addEventListener("click", toggle);
-// drive the overlay off the audio element's real state, so OS media keys /
-// the native controls keep it in sync too
-d.addEventListener("play", () => {
-  pc && pc.classList.add("playing");
-  if (pb) (pb.textContent = "⏸"), pb.setAttribute("aria-label", "Pause");
+v && (v.style.cursor = "pointer", v.addEventListener("click", k));
+d && d.addEventListener("click", k);
+r.addEventListener("play", () => {
+  w && w.classList.add("playing"), d && (d.textContent = "⏸", d.setAttribute("aria-label", "Pause"));
 });
-d.addEventListener("pause", () => {
-  pc && pc.classList.remove("playing");
-  if (pb) (pb.textContent = "▶"), pb.setAttribute("aria-label", "Play");
+r.addEventListener("pause", () => {
+  w && w.classList.remove("playing"), d && (d.textContent = "▶", d.setAttribute("aria-label", "Play"));
 });
-async function v(g) {
-  setupEQ(d);
-  let l = 0;
-  const c = await Promise.all(
-    g.map(async (t, e) => {
-      const i = t;
-      return {
-        ...((await E(i)) || {
-          title: t,
-          artist: "Unknown Artist",
-        }),
-        url: i,
-        index: e,
-      };
-    }),
+async function B(b, E = {}) {
+  let p = 0;
+  const o = E.lyrics || {};
+  let g = [], a = [], u = -1;
+  const h = (t) => {
+    g = o[t] || [], a = g.flatMap(
+      (e, s) => e.map((n, c) => ({ ...n, block: s, pos: c }))
+    ), u = -1, f && f.replaceChildren();
+  }, i = () => {
+    if (!f || !a.length) return;
+    const t = r.currentTime;
+    let e = -1;
+    for (let c = 0; c < a.length && a[c].t <= t; c++) e = c;
+    if (e === u) return;
+    if (u = e, e === -1) {
+      f.replaceChildren();
+      return;
+    }
+    const { block: s, pos: n } = a[e];
+    f.replaceChildren(
+      ...g[s].map((c, L) => {
+        const y = document.createElement("p");
+        return y.textContent = c.text, L === n ? y.classList.add("active") : L < n && y.classList.add("sung"), y;
+      })
+    );
+  };
+  f && (r.addEventListener("timeupdate", i), r.addEventListener("seeked", i));
+  const l = await Promise.all(
+    b.map(async (t, e) => {
+      const s = t;
+      return { ...await x(s) || {
+        title: t,
+        artist: "Unknown Artist"
+      }, url: s, index: e };
+    })
   );
-  (console.log("songs", c),
-    c.forEach((t) => {
-      const e = document.createElement("li");
-      ((e.textContent = `${t.title}`),
-        e.addEventListener("click", () => {
-          s(t.index);
-        }),
-        f.appendChild(e));
-    }));
-  const s = (t) => {
-    const e = c[t];
-    if ((console.log("Playing song", e), !!e)) {
-      if (
-        ((l = t),
-        e.image && (C.src = e.image),
-        (d.src = e.url),
-        f.querySelectorAll("li").forEach((i) => i.classList.remove("active")),
-        f.children[t].classList.add("active"),
-        "mediaSession" in navigator)
-      ) {
-        const i = {
+  console.log("songs", l), l.forEach((t) => {
+    const e = document.createElement("li");
+    e.textContent = `${t.title}`, e.addEventListener("click", () => {
+      m(t.index);
+    }), C.appendChild(e);
+  });
+  const m = (t) => {
+    const e = l[t];
+    if (console.log("Playing song", e), !!e) {
+      if (p = t, e.image && (v.src = e.image), r.src = e.url, h(e.url), C.querySelectorAll("li").forEach((s) => s.classList.remove("active")), C.children[t].classList.add("active"), "mediaSession" in navigator) {
+        const s = {
           title: e.title,
           artist: e.artist,
-          album: e.album,
+          album: e.album
         };
-        (e.image &&
-          (i.artwork = [
-            { src: e.image, sizes: "96x96", type: "image/png" },
-            { src: e.image, sizes: "128x128", type: "image/png" },
-            { src: e.image, sizes: "192x192", type: "image/png" },
-            { src: e.image, sizes: "256x256", type: "image/png" },
-          ]),
-          (navigator.mediaSession.metadata = new MediaMetadata(i)));
+        e.image && (s.artwork = [
+          { src: e.image, sizes: "96x96", type: "image/png" },
+          { src: e.image, sizes: "128x128", type: "image/png" },
+          { src: e.image, sizes: "192x192", type: "image/png" },
+          { src: e.image, sizes: "256x256", type: "image/png" }
+        ]), navigator.mediaSession.metadata = new MediaMetadata(s);
       }
-      d.addEventListener(
+      r.addEventListener(
         "canplay",
         () => {
-          d.play();
+          r.play();
         },
-        { once: !0 },
+        { once: !0 }
       );
     }
   };
-  (s(0),
-    d.addEventListener(
-      "ended",
-      () => {
-        s((l + 1) % c.length);
-      },
-      !1,
-    ));
+  m(0), r.addEventListener(
+    "ended",
+    () => {
+      m((p + 1) % l.length);
+    },
+    !1
+  );
 }
-
-export { v as init };
+export {
+  B as init
+};

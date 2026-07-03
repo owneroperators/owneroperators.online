@@ -1,8 +1,9 @@
 /* ── Web Audio spectrum visualizer ──────────────────────────────────────
    OWNER/OPERATORS custom addition — NOT part of the upstream web-mp3 lib.
-   web-mp3.js imports setupEQ() and calls it once per mounted player; when
-   syncing the player from its source repo, this file is the only thing to
-   keep, plus the one import line in web-mp3.js.
+   The home template imports setupEQ() and calls it on #player BEFORE init()
+   (the graph must be wired eagerly — see hazard 3 below). web-mp3.js is a
+   pristine upstream build; when syncing it from its source repo, nothing
+   here needs patching.
 
    Taps the #player <audio> through an AnalyserNode to the speakers:
 

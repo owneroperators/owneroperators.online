@@ -24,13 +24,14 @@
         <pre class="ornament ornament-xtra ornament-flush-right" aria-hidden="true">{{ . }}</pre>
       {{ end }}
 
-      {{/* web-mp3 player — element ids (#thumb/#player/#playlist) are fixed by the lib */}}
+      {{/* web-mp3 player — element ids (#thumb/#player/#playlist/#lyrics) are fixed by the lib */}}
       <div id="player-container" class="oo-player">
         <div class="art-wrap">
           <img id="thumb" alt="" />
           <button id="play-toggle" class="play-overlay" type="button" aria-label="Play">▶</button>
         </div>
         <audio id="player" controls></audio>
+        <div id="lyrics" class="oo-lyrics"></div>
         <ul id="playlist"></ul>
       </div>
 
@@ -44,10 +45,15 @@
     </section>
   {{ end }}
 
-  {{/* mp3s live in static/mp3/ (served at /mp3/), ID3-tagged so the player fills in title/art */}}
+  {{/* mp3s live in static/mp3/ (served at /mp3/), ID3-tagged so the player fills in title/art.
+       web-mp3.js is a pristine upstream build (no local fork) — the OO EQ/visualizer is wired
+       up here instead, and must run before init() so the audio graph exists before playback. */}}
   <script type="module">
     import { init } from "/js/web-mp3.js";
-    init(["/mp3/echoes2.mp3"]);
+    import { setupEQ } from "/js/eq.js";
+    import echoesLyrics from "/js/echoes-lyrics.js";
+    setupEQ(document.getElementById("player"));
+    init(["/mp3/echoes2.mp3"], { lyrics: { "/mp3/echoes2.mp3": echoesLyrics } });
   </script>
 
 
