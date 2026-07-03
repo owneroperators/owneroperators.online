@@ -44,7 +44,7 @@ function setupEQ(audioEl) {
     ctx = new AC({ sampleRate: 44100 });
     const src = ctx.createMediaElementSource(audioEl);
     analyser = ctx.createAnalyser();
-    analyser.fftSize = 64; // 32 bins → chunky bars
+    analyser.fftSize = 2048; // fine linear bins, regrouped log-spaced in draw()
     analyser.smoothingTimeConstant = 0.9; // calmer motion, won't fight the bg video
     freq = new Uint8Array(analyser.frequencyBinCount);
     src.connect(analyser);
@@ -78,6 +78,13 @@ function setupEQ(audioEl) {
       .getPropertyValue("--fg-dim")
       .trim() || "#c8c6c0";
   let t = 0;
+  // 32 bars, log-spaced 40 Hz–16 kHz. Linear FFT bins would cram everything
+  // musical into the first few bars (bar 1 of 32 = 0–689 Hz: kick, bass, and
+  // most fundamentals) and read as bass-heavy no matter the mix; log spacing
+  // gives each octave equal screen space, like a hardware EQ display.
+  const BARS = 32;
+  const FMIN = 40;
+  const FMAX = 16000;
   function draw() {
     requestAnimationFrame(draw);
     t += 1;
@@ -85,13 +92,28 @@ function setupEQ(audioEl) {
     cctx.clearRect(0, 0, w, h);
     const live = analyser && !audioEl.paused;
     if (live) analyser.getByteFrequencyData(freq);
-    const n = freq ? freq.length : 24;
+    const n = BARS;
     const gap = 2;
     const bw = (w - gap * (n - 1)) / n;
     cctx.fillStyle = barColor;
     for (let i = 0; i < n; i++) {
       // playing → real spectrum; idle → a gentle low wave so it reads as alive
-      const v = live ? freq[i] / 255 : 0.14 + 0.09 * Math.sin(t * 0.05 + i * 0.5);
+      let v;
+      if (live) {
+        const nyq = ctx.sampleRate / 2;
+        const lo = Math.floor(
+          ((FMIN * Math.pow(FMAX / FMIN, i / n)) / nyq) * freq.length,
+        );
+        let hi = Math.ceil(
+          ((FMIN * Math.pow(FMAX / FMIN, (i + 1) / n)) / nyq) * freq.length,
+        );
+        hi = Math.min(Math.max(hi, lo + 1), freq.length);
+        let sum = 0;
+        for (let k = lo; k < hi; k++) sum += freq[k];
+        v = sum / (hi - lo) / 255;
+      } else {
+        v = 0.14 + 0.09 * Math.sin(t * 0.05 + i * 0.5);
+      }
       const bh = Math.max(2, v * h);
       cctx.globalAlpha = 0.28 + v * 0.5; // visible floor, tops ~0.78 — soft, not stark
       cctx.fillRect(i * (bw + gap), h - bh, bw, bh);
