@@ -6,4 +6,5 @@ description: "Echoes and Static — the new single from OWNER/OPERATORS — out 
 ogimage: "/img/og-echoes.jpg"
 ogimagewidth: "1200"
 ogimageheight: "1200"
+aliases: ["/downloads/"]
 ---
