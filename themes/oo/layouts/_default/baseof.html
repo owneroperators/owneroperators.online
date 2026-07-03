@@ -12,6 +12,7 @@
     <title>
       {{ block "title" . }}{{ with .Params.metatitle }}{{ . }}{{ else }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}{{ end }}
     </title>
+    <link rel="canonical" href="{{ .Permalink }}" />
     <meta name="description" content="{{ $desc }}" />
     <meta property="og:title" content="{{ $pagetitle }}" />
     <meta property="og:description" content="{{ $desc }}" />

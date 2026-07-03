@@ -19,6 +19,7 @@
   --fg: #f2f1ed;
   --fg-dim: #c8c6c0;
   --muted: #8a8a8a;
+  --muted-dark: #3c3c3c;
   --accent: #f2f1ed;
   --rule: #1f1f1f;
   --max: 64rem;
@@ -690,7 +691,7 @@ footer:has(.copyright > span:hover) .footer-line {
 }
 
 .rp-link {
-  color: var(--muted);
+  color: var(--muted-dark);
   margin-left: 0.75rem;
   text-decoration: none;
 }
