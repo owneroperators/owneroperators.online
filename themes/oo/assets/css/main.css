@@ -300,7 +300,8 @@ main {
   flex-wrap: wrap;
   justify-content: left;
   gap: 1.25rem;
-  max-width: 60%;
+  /* wide enough for all 5 tiles (download + 4 services) on one line */
+  max-width: 100%;
 }
 
 .links li {
@@ -322,7 +323,7 @@ main {
 
 @media (max-width: 32rem) {
   .links {
-    /* 4 services → 2x2 grid instead of a single wrapping row */
+    /* 5 tiles (download + 4 services) → 2-col grid instead of one wrapping row */
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
@@ -386,9 +387,7 @@ main {
 .links a:hover .link-ornament,
 .links a:focus-visible .link-ornament,
 .links .link-soon:hover .link-ornament,
-.links .link-soon:focus-visible .link-ornament,
-.download a:hover .link-ornament,
-.download a:focus-visible .link-ornament {
+.links .link-soon:focus-visible .link-ornament {
   color: var(--fg);
   background: rgba(10, 10, 10, 0.9);
   border-color: rgba(242, 241, 237, 0.4);
@@ -403,9 +402,7 @@ main {
   .links a:hover .link-ornament,
   .links a:focus-visible .link-ornament,
   .links .link-soon:hover .link-ornament,
-  .links .link-soon:focus-visible .link-ornament,
-  .download a:hover .link-ornament,
-  .download a:focus-visible .link-ornament {
+  .links .link-soon:focus-visible .link-ornament {
     transform: none;
   }
 }
@@ -774,45 +771,6 @@ footer:has(.copyright > span:hover) .footer-line {
 .ornament.hidden {
   color: transparent;
   text-shadow: none;
-}
-
-/* --- direct download link (under the player) -------------------------- */
-.download {
-  margin: 0.75rem 0 0;
-  font-family: var(--font-mono);
-  font-size: 1.56rem;
-  text-align: right;
-  /* match the "Out now" eyebrow */
-}
-
-.download a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9rem;
-  color: var(--fg-dim);
-  text-decoration: none;
-  transition: color 150ms ease;
-}
-
-.download .download-label {
-  border-bottom: 1px dotted var(--rule);
-  transition: border-color 150ms ease;
-}
-
-.download a:hover,
-.download a:focus-visible {
-  color: var(--fg);
-}
-
-.download a:hover .download-label,
-.download a:focus-visible .download-label {
-  border-bottom-color: currentColor;
-}
-
-@media (max-width: 32rem) {
-  .download {
-    font-size: 1.1rem;
-  }
 }
 
 /* --- spectrum visualizer (injected by web-mp3.js) --------------------- */

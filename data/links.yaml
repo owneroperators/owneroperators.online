@@ -4,6 +4,17 @@
 # non-clickable with a "coming soon" hover label. Drop the flag and add a real
 # `url:` when the artist profiles go live.
 # Each link has an optional `ornament` — a small ASCII glyph rendered above the name.
+# The direct MP3 download rides in the same row — `download:` makes the
+# anchor save the file instead of streaming it (see links.html).
+- name: download the mp3
+  url: /mp3/echoes2.mp3
+  download: "OWNER-OPERATORS — Echoes and Static.mp3"
+  ornament: |2
+    ╭───────╮
+    │   ▼   │
+    │ └───┘ │
+    │GET MP3│
+    ╰───────╯
 - name: Spotify
   soon: true
   ornament: |2

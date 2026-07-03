@@ -11,7 +11,7 @@
             <span class="link-name">coming soon</span>
           </span>
         {{ else }}
-          <a href="{{ .url }}" rel="noopener">
+          <a href="{{ .url }}" rel="noopener"{{ with .download }} download="{{ . }}"{{ end }}>
             {{ with .ornament }}
               <pre class="link-ornament">{{ . }}</pre>
             {{ end }}
