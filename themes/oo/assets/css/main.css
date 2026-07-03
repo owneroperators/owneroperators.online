@@ -912,6 +912,35 @@ footer:has(.copyright > span:hover) .footer-line {
     0 0 6px rgba(242, 241, 237, 0.2);
 }
 
+/* desktop: EQ takes the left half, lyrics ride shotgun in the right half
+   (eq.js re-reads clientWidth on resize, so the canvas adapts on its own) */
+@media (min-width: 48rem) {
+  .oo-player {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.85rem;
+  }
+
+  .oo-player .art-wrap,
+  .oo-player #player,
+  .oo-player #playlist {
+    grid-column: 1 / -1;
+  }
+
+  .oo-player .eq-viz {
+    grid-column: 1;
+    align-self: center;
+  }
+
+  .oo-lyrics {
+    grid-column: 2;
+    margin: 0.85rem 0 0;
+    padding: 0.15rem 0 0.15rem 0.85rem;
+    border-top: 0;
+    border-left: 1px solid var(--rule);
+  }
+}
+
 .oo-player #playlist {
   list-style: none;
   margin: 1rem 0 0;
