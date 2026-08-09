@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml" />
     {{/* Shared meta values — pick the most specific source available, fall back to site defaults. */}}
     {{ $pagetitle := or .Params.ogtitle (cond .IsHome site.Title (printf "%s — %s" .Title site.Title)) }}
     {{ $desc := or .Description .Params.summary (.Summary | plainify | chomp) site.Params.description | plainify | chomp }}
@@ -13,6 +14,7 @@
       {{ block "title" . }}{{ with .Params.metatitle }}{{ . }}{{ else }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} — {{ site.Title }}{{ end }}{{ end }}{{ end }}
     </title>
     <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ "index.xml" | absURL }}" />
     <meta name="description" content="{{ $desc }}" />
     <meta property="og:title" content="{{ $pagetitle }}" />
     <meta property="og:description" content="{{ $desc }}" />
@@ -44,17 +46,23 @@
         document.documentElement.setAttribute("data-bg", "init");
       </script>
   <script id="ornaments-data" type="application/json">{{ site.Data.ornaments | jsonify | safeJS }}</script>
+      {{/* Resolve the clip base: CDN if params.cdn.videoBase is set, else same-origin /video/.
+           bg.js prefixes the rest of the clip list with data-video-base. */}}
+      {{ $vbase := "/video/" | relURL }}
+      {{ with site.Params.cdn }}{{ with .videoBase }}{{ $vbase = . }}{{ end }}{{ end }}
       <canvas
         id="bg"
         class="bg-canvas"
         aria-hidden="true"
-        {{ with site.Params.bg.video }}data-video="{{ . | relURL }}"{{ end }}
+        data-video-base="{{ $vbase }}"
+        {{ with site.Params.bg.video }}data-video="{{ printf "%s%s" $vbase . }}"{{ end }}
       ></canvas>
     {{ end }}
-    <main>
+    <main id="swap">
       {{ block "main" . }}{{ end }}
     </main>
     {{ if not .Params.bare }}{{ partial "footer.html" . }}{{ end }}
+    {{ if and (not .Params.bare) (not .Params.noplayer) }}{{ partial "player.html" . }}{{ end }}
     {{ if not .Params.nobg }}
       <script
         src="https://cdn.jsdelivr.net/npm/hydra-synth@1.3.29/dist/hydra-synth.js"
@@ -74,6 +82,15 @@
       <script
         src="{{ $glitch.RelPermalink }}"
         integrity="{{ $glitch.Data.Integrity }}"
+        defer
+      ></script>
+    {{ end }}
+    {{/* Boosted navigation — swaps #swap in place so the shell player keeps playing */}}
+    {{ with resources.Get "js/nav.js" }}
+      {{ $nav := . | resources.Minify | resources.Fingerprint }}
+      <script
+        src="{{ $nav.RelPermalink }}"
+        integrity="{{ $nav.Data.Integrity }}"
         defer
       ></script>
     {{ end }}

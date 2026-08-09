@@ -17,16 +17,19 @@ For **creative direction** (texture, voice, cast usage, dev-agent-team workflow)
 ```
 hugo.toml                   # site config; release params live under [params.release]
 content/_index.md           # home page body (renders into the .intro section of index.html)
+content/links.md            # link-in-bio hub (/links/) — front matter sets layout = "linkhub"
 content/                    # future: posts/, songs/, cast/, etc.
 themes/oo/
   layouts/
     _default/baseof.html    # HTML shell, loads fingerprinted CSS
     _default/single.html    # single content pages
     _default/list.html      # section list pages
+    _default/linkhub.html   # link-in-bio hub (/links/) — terminal-list layout over the live bg
     index.html              # home page (hero + release block + intro)
     partials/
-      footer.html
-      links.html            # renders site.Data.links (streaming + social)
+      footer.html           # copyright line + streaming / Rack&Pinecone / GitHub brand icons
+      links.html            # renders site.Data.links as ASCII tiles (release block)
+      brand-icon.html       # maps a link name → brand SVG glyph (shared by footer + linkhub)
   assets/css/main.css
   theme.toml
 static/robots.txt
@@ -41,12 +44,27 @@ Outbound links (streaming services + social) live in `data/links.yaml` as a flat
 
 ```yaml
 - name: Spotify
-  url: https://open.spotify.com/artist/...
+  url: https://open.spotify.com/track/...
+  footer: true # also surface as an icon in the site footer
 - name: Instagram
   url: https://www.instagram.com/...
 ```
 
-`partials/links.html` renders them as a single row in the release block. Order in the YAML = order in the UI. Spotify and Apple Music URLs are currently dummies — replace when artist profiles go live. Bandcamp and Instagram URLs are real.
+Order in the YAML = order in the UI everywhere. The list is rendered in **three**
+surfaces, all reading the same data:
+
+- **Home release block** — `partials/links.html`, as ASCII-ornament tiles (the
+  `ornament:` field). The MP3 download rides here too (`download:` saves instead of streaming).
+- **Footer icons** — only entries flagged `footer: true` (currently Spotify, Apple
+  Music, Bandcamp), rendered as brand SVG glyphs beside the Rack&Pinecone and GitHub marks.
+- **`/links/` hub** — `layouts/_default/linkhub.html`, a terminal-style list of every
+  entry (link-in-bio page; this is the URL for bios).
+
+Brand glyphs (Spotify / Apple Music / Bandcamp / Instagram + the house MP3 glyph) are
+mapped name → inline SVG in `partials/brand-icon.html` — add a case there when adding a
+brand. Streaming/social URLs are **live** now, not placeholders; don't change an
+outbound URL unless Eric supplies it. Per-entry flags: `footer:`, `download:`,
+`ornament:`, and `soon:` (renders non-clickable with a "coming soon" label).
 
 `data/ornaments.yaml` holds three ASCII ornament slots — `masthead` (above brand hero), `between` (between release and intro), `footer` (above footer line). Empty string → renders nothing. Populate with Margot's output. Keep width ≤72 chars so mobile doesn't scroll horizontally; `.ornament` styles them as muted 0.75rem monospace.
 
@@ -77,6 +95,19 @@ Production hosting and server configuration (web server, TLS, vhost, access cont
 - **No JS unless needed.** Single page, server-rendered, no client framework.
 - **Background canvas is 4:3.** Source clips in `/video/*.mp4` and the hydra render buffer (`bg.js`, `width: 720, height: 540`) are all 720×540. `.bg-canvas` uses `object-fit: cover` so the 4:3 frame keeps its ratio and crops to fill any window rather than stretching. If you change the clip ratio, update both the hydra buffer dims and that expectation.
 
+## Cover film (`static/video/cover-film.mp4`)
+
+The animated album cover the home player swaps in over the still art
+(`#cover-film` in `themes/oo/layouts/index.html` — keep that filename). It is
+**generated, not edited here**: the pipeline lives in
+`~/Documents/dev/oo-band/gen/cover-lab/` (regions → gen-AI/procedural
+transforms → timeline-driven looping film; read its README first, and the
+`cover-film` skill in `.claude/skills/`). Only 1080px web encodes land in
+`static/video/`; masters stay in the lab. The film's grammar is policy: gen
+overlays play smooth and continuous (return clips land back on the cover),
+only ffglitch/Metal effects get the chopped micro-burst treatment, and bursts
+never strike a live gen overlay.
+
 ## Content conventions
 
 - Brand name is always `OWNER/OPERATORS` — uppercase, literal slash. Don't sanitize.
@@ -87,7 +118,7 @@ Production hosting and server configuration (web server, TLS, vhost, access cont
 
 - **Prefer editing** existing templates/CSS over adding new ones. This is meant to stay small.
 - **Don't add a theme framework** (Tailwind, CSS-in-JS, Alpine, HTMX, etc.) without Eric's say-so.
-- **Don't invent real URLs.** Streaming URLs in `data/links.yaml` for Spotify/Apple Music are dummies for now — replace with real ones when artist profiles go live, don't add other platforms on guess.
+- **Don't invent real URLs.** The streaming/social URLs in `data/links.yaml` are live now (Spotify, Apple Music, Bandcamp, Instagram). Don't add other platforms on a guess, and don't change an outbound URL unless Eric supplies it.
 - **Don't commit `public/`, `resources/_gen/`, `.hugo_build.lock`, or `.env`** — already in `.gitignore`.
 - **Don't push** to a remote. Eric will do that when ready.
 

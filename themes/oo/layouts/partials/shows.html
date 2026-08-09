@@ -1,0 +1,46 @@
+{{/* Live dates from site.Data.shows. Past dates fall off on their own —
+     a show stays listed through the end of its own day. Renders nothing
+     when there's nothing upcoming. */}}
+{{ $cutoff := now.AddDate 0 0 -1 }}
+{{ $upcoming := slice }}
+{{ range site.Data.shows }}
+  {{ $show := . }}
+  {{ with .date }}
+    {{ if (time .).After $cutoff }}
+      {{ $upcoming = $upcoming | append $show }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ with sort $upcoming "date" }}
+  <section class="shows">
+    <p class="eyebrow">Live</p>
+    <ul class="show-list">
+      {{ range . }}
+        {{ $d := time .date }}
+        <li class="show">
+          <time class="show-date" datetime="{{ $d.Format "2006-01-02" }}">
+            <span class="show-month">{{ $d.Format "Jan" }}</span>
+            <span class="show-day">{{ $d.Format "2" }}</span>
+          </time>
+          <div class="show-body">
+            <p class="show-venue">
+              {{ if .url }}
+                <a href="{{ .url }}" rel="noopener">{{ .venue }}</a>
+              {{ else }}
+                {{ .venue }}
+              {{ end }}
+            </p>
+            {{ $meta := slice }}
+            {{ with .city }}{{ $meta = $meta | append . }}{{ end }}
+            {{ with .time }}{{ $meta = $meta | append . }}{{ end }}
+            {{ with .note }}{{ $meta = $meta | append . }}{{ end }}
+            {{ with $meta }}
+              <p class="show-meta">{{ delimit . " · " }}</p>
+            {{ end }}
+          </div>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

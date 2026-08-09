@@ -1,0 +1,163 @@
+{{/* Persistent site player. Lives in the shell (a sibling of #swap, never inside it)
+     so the <audio> element is never destroyed by boosted navigation and playback
+     continues gapless across pages. Its init runs ONCE on first load and is never
+     re-run — web-mp3 binds fixed ids at import and eq.js wires a one-shot audio
+     graph (on desktop Safari that includes createMediaElementSource, which can
+     only ever be called once per audio element; on iOS it builds no graph at
+     all — see the chipmunk-bug note in eq.js). */}}
+<div id="player-container" class="oo-player" data-player>
+  <div class="art-wrap">
+    <img id="thumb" alt="" />
+    {{/* cover-film stays local (regenerated often); not on the CDN.
+         ?v=<md5> busts the browser cache only when the file actually changes */}}
+    {{ $bust := readFile "static/video/cover-film.mp4" | crypto.MD5 }}
+    <video id="cover-film" class="art-video" muted loop playsinline preload="none" aria-hidden="true"
+           src="{{ "/video/cover-film.mp4" | relURL }}?v={{ $bust }}"></video>
+    <button id="play-toggle" class="play-overlay" type="button" aria-label="Play">▶</button>
+  </div>
+  <p class="np" aria-hidden="true"><span class="np-title"></span></p>
+  <audio id="player" controls></audio>
+  <div id="lyrics" class="oo-lyrics"></div>
+  <ul id="playlist"></ul>
+</div>
+{{/* ?v=<md5> busts the browser's module cache when any of these JS files change,
+     so a re-deployed script (e.g. an eq.js audio-graph fix) reaches listeners
+     instead of a stale cached module. Each is a leaf module (no cross-imports),
+     so the distinct ?v URLs never double-load a shared dependency. bg/glitch/nav
+     are already fingerprinted by the asset pipeline in baseof.html. */}}
+{{ $webmp3 := printf "/js/web-mp3.js?v=%s" (readFile "themes/oo/static/js/web-mp3.js" | crypto.MD5) }}
+{{ $eq := printf "/js/eq.js?v=%s" (readFile "themes/oo/static/js/eq.js" | crypto.MD5) }}
+{{ $lyrics := printf "/js/echoes-lyrics.js?v=%s" (readFile "static/js/echoes-lyrics.js" | crypto.MD5) }}
+<script type="module">
+  import { init } from "{{ $webmp3 }}";
+  import { setupEQ } from "{{ $eq }}";
+  import echoesLyrics from "{{ $lyrics }}";
+
+  const audio = document.getElementById("player");
+  setupEQ(audio);
+  {{/* ?v=<md5> busts the browser cache when the mp3 (audio, art, or tags) changes,
+       so a re-tagged file reaches listeners instead of a stale cached copy. The
+       playlist url and its lyrics key must match exactly. */}}
+  {{ $mp3 := printf "/mp3/echoes2.mp3?v=%s" (readFile "static/mp3/echoes2.mp3" | crypto.MD5) }}
+  init(["{{ $mp3 }}"], { lyrics: { "{{ $mp3 }}": echoesLyrics } });
+
+  // The MP3 now embeds only a small (600px) art thumbnail; use the crisp
+  // site-served high-res cover for the on-page art instead of web-mp3's blob.
+  const HIRES_COVER = "/img/echoes-cover.jpg";
+  const thumb = document.getElementById("thumb");
+  function useHiResCover() {
+    if (thumb && thumb.getAttribute("src") !== HIRES_COVER) thumb.src = HIRES_COVER;
+  }
+  useHiResCover();
+  audio.addEventListener("loadedmetadata", useHiResCover); // re-assert if web-mp3 resets it
+  audio.addEventListener("play", useHiResCover);
+
+  // cover-film rides the audio's play/pause (web-mp3.js stays pristine)
+  const film = document.getElementById("cover-film");
+  if (audio && film) {
+    audio.addEventListener("play", () => { film.play().catch(() => {}); });
+    audio.addEventListener("pause", () => film.pause());
+    audio.addEventListener("ended", () => { film.pause(); film.currentTime = 0; });
+  }
+
+  // ── Lock-screen / OS media controls (Media Session API). web-mp3 already sets
+  //    the metadata, but not the transport handlers, playback state, or position —
+  //    so the lock-screen buttons, scrubber, and headphone/hardware keys need this.
+  //    We also hand the OS a real cover URL: iOS won't render web-mp3's blob: art.
+  if ("mediaSession" in navigator) {
+    const ms = navigator.mediaSession;
+    const COVER = new URL(HIRES_COVER, location.origin).href;
+
+    const syncState = () => { ms.playbackState = audio.paused ? "paused" : "playing"; };
+    audio.addEventListener("play", syncState);
+    audio.addEventListener("pause", syncState);
+
+    function updatePosition() {
+      if (!("setPositionState" in ms) || !isFinite(audio.duration) || audio.duration <= 0) return;
+      try {
+        ms.setPositionState({
+          duration: audio.duration,
+          playbackRate: audio.playbackRate || 1,
+          position: Math.min(audio.currentTime, audio.duration),
+        });
+      } catch (e) { /* ignore invalid state during load */ }
+    }
+    audio.addEventListener("loadedmetadata", updatePosition);
+    audio.addEventListener("timeupdate", updatePosition);
+
+    // Re-assert metadata with a real cover URL (keeps web-mp3's title/artist/album).
+    function ensureArtwork() {
+      const md = ms.metadata;
+      if (md && Array.from(md.artwork || []).some((a) => /^https?:/i.test(a.src))) return;
+      ms.metadata = new MediaMetadata({
+        title: (md && md.title) || "Echoes and Static",
+        artist: (md && md.artist) || "OWNER/OPERATORS",
+        album: (md && md.album) || "LOSS LEADER LP",
+        artwork: [
+          { src: COVER, sizes: "1300x1300", type: "image/jpeg" },
+          ...(md ? Array.from(md.artwork || []) : []),
+        ],
+      });
+    }
+    audio.addEventListener("loadedmetadata", ensureArtwork);
+    audio.addEventListener("play", ensureArtwork);
+
+    const actions = {
+      play: () => audio.play(),
+      pause: () => audio.pause(),
+      stop: () => { audio.pause(); audio.currentTime = 0; },
+      seekbackward: (d) => { audio.currentTime = Math.max(0, audio.currentTime - ((d && d.seekOffset) || 10)); },
+      seekforward: (d) => { audio.currentTime = Math.min(audio.duration || 1e9, audio.currentTime + ((d && d.seekOffset) || 10)); },
+      seekto: (d) => {
+        if (!d) return;
+        if (d.fastSeek && "fastSeek" in audio) { audio.fastSeek(d.seekTime); return; }
+        audio.currentTime = d.seekTime;
+      },
+    };
+    for (const name in actions) {
+      try { ms.setActionHandler(name, actions[name]); } catch (e) { /* action unsupported */ }
+    }
+  }
+
+  // mirror the active playlist title into the mini-bar's "now playing" label
+  const npTitle = document.querySelector(".np-title");
+  const playlist = document.getElementById("playlist");
+  if (npTitle && playlist) {
+    const sync = () => {
+      const li = playlist.querySelector("li.active") || playlist.querySelector("li");
+      if (li) npTitle.textContent = li.textContent;
+    };
+    new MutationObserver(sync).observe(playlist, {
+      subtree: true, childList: true, attributes: true, attributeFilter: ["class"],
+    });
+    sync();
+  }
+
+  // ── Dock the expanded player over #player-dock on home; off-home CSS renders
+  //    the sticky mini-bar. Positioned `absolute` so it scrolls with the page —
+  //    no scroll handler, just re-sync on resize, content change, and boosted nav.
+  const pc = document.getElementById("player-container");
+  function syncDock() {
+    const dock = document.getElementById("player-dock");
+    if (document.body.classList.contains("is-home") && dock) {
+      const r = dock.getBoundingClientRect();
+      pc.style.position = "absolute";
+      pc.style.left = (r.left + window.scrollX) + "px";
+      pc.style.top = (r.top + window.scrollY) + "px";
+      pc.style.width = r.width + "px";
+      pc.setAttribute("data-docked", "");
+      dock.style.height = pc.offsetHeight + "px"; // reserve the slot so links sit below
+    } else {
+      pc.removeAttribute("data-docked");
+      pc.style.position = pc.style.left = pc.style.top = pc.style.width = "";
+    }
+  }
+  // Call syncDock directly on the critical paths (nav/resize) — routing through
+  // requestAnimationFrame can be throttled and drop the update.
+  syncDock();
+  window.addEventListener("load", syncDock);
+  window.addEventListener("resize", syncDock);
+  document.addEventListener("oo:navigated", syncDock); // fired by nav.js after a swap
+  // pc height changes (art/lyrics load) → keep the reserved dock slot in sync
+  if ("ResizeObserver" in window) new ResizeObserver(syncDock).observe(pc);
+</script>

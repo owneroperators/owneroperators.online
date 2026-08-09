@@ -137,6 +137,7 @@ body {
 
 main,
 footer {
+  text-shadow: none;
   position: relative;
   z-index: 1;
 }
@@ -196,6 +197,10 @@ main {
   top: 0;
   right: 0;
   z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1.25rem;
 }
 
 .hero-nav a {
@@ -292,6 +297,85 @@ main {
   color: var(--fg);
 }
 
+/* ── live dates (partials/shows.html) ── */
+.shows {
+  margin: 0 0 4rem;
+}
+
+.show-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.show {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(242, 241, 237, 0.1);
+}
+
+.show-date {
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  color: var(--fg-dim);
+  flex: 0 0 auto;
+  min-width: 2.75rem;
+}
+
+.show-month {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.show-day {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.15rem;
+}
+
+.show-body {
+  min-width: 0;
+}
+
+.show-venue {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.show-venue a {
+  color: var(--fg);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 241, 237, 0.35);
+}
+
+.show-venue a:hover,
+.show-venue a:focus {
+  border-bottom-color: var(--fg);
+}
+
+.show-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin: 0.3rem 0 0;
+}
+
 .links {
   list-style: none;
   padding: 0;
@@ -300,12 +384,21 @@ main {
   flex-wrap: wrap;
   justify-content: left;
   gap: 1.25rem;
-  /* wide enough for all 5 tiles (download + 4 services) on one line */
+  /* wide enough for the first row (download + 4 services) on one line */
   max-width: 100%;
 }
 
 .links li {
   text-align: center;
+}
+
+/* zero-height full-width flex item: forces the tiles after it onto a new row
+   (emitted for any data/links.yaml entry flagged `break: true`) */
+.links-break {
+  flex-basis: 100%;
+  height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .links a,
@@ -329,6 +422,11 @@ main {
     justify-items: center;
     gap: 0.75rem;
     max-width: 100%;
+  }
+
+  /* the row-break spacer would eat a grid cell here */
+  .links-break {
+    display: none;
   }
 
   .links a,
@@ -407,6 +505,171 @@ main {
   }
 }
 
+/* ── Link hub (/links/) — terminal list floating over the live bg ──────── */
+.linkhub {
+  max-width: 30rem;
+  margin: 2.5rem auto 3.5rem;
+  padding: 1.75rem 1.6rem 2rem;
+  background: rgba(10, 10, 10, 0.72);
+  border: 1px solid rgba(242, 241, 237, 0.12);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.lh-head {
+  text-align: center;
+  margin: 0 0 1.75rem;
+}
+
+.lh-brand {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 5.5vw, 1.4rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  margin: 0 0 0.7rem;
+}
+
+.lh-brand .slash {
+  color: var(--muted);
+}
+
+.lh-release {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.lh-from {
+  color: var(--fg-dim);
+}
+
+.lh-list {
+  display: block;
+}
+
+.lh-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  text-decoration: none;
+  border-top: 1px solid var(--rule);
+}
+
+.lh-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* the ▸ prompt marker */
+.lh-row::before {
+  content: "▸";
+  flex: 0 0 auto;
+  color: var(--muted-dark);
+  transition: color 150ms ease;
+}
+
+.lh-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--muted);
+  transition: color 150ms ease;
+}
+
+.lh-icon svg {
+  width: 1.05em;
+  height: 1.05em;
+  display: block;
+}
+
+.lh-name {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+/* dotted leader filling the gap to the action label */
+.lh-lead {
+  flex: 1 1 auto;
+  min-width: 1rem;
+  border-bottom: 1px dotted var(--muted-dark);
+  transition: border-color 150ms ease;
+}
+
+.lh-go {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  transition: color 150ms ease;
+}
+
+/* blinking terminal caret, revealed on hover/focus */
+.lh-go::after {
+  content: "▮";
+  margin-left: 0.35em;
+  opacity: 0;
+}
+
+.lh-row:hover,
+.lh-row:focus-visible {
+  color: var(--fg);
+  outline: none;
+}
+
+.lh-row:hover::before,
+.lh-row:focus-visible::before,
+.lh-row:hover .lh-icon,
+.lh-row:focus-visible .lh-icon,
+.lh-row:hover .lh-go,
+.lh-row:focus-visible .lh-go {
+  color: var(--fg);
+}
+
+.lh-row:hover .lh-lead,
+.lh-row:focus-visible .lh-lead {
+  border-color: var(--muted);
+}
+
+.lh-row:hover .lh-go::after,
+.lh-row:focus-visible .lh-go::after {
+  opacity: 1;
+  animation: lh-blink 1.05s steps(1) infinite;
+}
+
+/* not-yet-live services: present, but not a door that opens */
+.lh-soon {
+  cursor: default;
+  color: var(--muted);
+}
+
+.lh-soon .lh-name {
+  color: var(--muted);
+}
+
+@keyframes lh-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lh-row:hover .lh-go::after,
+  .lh-row:focus-visible .lh-go::after {
+    animation: none;
+  }
+}
+
 .intro {
   max-width: 48rem;
 }
@@ -461,7 +724,7 @@ main {
   shape-margin: 0.5rem;
 }
 
-/* Slanted silhouette — for figlets that lean (1995, etc).
+/* Slanted silhouette - for figlets that lean (1995, etc).
    Text flows into the empty top- and bottom-corner wedges. */
 .ornament-right.ornament-slant {
   shape-outside: polygon(28% 0, 100% 0, 100% 100%, 28% 100%, 0 50%);
@@ -471,7 +734,7 @@ main {
   shape-outside: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
 }
 
-/* Small box glyphs (faces, tiny logos) — sit closer to the text. */
+/* Small box glyphs (faces, tiny logos) - sit closer to the text. */
 .ornament-tight.ornament-right {
   margin: 0.2em 0 0.4rem 0.85rem;
   shape-margin: 0.3rem;
@@ -538,7 +801,7 @@ main {
 }
 
 /* FAQ: questions keep default treatment (bold via markdown **); answers get
-   a terminal-response vibe — monospace, muted, indented with a › prefix. */
+   a terminal-response vibe - monospace, muted, indented with a › prefix. */
 .page-faq .prose p:has(> strong:only-child) {
   margin-bottom: 0.25rem;
   letter-spacing: 0.01em;
@@ -614,7 +877,7 @@ footer {
   font-size: min(0.75rem, 2.1vw);
   line-height: 1;
   overflow-x: visible;
-  /* sized to fit — no scrollbar track */
+  /* sized to fit - no scrollbar track */
   margin: 0 0 0;
   text-align: left;
   white-space: pre;
@@ -630,7 +893,7 @@ footer {
 }
 
 /* louuy audio-only block: short rows hug the right edge, flush under the
-   widest line (scoped — combo_xtra's pyramid must stay left-anchored) */
+   widest line (scoped - combo_xtra's pyramid must stay left-anchored) */
 .ornament-flush-right {
   text-align: right;
 }
@@ -639,7 +902,7 @@ pre.ornament-masthead {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   color: var(--accent);
-  /* Stacked dark shadows fake a per-character background — they only
+  /* Stacked dark shadows fake a per-character background - they only
      paint around glyphs, so whitespace stays transparent. */
   text-shadow:
     0 0 0.35em rgba(10, 10, 10, 0.95),
@@ -694,7 +957,7 @@ pre.ornament-masthead {
   transition: opacity 300ms ease;
 }
 
-/* reveal on the copyright text only — not the GitHub link beside it */
+/* reveal on the copyright text only - not the GitHub link beside it */
 footer:has(.copyright > span:hover) .footer-line {
   opacity: 1;
 }
@@ -707,31 +970,32 @@ footer:has(.copyright > span:hover) .footer-line {
   justify-content: space-between;
 }
 
-.rp-link {
-  color: var(--muted-dark);
-  margin-left: 0.75rem;
-  text-decoration: none;
+/* streaming + source icons, grouped at the right of the copyright line */
+.foot-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
 }
 
-.rp-link:hover {
-  color: var(--fg, var(--accent));
-  text-decoration: underline;
-}
-
-.gh-link {
+.icon-link {
   display: inline-flex;
   color: var(--muted);
-  margin-left: auto;
 }
 
-.gh-link svg {
-  width: 1em;
-  height: 1em;
+.icon-link svg {
+  width: 1.1em;
+  height: 1.1em;
   display: block;
 }
 
-.gh-link:hover {
+.icon-link:hover {
   color: var(--fg, var(--accent));
+}
+
+/* the cone-tree reads narrow — give it a touch more height to balance */
+.rp-link svg {
+  width: 1.25em;
+  height: 1.25em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -763,7 +1027,7 @@ footer:has(.copyright > span:hover) .footer-line {
   margin: 0;
 }
 
-/* Invisible base text — only glitch.js's per-span color/glow flashes (set as
+/* Invisible base text - only glitch.js's per-span color/glow flashes (set as
    inline styles, which override this) punch through. The ornament reads as
    blank until the glitch hits, then flickers in. text-shadow:none kills the
    base glow that would otherwise trace the glyphs even with transparent fill;
@@ -779,7 +1043,7 @@ footer:has(.copyright > span:hover) .footer-line {
   width: 100%;
   height: 40px;
   margin: 0.85rem 0 0;
-  /* no border/fill — the muted bars float quietly so they don't compete
+  /* no border/fill - the muted bars float quietly so they don't compete
      with the hydra background video showing through the player panel */
   background: transparent;
   opacity: 0.85;
@@ -799,7 +1063,7 @@ footer:has(.copyright > span:hover) .footer-line {
 
 .oo-player .art-wrap {
   position: relative;
-  margin: 0 0 1rem;
+  margin: 0 0 0.4rem;
   line-height: 0;
 }
 
@@ -816,6 +1080,24 @@ footer:has(.copyright > span:hover) .footer-line {
 .oo-player .art-wrap:has(#thumb:not([src])),
 .oo-player .art-wrap:has(#thumb[src=""]) {
   display: none;
+}
+
+/* cover-film: layered over the still art, faded in only while playing */
+.oo-player .art-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 1px solid var(--rule);
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.oo-player.playing .art-video {
+  opacity: 1;
 }
 
 /* center play/pause affordance over the art */
@@ -950,7 +1232,7 @@ footer:has(.copyright > span:hover) .footer-line {
   background: rgba(242, 241, 237, 0.08);
 }
 
-/* ── Video title card — bare full-screen, layered over the glitch bg ───── */
+/* ── Video title card - bare full-screen, layered over the glitch bg ───── */
 .titlecard {
   position: fixed;
   inset: 0;
@@ -1031,4 +1313,256 @@ footer:has(.copyright > span:hover) .footer-line {
   margin: 0;
   flex: none;
   min-width: 7rem;
+}
+
+/* Lineup - all operators inline on one page (no click-through); front-end pass */
+.page-lineup .prose { max-width: 46rem; }
+
+.lineup-intro {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 2.75rem;
+}
+
+.operator-full { margin-top: 0; }
+.operator-full + .operator-full {
+  margin-top: 3.5rem;
+  padding-top: 3.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* Portrait sits inline with the text, not as a full-width block. The top
+   ASCII ornament floats right; the portrait floats left; copy threads between. */
+.page-lineup .prose figure.portrait {
+  float: left;
+  clear: left;
+  width: 42%;
+  max-width: 13rem;
+  margin: 0.2rem 1.5rem 0.9rem 0;
+  shape-outside: inset(0);
+  shape-margin: 0.6rem;
+}
+.page-lineup .prose figure.portrait img {
+  filter: grayscale(1) contrast(1.03);
+  transition: filter 0.25s ease;
+}
+.operator-full:hover .prose figure.portrait img,
+.operator-full:focus-within .prose figure.portrait img { filter: none; }
+
+/* the § section labels within each operator read as eyebrows, not headlines */
+.page-lineup .prose h2 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-top: 1.9rem;
+}
+
+@media (max-width: 40rem) {
+  .page-lineup .prose figure.portrait {
+    float: none;
+    width: 100%;
+    max-width: 15rem;
+    margin: 1.2rem auto;
+  }
+}
+
+/* FAQ - Reader annotation layer: strong question / answer differentiation */
+.page-faq .prose h3 {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--fg);
+  margin: 3rem 0 1rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+}
+.page-faq .prose h3:first-child {
+  margin-top: 0.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+.page-faq .prose > p {
+  color: var(--fg-dim);
+  max-width: 42rem;
+}
+.page-faq .prose sup a { text-decoration: none; }
+.page-faq .prose .footnotes {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Loss Leader LP tracklist */
+.page-lossleader .prose { max-width: 40rem; }
+.tracklist {
+  list-style: none;
+  counter-reset: track;
+  margin: 2.25rem 0 0;
+  padding: 0;
+  max-width: 34rem;
+  font-family: var(--font-mono);
+}
+.tracklist li {
+  counter-increment: track;
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--rule);
+}
+.tracklist li:last-child { border-bottom: 1px solid var(--rule); }
+.tracklist li::before {
+  content: counter(track, decimal-leading-zero);
+  flex: 0 0 auto;
+  min-width: 1.5em;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.tracklist .t-title {
+  flex: 1 1 auto;
+  color: var(--fg);
+  font-size: 0.95rem;
+}
+a.t-title {
+  text-decoration: none;
+  border-bottom: 1px solid var(--muted-dark);
+}
+a.t-title:hover { border-bottom-color: var(--fg); }
+.tracklist .t-tag {
+  flex: 0 0 auto;
+  align-self: center;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 0.12rem 0.4rem;
+  border-radius: 2px;
+}
+.tracklist .t-meta {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Persistent player ──────────────────────────────────────────────────────
+   The player lives in the shell (survives boosted nav). The original .oo-player
+   rules above render the "expanded" card; on HOME we dock that card into
+   #player-dock, off-home we collapse it to a sticky bottom mini-bar. */
+
+/* leave room for the fixed bar on sub-pages (home has no bar) */
+body:not(.is-home):has(.oo-player[data-player]) { padding-bottom: 4.5rem; }
+
+/* ── mini-bar (sub-pages) ── */
+body:not(.is-home) .oo-player[data-player] {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.5rem 0.9rem;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+body:not(.is-home) .oo-player[data-player] .art-wrap {
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+}
+body:not(.is-home) .oo-player[data-player] #thumb {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: cover;
+}
+body:not(.is-home) .oo-player[data-player] .play-overlay {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0;
+  font-size: 0.9rem;
+}
+body:not(.is-home) .oo-player[data-player] .np {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--fg-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body:not(.is-home) .oo-player[data-player] #player {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+  height: 2rem;
+}
+body:not(.is-home) .oo-player[data-player] #playlist,
+body:not(.is-home) .oo-player[data-player] .oo-lyrics,
+body:not(.is-home) .oo-player[data-player] .eq-viz {
+  display: none;
+}
+
+/* ── expanded card, docked into the home release block ── */
+#player-dock {
+  display: block; /* full release width, like the original in-flow player */
+}
+body.is-home .oo-player[data-player] {
+  position: absolute; /* JS sets top/left/width from #player-dock; scrolls with page */
+  z-index: 40;
+  display: block; /* single-column stack - no empty grid column beside the EQ */
+}
+/* hide the now-playing label on home (the playlist shows titles) */
+body.is-home .oo-player[data-player] .np {
+  display: none;
+}
+/* tight vertical rhythm: audio sits right under the art, EQ spans full width */
+body.is-home .oo-player[data-player] .art-wrap {
+  margin: 0;
+}
+body.is-home .oo-player[data-player] #player {
+  margin-top: 0;
+}
+body.is-home .oo-player[data-player] .eq-viz {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+body.is-home .oo-player[data-player] .oo-lyrics {
+  border-left: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 0.85rem;
+  padding: 0.85rem 0 0;
+}
+/* avoid a flash at the wrong position before JS docks it on first paint */
+body.is-home .oo-player[data-player]:not([data-docked]) {
+  visibility: hidden;
+}
+
+/* background canvas hides on no-bg pages (it persists in the shell under boosted nav) */
+body.no-bg .bg-canvas {
+  display: none;
+}
+
+/* subtle feedback while a boosted navigation is in flight */
+html[data-nav="loading"] #swap {
+  opacity: 0.55;
+  transition: opacity 120ms ease;
 }

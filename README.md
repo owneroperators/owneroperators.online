@@ -34,6 +34,7 @@ Requires Hugo **extended**. On macOS: `brew install hugo`.
 hugo.toml                 # site config; release params under [params.release]
 content/
   _index.md               # home page body
+  links.md                # link-in-bio hub (/links/, layout = "linkhub")
   *.md                    # standalone pages (cast profiles, etc.)
 data/
   links.yaml              # streaming + social links (order = UI order)
@@ -53,7 +54,10 @@ Anything under `data/` is auto-loaded by Hugo as `site.Data.<filename>` — no g
 code.
 
 - **`data/links.yaml`** — a flat list of outbound links (streaming services +
-  social). Order in the file is the order they render in the release block.
+  social). Order in the file = render order. Rendered in three surfaces: the home
+  release block (`partials/links.html`), the footer icons (entries flagged
+  `footer: true`), and the `/links/` hub (`layouts/_default/linkhub.html`). Brand
+  glyphs come from `partials/brand-icon.html` (name → SVG).
 - **`data/ornaments.yaml`** — three ASCII ornament slots (`masthead`, `between`,
   `footer`). Empty string renders nothing. Keep each ≤72 chars wide so mobile
   doesn't scroll horizontally.

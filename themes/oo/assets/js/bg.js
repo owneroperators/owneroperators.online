@@ -6,11 +6,8 @@ document.documentElement.setAttribute("data-bg", "loaded");
   var canvas = document.getElementById("bg");
   if (!canvas) return;
 
-  // Temporarily ignoring prefers-reduced-motion so the animated ASCII fallback
-  // is visible during iPhone testing. Re-enable before shipping.
-  // var reduceMotion =
-  //   window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var reduceMotion = false;
+  var reduceMotion =
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (reduceMotion || !supportsHydra()) {
     document.documentElement.setAttribute("data-bg", reduceMotion ? "ascii-static" : "ascii");
@@ -19,7 +16,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
   }
   document.documentElement.setAttribute("data-bg", "hydra");
 
-  // Internal render resolution — visual stretch comes from CSS.
+  // Internal render resolution - visual stretch comes from CSS.
   new Hydra({
     canvas: canvas,
     detectAudio: false,
@@ -29,23 +26,33 @@ document.documentElement.setAttribute("data-bg", "loaded");
   });
 
   var videoSrc = canvas.getAttribute("data-video");
+  // Clip origin: CDN (cross-origin, CORS-enabled) or same-origin "/video/".
+  // videoSrc is already resolved against this base by the template.
+  var base = canvas.getAttribute("data-video-base") || "/video/";
 
   if (videoSrc) {
-    // All clip paths. Add/remove as needed — order is the playback sequence.
+    // All clip paths. Add/remove as needed - order is the playback sequence.
+    // Cross-origin clips are read into a WebGL texture, so `base` must serve them
+    // with CORS headers and each <video> below sets crossOrigin="anonymous".
     var clips = [
       videoSrc,
-      "/video/store.mp4",
-      "/video/action.mp4",
-      "/video/bridge.mp4",
-      "/video/bwamp.mp4",
-      "/video/cone.mp4",
-      "/video/dad.mp4",
-      "/video/dance.mp4",
-      "/video/fan.mp4",
-      "/video/float.mp4",
-      "/video/king.mp4",
-      "/video/talent.mp4",
-      "/video/trio.mp4",
+      base + "store.mp4",
+      base + "action.mp4",
+      base + "bridge.mp4",
+      base + "bwamp.mp4",
+      base + "cone.mp4",
+      base + "dad.mp4",
+      base + "dance.mp4",
+      base + "fan.mp4",
+      base + "float.mp4",
+      base + "king.mp4",
+      base + "talent.mp4",
+      base + "trio.mp4",
+      base + "lizard.mp4",
+      base + "riff.mp4",
+      base + "bloom.mp4",
+      base + "paper.mp4",
+      base + "circuit.mp4",
     ];
 
     // Four slots: active[i] and idle[i] are indices into `slots`.
@@ -97,9 +104,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
       return c;
     }
 
-    console.log("time", time);
-
-    // Effect chains — each references active slots so clip swaps re-use the current chain.
+    // Effect chains - each references active slots so clip swaps re-use the current chain.
     var chainIdx = 0;
     var chains = [
       function () {
@@ -129,7 +134,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
           .out();
       },
       function () {
-        // pixelate blend — both slots visible
+        // pixelate blend - both slots visible
         src(slots[active[0]])
           .blend(
             src(slots[active[1]])
@@ -314,7 +319,7 @@ document.documentElement.setAttribute("data-bg", "loaded");
     }
 
     // Ornament pool, emitted by baseof.html from data/ornaments.yaml as a
-    // JSON data block (not inline JS — Hugo's minifier will rewrite that into
+    // JSON data block (not inline JS - Hugo's minifier will rewrite that into
     // a template literal and nuke the object structure).
     var ornamentPool = [];
     var dataEl = document.getElementById("ornaments-data");

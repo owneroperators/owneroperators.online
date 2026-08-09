@@ -1,11 +1,15 @@
-# Outbound links surfaced in the release block on the home page.
-# Rendered by themes/oo/layouts/partials/links.html.
-# Spotify and Apple Music aren't live yet — marked `soon: true` so they render
-# non-clickable with a "coming soon" hover label. Drop the flag and add a real
-# `url:` when the artist profiles go live.
-# Each link has an optional `ornament` — a small ASCII glyph rendered above the name.
-# The direct MP3 download rides in the same row — `download:` makes the
-# anchor save the file instead of streaming it (see links.html).
+# Outbound links (streaming + social). Order here = render order everywhere.
+# Rendered in three surfaces, all reading this one list:
+#   - home release block  → partials/links.html (ASCII-ornament tiles)
+#   - footer icons        → entries flagged `footer: true` (brand SVG glyphs)
+#   - /links/ hub page     → layouts/_default/linkhub.html (terminal list)
+# Brand glyphs are mapped name → inline SVG in partials/brand-icon.html.
+# Optional per-entry flags:
+#   footer: true    also surface this link as an icon in the site footer
+#   download: "…"   save the file instead of streaming it (the direct MP3)
+#   ornament: |     small ASCII glyph shown above the name in the release tiles
+#   soon: true      render non-clickable with a "coming soon" label (not live yet)
+#   break: true     release tiles only — force a row break BEFORE this entry
 - name: download the mp3
   url: /mp3/echoes2.mp3
   download: "OWNER-OPERATORS — Echoes and Static.mp3"
@@ -16,7 +20,8 @@
     │GET MP3│
     ╰───────╯
 - name: Spotify
-  soon: true
+  url: https://open.spotify.com/track/6vgu8EDylZ3zJM2NVBsM2e
+  footer: true
   ornament: |2
     ╭───────╮
     │ ≋ ≋ ≋ │
@@ -24,7 +29,8 @@
     │SPOTIFY│
     ╰───────╯
 - name: Apple Music
-  soon: true
+  url: https://music.apple.com/us/album/echoes-and-static-single/6789257580
+  footer: true
   ornament: |2
     ╭───────╮
     │  ♪♬   │
@@ -33,6 +39,7 @@
     ╰───────╯
 - name: Bandcamp
   url: https://owneroperators.bandcamp.com/
+  footer: true
   ornament: |2
     ╭───────╮
     │ ◯───◯ │
@@ -46,4 +53,23 @@
     │ ┌─◉─┐ │
     │ └───┘ │
     │ INSTA │
+    ╰───────╯
+- name: Amazon Music
+  url: https://music.amazon.com/artists/B0H88968TF/owner-operators
+  footer: true
+  break: true
+  ornament: |2
+    ╭───────╮
+    │ ♪ ⌐¬  │
+    │  ╰─╯  │
+    │AMAZON │
+    ╰───────╯
+- name: Pandora
+  url: https://www.pandora.com/artist/owner-operators/ARlX2ht6fv66VZ9
+  footer: true
+  ornament: |2
+    ╭───────╮
+    │ ▛▀▀▖  │
+    │ ▌  ▘  │
+    │PANDORA│
     ╰───────╯

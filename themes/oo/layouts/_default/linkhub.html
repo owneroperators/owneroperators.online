@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <section class="linkhub">
+    <header class="lh-head">
+      <a class="lh-brand" href="{{ "/" | relURL }}">OWNER<span class="slash">/</span>OPERATORS</a>
+      {{ with site.Params.release }}
+        <p class="lh-release">
+          {{ .title }}{{ with .from }} — <span class="lh-from">{{ . }}</span>{{ end }} · out now
+        </p>
+      {{ end }}
+    </header>
+
+    <nav class="lh-list" aria-label="Stream, download, follow">
+      {{ range site.Data.links }}
+        {{ if .soon }}
+          <span class="lh-row lh-soon" aria-disabled="true" aria-label="{{ .name }} — coming soon">
+            <span class="lh-icon">{{ partial "brand-icon.html" .name }}</span>
+            <span class="lh-name">{{ .name }}</span>
+            <span class="lh-lead" aria-hidden="true"></span>
+            <span class="lh-go">soon</span>
+          </span>
+        {{ else }}
+          <a class="lh-row" href="{{ .url }}"{{ with .download }} download="{{ . }}"{{ else }} rel="noopener" target="_blank"{{ end }}>
+            <span class="lh-icon">{{ partial "brand-icon.html" .name }}</span>
+            <span class="lh-name">{{ .name }}</span>
+            <span class="lh-lead" aria-hidden="true"></span>
+            <span class="lh-go">{{ if .download }}get&nbsp;↓{{ else }}open&nbsp;↗{{ end }}</span>
+          </a>
+        {{ end }}
+      {{ end }}
+    </nav>
+  </section>
+{{ end }}

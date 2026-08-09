@@ -2,6 +2,7 @@
 {{ with site.Data.links }}
   <ul class="links">
     {{ range . }}
+      {{ if .break }}<li class="links-break" aria-hidden="true"></li>{{ end }}
       <li>
         {{ if .soon }}
           <span class="link link-soon" aria-disabled="true" aria-label="{{ .name }} — coming soon">

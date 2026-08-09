@@ -1,7 +1,7 @@
-// Timed lyrics for Echoes and Static — one block per verse/chorus, ≤4 lines each.
+// Timed lyrics for Echoes and Static - one block per verse/chorus, ≤4 lines each.
 // GENERATED from oo-band/headset/karaoke/lyrics.js (word timings, t = line's
 // first word) grouped per oo-band/songs/echoes-and-static/lyrics.md stanzas.
-// Format: web-mp3's lyrics option — blocks of { t, text } lines.
+// Format: web-mp3's lyrics option - blocks of { t, text } lines.
 export default [
   [
     { t: 29.77, text: "Woke up to static and a burnt-out glow" },

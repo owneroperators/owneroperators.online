@@ -4,12 +4,12 @@
 
 ## API
 
-- [API](https://owneroperators.online/api/): Live Node API — primary machine-readable endpoint for this site.
+- [API](https://owneroperators.online/api/): Live Node API - primary machine-readable endpoint for this site.
 
 ## Pages
 
 - [Home](https://owneroperators.online/): Release info, links, intro
-- [Manual](https://owneroperators.online/manual/): Operating Manual — voice, values, context
+- [Manual](https://owneroperators.online/manual/): Operating Manual - voice, values, context
 - [FAQ](https://owneroperators.online/faq/): Frequently asked questions
 - [Loss Leader](https://owneroperators.online/lossleader/): LP page
 - [Preview](https://owneroperators.online/preview/): Preview

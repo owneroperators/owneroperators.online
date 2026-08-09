@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Redirecting… — {{ site.Title }}</title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="refresh" content="0; url={{ "/" | relURL }}">
+<link rel="canonical" href="{{ "/" | absURL }}">
+</head>
+<body>
+<p>The preview has moved on. Redirecting to <a href="{{ "/" | relURL }}">{{ site.Title }}</a>…</p>
+<script>window.location.replace({{ "/" | relURL | jsonify }});</script>
+</body>
+</html>

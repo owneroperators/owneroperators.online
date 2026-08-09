@@ -3,6 +3,8 @@
     <h1 class="sr-only">OWNER/OPERATORS</h1>
 
     <nav class="hero-nav">
+      <a href="{{ "/manual/" | relURL }}">Manual →</a>
+      <a href="{{ "/lossleader/" | relURL }}">Loss Leader →</a>
       <a href="{{ "/blog/" | relURL }}">Blog →</a>
     </nav>
 
@@ -24,16 +26,11 @@
         <pre class="ornament ornament-xtra ornament-flush-right" aria-hidden="true">{{ . }}</pre>
       {{ end }}
 
-      {{/* web-mp3 player — element ids (#thumb/#player/#playlist/#lyrics) are fixed by the lib */}}
-      <div id="player-container" class="oo-player">
-        <div class="art-wrap">
-          <img id="thumb" alt="" />
-          <button id="play-toggle" class="play-overlay" type="button" aria-label="Play">▶</button>
-        </div>
-        <audio id="player" controls></audio>
-        <div id="lyrics" class="oo-lyrics"></div>
-        <ul id="playlist"></ul>
-      </div>
+      {{/* The player is a persistent shell element (partials/player.html) so it survives
+           boosted navigation. On home it docks here as the expanded card; off-home it
+           collapses to a sticky mini-bar. This placeholder reserves its slot in the
+           release flow — player-dock JS positions the shell player over it. */}}
+      <div id="player-dock" aria-hidden="true"></div>
 
       {{/* the MP3 download lives in data/links.yaml with the streaming/social links */}}
       <!-- {{ with .from }}<p class="release-from">from <em>{{ . }}</em></p>{{ end }} -->
@@ -41,17 +38,9 @@
     </section>
   {{ end }}
 
-  {{/* mp3s live in static/mp3/ (served at /mp3/), ID3-tagged so the player fills in title/art.
-       web-mp3.js is a pristine upstream build (no local fork) — the OO EQ/visualizer is wired
-       up here instead, and must run before init() so the audio graph exists before playback. */}}
-  <script type="module">
-    import { init } from "/js/web-mp3.js";
-    import { setupEQ } from "/js/eq.js";
-    import echoesLyrics from "/js/echoes-lyrics.js";
-    setupEQ(document.getElementById("player"));
-    init(["/mp3/echoes2.mp3"], { lyrics: { "/mp3/echoes2.mp3": echoesLyrics } });
-  </script>
-
+  {{/* live dates parked for now - re-enable when the calendar is real
+  {{ partial "shows.html" . }}
+  */}}
 
   <section class="intro">{{ .Content }}</section>
 {{ end }}

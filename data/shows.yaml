@@ -1,0 +1,10 @@
+# Live dates. Order doesn't matter — the partial sorts by date and drops
+# anything that's already happened (a show stays up through its own day).
+# Fields: date (YYYY-MM-DD, quoted), venue, city, time, url (tickets/info),
+# note. Everything except date + venue is optional; empty ones just don't render.
+- date: "2026-10-10"
+  venue: The Hive
+  city: ""
+  time: ""
+  url: ""
+  note: ""

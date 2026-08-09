@@ -5,6 +5,19 @@ theme = "oo"
 
 enableRobotsTXT = true
 
+# One canonical RSS feed at /index.xml (blog posts, full content — see
+# themes/oo/layouts/_default/rss.xml). RSS is switched off for sections and
+# taxonomies so we don't publish a dozen junk feeds.
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+  page = ["HTML"]
+
+[services.rss]
+  limit = 40
+
 [params]
   description = "OWNER/OPERATORS. New single, Echoes and Static — out now."
   artist = "OWNER/OPERATORS"
@@ -17,11 +30,19 @@ enableRobotsTXT = true
   # DSP go-live: released 2026-06-13. Now live — treat as out now.
   releaseDate = "2026-06-13"
 
+# Base URL for externally-hosted media — the DigitalOcean Spaces CDN edge
+# (bucket `pinecone-spaces`, sfo3), shared with signals. Background clips are read
+# into a WebGL texture by hydra, so the bucket MUST have a CORS rule allowing GET
+# from this origin. Set empty ("") to serve the clips locally from /video/ instead
+# — the templates fall back to same-origin.
+[params.cdn]
+  videoBase = "https://pinecone-spaces.sfo3.cdn.digitaloceanspaces.com/oo/video/v1/"
+
 # Fullscreen background video piped through hydra-synth for live glitch processing.
-# Leave `video` unset to fall back to procedural off-air-static noise.
-# Video must be same-origin (or CORS-enabled) for WebGL to read its frames.
+# `video` is a bare filename resolved against params.cdn.videoBase (or /video/ if
+# that's empty). Leave it unset to fall back to procedural off-air-static noise.
 [params.bg]
-  video = "/video/bg.mp4"
+  video = "offair.mp4"
 
 [markup.goldmark.renderer]
   unsafe = true
